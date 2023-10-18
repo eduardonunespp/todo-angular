@@ -10,6 +10,12 @@
   form {
     width: 316px;
     height: 255px;
-    border: 1px solid yellow;
+  }
+
+  h2 {
+    color: var(--text-secundary);
+    border-left: 7px solid var(--brand);
+    padding: 0px 10px;
+    margin-bottom: 24px;
   }
 }
