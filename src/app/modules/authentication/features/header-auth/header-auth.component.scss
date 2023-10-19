@@ -5,6 +5,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+
   padding: 0rem 2rem;
 
   a {
@@ -18,7 +20,7 @@ header {
   }
 
   @media (max-width: "37.5rem") {
-    padding: .75rem;
+    padding: 0.75rem;
 
     img {
       width: 5.625rem;

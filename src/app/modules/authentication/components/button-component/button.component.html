@@ -1,1 +1,5 @@
-<button></button>
+<button class="button-auth-component" [disabled]="isDisabled"
+  [ngClass]="{'isDisabled': isDisabled}"
+>
+  <ng-content></ng-content>
+</button>
