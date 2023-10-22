@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'td-container-auth',
@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./container-auth.component.scss'],
 })
 export class ContainerAuthComponent {
-  @Input() title: string = '';
+  
 }

@@ -10,6 +10,8 @@ header {
   padding: 0rem 2rem;
 
   a {
+    cursor: pointer;
+    font-weight: 600;
     text-decoration: none;
     color: var(--brand);
     font-size: 0.8rem;
