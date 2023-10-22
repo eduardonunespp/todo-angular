@@ -1,11 +1,12 @@
-<form action="">
+<form action="" [formGroup]="signUpForm" >
 
     <h2>{{ title }}</h2>      
 
-  <td-input label="Nome:" type="text" />
-  <td-input label="Email:" type="text" />
-  <td-input label="Senha:" type="password" />
-  <td-input label="Confirmação de Senha:" type="password" />
+  <td-input label="Nome:" type="text" formControlName="name" />
+  
+  <td-input label="Email:" type="text" formControlName="email" />
+  <td-input label="Senha:" type="password" formControlName="password" />
+  <td-input label="Confirmação de Senha:" type="password" formControlName="passwordConfirm" />
 
   <td-button [isDisabled]="false"> Cadastre-se </td-button>
 </form>

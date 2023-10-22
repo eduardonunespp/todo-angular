@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SignInComponent } from './sign-in.component';
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { ContainerAuthModule, HeaderAuthModule } from '../../features';
-import { ButtonComponentModule, InputComponentModule, FormSignInModule } from '../../components';
+import { FormSignInModule } from '../../components';
 
 @NgModule({
   declarations: [SignInComponent],
@@ -12,9 +12,7 @@ import { ButtonComponentModule, InputComponentModule, FormSignInModule } from '.
     SignInRoutingModule,
     ContainerAuthModule,
     HeaderAuthModule,
-    ButtonComponentModule,
-    InputComponentModule,
-    FormSignInModule
+    FormSignInModule,
   ],
 })
 export class SignInModule {}

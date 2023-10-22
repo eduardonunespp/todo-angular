@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './sign-up.component';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { ContainerAuthModule, HeaderAuthModule } from '../../features';
-import { InputComponentModule, ButtonComponentModule, FormSignUpModule } from '../../components';
+import { FormSignUpModule } from '../../components';
 
 @NgModule({
   declarations: [SignUpComponent],
@@ -11,10 +11,8 @@ import { InputComponentModule, ButtonComponentModule, FormSignUpModule } from '.
     CommonModule,
     SignUpRoutingModule,
     ContainerAuthModule,
-    InputComponentModule,
-    ButtonComponentModule,
     HeaderAuthModule,
-    FormSignUpModule
+    FormSignUpModule,
   ],
 })
 export class SignUpModule {}
