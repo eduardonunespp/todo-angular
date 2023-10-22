@@ -14,7 +14,7 @@ export class HeaderAuthComponent implements OnInit {
   constructor(private router: Router) {}
 
   redirectTo(url: string) {
-    this.router.navigate([url]);
+    this.router.navigateByUrl(url);
   }
 
   ngOnInit(): void {
