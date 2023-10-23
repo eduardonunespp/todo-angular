@@ -1,12 +1,38 @@
-<form action="" [formGroup]="signUpForm" >
-
-    <h2>{{ title }}</h2>      
+<form [formGroup]="signUpForm">
+  <h2>{{ title }}</h2>
 
   <td-input label="Nome:" type="text" formControlName="name" />
-  
+  <mat-error *ngIf="isInvalid('name', 'required')">{{
+    msg.required
+  }}</mat-error>
   <td-input label="Email:" type="text" formControlName="email" />
-  <td-input label="Senha:" type="password" formControlName="password" />
-  <td-input label="Confirmação de Senha:" type="password" formControlName="passwordConfirm" />
+  <mat-error *ngIf="isInvalid('email', 'required')">{{
+    msg.required
+  }}</mat-error>
+  <mat-error *ngIf="isInvalid('email', 'email')">{{ msg.email }}</mat-error>
 
-  <td-button [isDisabled]="false"> Cadastre-se </td-button>
+  <td-input label="Senha:" type="password" formControlName="password" />
+  <mat-error
+    *ngIf="
+      isInvalid('password', 'required') &&
+      !isInvalid('password', 'passwordLength')
+    "
+    >{{ msg.required }}</mat-error
+  >
+  <mat-error *ngIf="isInvalid('password', 'passwordLength')">{{
+    msg.passwordMinLength
+  }}</mat-error>
+  <td-input
+    label="Confirmação de Senha:"
+    type="password"
+    formControlName="passwordConfirm"
+  />
+  <mat-error *ngIf="isInvalid('passwordConfirm', 'required')">{{
+    msg.required
+  }}</mat-error>
+  <mat-error *ngIf="isInvalid('passwordConfirm', 'match')">{{
+    msg.passwordDoNotMatch
+  }}</mat-error>
+
+  <td-button [isDisabled]="!signUpForm.valid"> Cadastre-se </td-button>
 </form>
