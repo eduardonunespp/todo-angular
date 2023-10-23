@@ -1,22 +1,34 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms'
-import { msg } from '../../utils'
-import { ImsgError } from '../../types'
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+  ValidationErrors,
+} from '@angular/forms';
+import { msg } from '../../utils';
+import { ImsgError } from '../../types';
 
 @Component({
   selector: 'td-form-sign-up',
   templateUrl: './form-sign-up.component.html',
-  styleUrls: ['./form-sign-up.component.scss']
+  styleUrls: ['./form-sign-up.component.scss'],
 })
-
 export class FormSignUpComponent {
+  @Input() title: string = '';
+  msg: ImsgError = msg;
+  error: boolean = false;
 
-  @Input() title: string = ''
-  msg: ImsgError = msg
-
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder) {}
 
   passwordPattern = /^.{8,}$/;
+
+  hasEmailError() {
+    return (
+      this.isInvalid('email', 'required') || this.isInvalid('email', 'email')
+    );
+  }
 
   passwordLengthValidator(minLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -30,7 +42,7 @@ export class FormSignUpComponent {
   passwordsMatch(control: AbstractControl) {
     const password = control.get('password')?.value;
     const passwordConfirm = control.get('passwordConfirm')?.value;
-  
+
     if (password !== passwordConfirm) {
       control.get('passwordConfirm')?.setErrors({ match: true });
       return { match: true };
@@ -40,14 +52,25 @@ export class FormSignUpComponent {
     }
   }
 
-  signUpForm: FormGroup = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.pattern(this.passwordPattern), this.passwordLengthValidator(8)]],
-    passwordConfirm: ['', [Validators.required, Validators.pattern(this.passwordPattern)]]
-  },
-    {validators: this.passwordsMatch}
-  )
+  signUpForm: FormGroup = this.fb.group(
+    {
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.passwordPattern),
+          this.passwordLengthValidator(8),
+        ],
+      ],
+      passwordConfirm: [
+        '',
+        [Validators.required, Validators.pattern(this.passwordPattern)],
+      ],
+    },
+    { validators: this.passwordsMatch }
+  );
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.signUpForm.get(inputName);
@@ -58,7 +81,4 @@ export class FormSignUpComponent {
       );
     }
   }
-
-
-
 }

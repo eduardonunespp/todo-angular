@@ -17,6 +17,9 @@ export class InputComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = '';
   @Input() name: string = '';
+  @Input() hasError: boolean = false;
+  @Input() errorMsg: string = '';
+
   value: any;
 
   onChange: any = () => {};

@@ -1,11 +1,9 @@
 <form [formGroup]="signUpForm">
   <h2>{{ title }}</h2>
 
-  <td-input label="Nome:" type="text" formControlName="name" />
-  <mat-error *ngIf="isInvalid('name', 'required')">{{
-    msg.required
-  }}</mat-error>
-  <td-input label="Email:" type="text" formControlName="email" />
+  <td-input label="Nome:" type="text" formControlName="name" [hasError]="isInvalid('name', 'required')" [errorMsg]="msg.required" />
+
+  <td-input label="Email:" type="text" formControlName="email" [hasError]="hasEmailError()" />
   <mat-error *ngIf="isInvalid('email', 'required')">{{
     msg.required
   }}</mat-error>

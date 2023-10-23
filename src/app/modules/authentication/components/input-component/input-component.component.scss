@@ -31,5 +31,9 @@
       font-size: 0.9rem;
     }
   }
+  .hasError {
+    border: 1px solid var(--danger);
+  }
 }
+
 
