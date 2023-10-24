@@ -30,6 +30,47 @@ export class FormSignUpComponent {
     );
   }
 
+  hasMsgEmailError() {
+    if (this.isInvalid('email', 'required')) {
+      return msg.required;
+    } else {
+      return msg.email;
+    }
+  }
+
+  hasPasswordError() {
+    return (
+      this.isInvalid('password', 'required') ||
+      this.isInvalid('password', 'passwordLength')
+    );
+  }
+
+  hasPasswordMatchError() {
+    return (
+      this.isInvalid('passwordConfirm', 'required') ||
+      this.isInvalid('passwordConfirm', 'match')
+    );
+  }
+
+  hasMsgPasswordMatchError() {
+    if (this.isInvalid('passwordConfirm', 'required')) {
+      return msg.required;
+    } else {
+      return msg.passwordDoNotMatch;
+    }
+  }
+
+  hasPasswordErrorMsg() {
+    if (
+      this.isInvalid('password', 'required') &&
+      !this.isInvalid('password', 'passwordLength')
+    ) {
+      return msg.required;
+    } else {
+      return msg.passwordMinLength;
+    }
+  }
+
   passwordLengthValidator(minLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value || control.value.length < minLength) {
