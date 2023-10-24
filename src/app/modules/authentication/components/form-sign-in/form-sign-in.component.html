@@ -1,9 +1,21 @@
-<form action="">
-
+<form [formGroup]="signInForm">
 	<h2>{{ title }}</h2>
 
-  <td-input label="Email:" type="text" />
-  <td-input label="Senha:" type="password" />
+  <td-input
+  label="Email:"
+  type="text"
+  formControlName="email"
+  [hasError]="hasEmailError()"
+  [errorMsg]="hasMsgEmailError()"
+  />
 
-  <td-button [isDisabled]="false"> Entrar </td-button>
+  <td-input
+  label="Senha:"
+  type="password"
+  formControlName="password"
+  [hasError]="hasPasswordError()"
+  [errorMsg]="hasMsgPasswordError()"
+  />
+
+  <td-button [isDisabled]="!signInForm.valid"> Entrar </td-button>
 </form>
