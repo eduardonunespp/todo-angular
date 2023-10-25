@@ -7,8 +7,10 @@ import {
   ValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services';
 import { msg } from '../../utils';
-import { ImsgError } from '../../types';
+import { ImsgError, IregisterUsers } from '../../types';
 
 @Component({
   selector: 'td-form-sign-up',
@@ -20,7 +22,11 @@ export class FormSignUpComponent {
   msg: ImsgError = msg;
   error: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   passwordPattern = /^.{8,}$/;
 
@@ -112,6 +118,22 @@ export class FormSignUpComponent {
     },
     { validators: this.passwordsMatch }
   );
+
+  registerUser() {
+    if (this.signUpForm.valid) {
+      try {
+        let payload: IregisterUsers = this.signUpForm.value;
+        this.authService.registerUser(payload).subscribe((response) => {
+          alert('Cadastro Realizado com Sucesso');
+          this.router.navigateByUrl('');
+        });
+      } catch (error) {
+        console.error('Ocorreu um erro ao cadastrar o usuário:', error);
+      }
+    } else {
+      this.signUpForm.markAllAsTouched();
+    }
+  }
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.signUpForm.get(inputName);
