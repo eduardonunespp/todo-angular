@@ -121,15 +121,17 @@ export class FormSignUpComponent {
 
   registerUser() {
     if (this.signUpForm.valid) {
-      try {
-        let payload: IregisterUsers = this.signUpForm.value;
-        this.authService.registerUser(payload).subscribe((response) => {
+      let payload: IregisterUsers = this.signUpForm.value;
+
+      this.authService.registerUser(payload).subscribe(
+        (response) => {
           alert('Cadastro Realizado com Sucesso');
           this.router.navigateByUrl('');
-        });
-      } catch (error) {
-        console.error('Ocorreu um erro ao cadastrar o usuário:', error);
-      }
+        },
+        (error) => {
+          console.error('Ocorreu um erro na solicitação HTTP:', error);
+        }
+      );
     } else {
       this.signUpForm.markAllAsTouched();
     }
