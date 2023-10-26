@@ -1,20 +1,20 @@
-<form [formGroup]="signInForm">
+<form action="javascript:void(0)" (submit)="loginUser()" [formGroup]="signInForm">
 	<h2>{{ title }}</h2>
 
   <td-input
   label="Email:"
   type="text"
   formControlName="email"
-  [hasError]="hasEmailError()"
-  [errorMsg]="hasMsgEmailError()"
+  [hasError]="isInvalid('email', 'required')"
+  [errorMsg]="msg.required"
   />
 
   <td-input
   label="Senha:"
   type="password"
   formControlName="password"
-  [hasError]="hasPasswordError()"
-  [errorMsg]="hasMsgPasswordError()"
+  [hasError]="isInvalid('password', 'required')"
+  [errorMsg]="msg.required"
   />
 
   <td-button [isDisabled]="!signInForm.valid"> Entrar </td-button>
