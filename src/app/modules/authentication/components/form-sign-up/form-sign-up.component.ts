@@ -129,7 +129,8 @@ export class FormSignUpComponent {
           this.router.navigateByUrl('');
         },
         (error) => {
-          console.error('Ocorreu um erro na solicitação HTTP:', error);
+          const { erros } = error.error;
+          alert(erros);
         }
       );
     } else {
