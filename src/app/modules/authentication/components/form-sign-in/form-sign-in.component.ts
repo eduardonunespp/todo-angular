@@ -7,7 +7,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ImsgError } from '../../types';
+import { Cache } from '../../../../core';
+import { AuthService } from '../../services';
+import { ImsgError, IloginUsers } from '../../types';
 import { msg } from '../../utils';
 
 @Component({
@@ -19,7 +21,7 @@ export class FormSignInComponent {
   @Input() title: string = '';
   msg: ImsgError = msg;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   passwordPattern = /^.{8,}$/;
 
@@ -62,16 +64,28 @@ export class FormSignInComponent {
   }
 
   signInForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(this.passwordPattern),
-        this.passwordLengthValidator(8),
-      ],
-    ],
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]],
   });
+
+  loginUser() {
+    if (this.signInForm.valid) {
+      let payload: IloginUsers = this.signInForm.value;
+      this.authService.loginUser(payload).subscribe(
+        (response: any) => {
+          alert('usuário logado com sucesso');
+          const { accessToken } = response;
+          Cache.setSession({ key: 'accessToken', value: accessToken });
+        },
+        (error) => {
+          const { erros } = error.error;
+          alert(erros);
+        }
+      );
+    } else {
+      this.signInForm.markAllAsTouched();
+    }
+  }
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.signInForm.get(inputName);
