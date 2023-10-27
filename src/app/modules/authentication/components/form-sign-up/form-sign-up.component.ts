@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services';
 import { msg } from '../../utils';
 import { ImsgError, IregisterUsers } from '../../types';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-form-sign-up',
@@ -128,14 +129,25 @@ export class FormSignUpComponent {
 
       this.authService.registerUser(payload).subscribe(
         (response) => {
-          alert('Cadastro Realizado com Sucesso');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuário cadastrado com sucesso',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           this.isLoading = false;
           this.router.navigateByUrl('');
         },
         (error) => {
           const { erros } = error.error;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
           this.isLoading = false;
-          alert(erros);
         }
       );
     } else {

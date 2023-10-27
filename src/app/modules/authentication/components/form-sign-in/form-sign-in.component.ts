@@ -11,6 +11,7 @@ import { Cache } from '../../../../core';
 import { AuthService } from '../../services';
 import { ImsgError, IloginUsers } from '../../types';
 import { msg } from '../../utils';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-form-sign-in',
@@ -78,12 +79,23 @@ export class FormSignInComponent {
           const { accessToken } = response;
           Cache.setSession({ key: 'accessToken', value: accessToken });
           this.isLoading = false;
-          alert('usuário logado com sucesso');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuário logado com sucesso',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         },
         (error) => {
           const { erros } = error.error;
           this.isLoading = false;
-          alert(erros);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
         }
       );
     } else {
