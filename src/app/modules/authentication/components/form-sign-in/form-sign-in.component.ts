@@ -20,6 +20,7 @@ import { msg } from '../../utils';
 export class FormSignInComponent {
   @Input() title: string = '';
   msg: ImsgError = msg;
+  isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -70,15 +71,18 @@ export class FormSignInComponent {
 
   loginUser() {
     if (this.signInForm.valid) {
+      this.isLoading = true;
       let payload: IloginUsers = this.signInForm.value;
       this.authService.loginUser(payload).subscribe(
         (response: any) => {
-          alert('usuário logado com sucesso');
           const { accessToken } = response;
           Cache.setSession({ key: 'accessToken', value: accessToken });
+          this.isLoading = false;
+          alert('usuário logado com sucesso');
         },
         (error) => {
           const { erros } = error.error;
+          this.isLoading = false;
           alert(erros);
         }
       );

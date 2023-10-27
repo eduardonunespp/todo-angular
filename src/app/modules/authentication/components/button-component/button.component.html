@@ -1,6 +1,8 @@
 <button class="button-auth-component" [disabled]="isDisabled"
   [ngClass]="{'isDisabled': isDisabled}"
 >
-  <ng-content></ng-content>
-  <!-- <mat-spinner /> -->
+
+<div *ngIf="isLoading == true" class="spinner"></div>
+  <ng-content *ngIf="isLoading ==false"></ng-content>
+
 </button>

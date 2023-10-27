@@ -21,6 +21,7 @@ export class FormSignUpComponent {
   @Input() title: string = '';
   msg: ImsgError = msg;
   error: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -121,15 +122,19 @@ export class FormSignUpComponent {
 
   registerUser() {
     if (this.signUpForm.valid) {
+      this.isLoading = true;
+
       let payload: IregisterUsers = this.signUpForm.value;
 
       this.authService.registerUser(payload).subscribe(
         (response) => {
           alert('Cadastro Realizado com Sucesso');
+          this.isLoading = false;
           this.router.navigateByUrl('');
         },
         (error) => {
           const { erros } = error.error;
+          this.isLoading = false;
           alert(erros);
         }
       );
