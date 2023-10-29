@@ -7,11 +7,12 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router'
+import Swal from 'sweetalert2';
 import { Cache } from '../../../../core';
 import { AuthService } from '../../services';
 import { ImsgError, IloginUsers } from '../../types';
 import { msg } from '../../utils';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-form-sign-in',
@@ -23,7 +24,7 @@ export class FormSignInComponent {
   msg: ImsgError = msg;
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private route : Router) {}
 
   passwordPattern = /^.{8,}$/;
 
@@ -79,13 +80,7 @@ export class FormSignInComponent {
           const { accessToken } = response;
           Cache.setSession({ key: 'accessToken', value: accessToken });
           this.isLoading = false;
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Usuário logado com sucesso',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          this.route.navigateByUrl('home')
         },
         (error) => {
           const { erros } = error.error;

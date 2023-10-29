@@ -16,6 +16,11 @@ const routes: Routes = [
         (m) => m.SignUpModule
       ),
   },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./modules/app/pages/home/home.module').then((m) => m.HomeModule),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,7 @@
+<div class="container" [ngClass]="{'activedSide': isActivedSide}">
+
+    <td-side-bar (isActivedSideChange)="activedSide($event)" />    
+
+    <div class="content"></div>
+
+</div>
