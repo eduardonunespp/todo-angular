@@ -9,7 +9,7 @@
 :root {
   --background: #E9ECEF;
   --blue-light: #6933FF;
-  --primary: #25294C;
+
   --secundary: #202342;
   --text-primary: #333333;
   --text-secundary: #E9ECEF;
@@ -21,6 +21,11 @@
   --warning: #FFC107;
   --danger: #DC3545;
   --font-primary: 'Poppins', sans-serif;
+
+  --primary: rgb(32, 32, 36);
+  --secundary: rgb(41, 41, 46);
+
+
 }
 
 html {
@@ -35,7 +40,7 @@ html {
 }
 
 body {
-  background-color: var(--background);
+  background-color: var(--primary);
   --webkit-font-smoothing: antialisse;
   font-family: var(--font-primary);
 }

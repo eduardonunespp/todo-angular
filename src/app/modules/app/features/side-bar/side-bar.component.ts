@@ -11,7 +11,7 @@ export class SideBarComponent {
   isActivedSide: boolean = false
 
 
-  logoTodoSide: string = 'assets/todo-logo-side.svg'
+  logoTodoSide: string = 'assets/todo-logo.svg'
   menuTodoSide: string = 'assets/todo-menu-side.svg'
 
 
@@ -19,7 +19,4 @@ export class SideBarComponent {
     this.isActivedSide = !this.isActivedSide;
     this.isActivedSideChange.emit(this.isActivedSide);
   }
-
-
-
 }

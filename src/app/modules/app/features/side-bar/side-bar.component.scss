@@ -1,11 +1,10 @@
 .container {
-  background-color: var(--primary);
+  background-color: var(--secundary);
   padding: 17px 20px;
   position: relative;
   grid-area: side;
   height: 100%;
 
-  border: 1px solid orange;
 }
 
 .header-side {
@@ -22,9 +21,7 @@
     align-items: center;
     cursor: pointer;
     background-color: none;
-
     border: none;
-
     transition: 0.2s;
   }
 
