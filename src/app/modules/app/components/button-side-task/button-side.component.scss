@@ -1,0 +1,50 @@
+button{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    cursor: pointer;
+    color: var(--background);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary);
+    border: none;
+    margin-top: 10px;
+    
+    img {
+        color: rgb(255, 255, 255);
+        margin-right: 0px;
+    }
+    
+    p{
+        margin: 0px;
+        padding: 0px;
+    }
+
+}
+
+.actived {
+    background-color: var(--background);
+    color: var(--primary);
+}
+
+.actived {
+
+
+    svg {
+        path {
+            fill: var(--primary) !important
+        }
+    }
+}
+
+.activedSide {
+    justify-content: flex-start;
+
+    img {
+        color: rgb(255, 255, 255);
+        margin-right: 7px;
+    }
+}

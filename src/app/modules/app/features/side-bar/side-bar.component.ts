@@ -9,7 +9,8 @@ export class SideBarComponent {
 
   @Output() isActivedSideChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   isActivedSide: boolean = false
-  isActivedButton: boolean = true
+  isActivedButtonTask: boolean = false
+  isActivedButtonHome: boolean = false
 
   logoTodoSide: string = 'assets/todo-logo.svg'
   menuTodoSide: string = 'assets/todo-menu-side.svg'
@@ -24,9 +25,13 @@ export class SideBarComponent {
     this.isActivedSideChange.emit(this.isActivedSide);
   }
 
-  onActivedButtonChange(active: boolean){
-    this.isActivedButton = active
+  onActivedButtonChangeHome(){
+    this.isActivedButtonHome = true
+    this.isActivedButtonTask = false
+  }
 
-    console.log(active)
+  onActivedButtonChangeTask(){
+    this.isActivedButtonTask = true
+    this.isActivedButtonHome = false
   }
 }

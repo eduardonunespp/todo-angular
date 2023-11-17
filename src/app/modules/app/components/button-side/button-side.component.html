@@ -1,7 +1,8 @@
-<button  [ngClass]="{'activedSide': isActivedSide, 'actived': activedButton}" (click)="handleActiveButton()">
+<button  [ngClass]="{'activedSide': isActivedSide, 'actived': activedButtonHome}" (click)="handleActiveButton()">
     <svg class="icon" width="20" height="20" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.6667 0H2.08333C0.9375 0 0 0.9375 0 2.08333V16.6667C0 17.8125 0.9375 18.75 2.08333 18.75H16.6667C17.8125 18.75 18.75 17.8125 18.75 16.6667V2.08333C18.75 0.9375 17.8125 0 16.6667 0ZM16.6667 2.08333V11.4583H12.9583C12.5833 11.4583 12.25 11.6562 12.0625 11.9792C11.5208 12.9167 10.5312 13.5417 9.375 13.5417C8.21875 13.5417 7.22917 12.9167 6.6875 11.9792C6.59661 11.8217 6.4661 11.6908 6.30894 11.5995C6.15178 11.5081 5.97345 11.4594 5.79167 11.4583H2.08333V2.08333H16.6667Z" fill="#E9ECEF"/>
     </svg>
 
     <p *ngIf="isActivedSide">{{ description }}</p>
 </button>
+s

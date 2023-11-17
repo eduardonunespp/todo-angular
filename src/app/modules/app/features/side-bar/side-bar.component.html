@@ -17,25 +17,30 @@
         <img
           ngSrc="{{ menuTodoSide }}"
           alt="menu_side"
-          width="30"
-          height="28"
+          width="25"
+          height="25"
         />
-      </div>
+     </div>
     </div>
 
-
     <td-button-side
-    [Icon]="homeTodoIcon"
-    description="Tarefas"
-    [isActivedSide]="isActivedSide"
-  
-  />
-
-    <td-button-side
-      [Icon]="listTodoIcon"
-      description="Listas"
+      Icon="Home"
+      description="Tarefas"
+      [activedButtonHome]="isActivedButtonHome"
       [isActivedSide]="isActivedSide"
-      
+      (activedButtonChangeHome)="onActivedButtonChangeHome()"
     />
+
+    <td-button-task-side
+      Icon="Lista"
+      description="Lista"
+      [activedButtonTask]="isActivedButtonTask"
+      [isActivedSide]="isActivedSide"
+      (activedButtonChangeTask)="onActivedButtonChangeTask()"
+    />
+
+
+
+    
   </div>
 </div>
