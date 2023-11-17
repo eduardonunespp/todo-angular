@@ -1,15 +1,43 @@
-.button-side {
-    width: 100%;
-    height: 45px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 5px;
-    display: flex;
-
-    justify-content: flex-start;
-    background-color: var(--primary);
+button {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  color: var(--background);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  border: none;
+  margin-top: 10px;
 
     svg {
-        margin-right: 4px;
+        margin-right: 0px;
+    }
+
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.actived {
+  background-color: var(--background);
+  color: var(--primary);
+
+  svg {
+    path {
+      fill: var(--primary) !important;
+    }
+  }
+}
+
+.activedSide {
+  justify-content: flex-start;
+
+    svg {
+        margin-right: 7px;
     }
 }

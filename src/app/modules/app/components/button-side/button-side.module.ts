@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ButtonSideComponent } from './button-side.component';
-// import { heroHomeSolid } from '@ng-icons/heroicons/solid';
-// import { NgIconsModule } from '@ng-icons/core';
+//  import { heroHomeSolid } from '@ng-icons/heroicons/solid';
+//  import { NgIconsModule } from '@ng-icons/core';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { ButtonSideComponent } from './button-side.component';
   ],
   imports: [
     CommonModule,
-    // NgIconsModule.withIcons({ heroHomeSolid })
+    NgOptimizedImage
   ],
   exports: [
     ButtonSideComponent

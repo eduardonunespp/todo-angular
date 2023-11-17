@@ -1,21 +1,41 @@
 <div class="container">
-  <div class="header-side" [ngClass]="{ activedHeader: isActivedSide }">
-    <img
-      class="imgLogo"
-      [ngClass]="{ activedLogo: isActivedSide }"
-      ngSrc="{{ logoTodoSide }}"
-      alt="Image logo side"
-      width="85"
-      height="45"
-    />
-    <div
-      class="menu-container"
-      [ngClass]="{ actived: isActivedSide }"
-      (click)="activedSide()"
-    >
-      <img ngSrc="{{ menuTodoSide }}" alt="menu side" width="30" height="28" />
+  <div class="top-side">
+    <div class="header-side" [ngClass]="{ activedHeader: isActivedSide }">
+      <img
+        class="imgLogo"
+        [ngClass]="{ activedLogo: isActivedSide }"
+        ngSrc="{{ logoTodoSide }}"
+        alt="Image logo side"
+        width="85"
+        height="45"
+      />
+      <div
+        class="menu-container"
+        [ngClass]="{ actived: isActivedSide }"
+        (click)="activedSide()"
+      >
+        <img
+          ngSrc="{{ menuTodoSide }}"
+          alt="menu_side"
+          width="30"
+          height="28"
+        />
+      </div>
     </div>
-  </div>
 
-  <td-button-side></td-button-side>
+
+    <td-button-side
+    [Icon]="homeTodoIcon"
+    description="Tarefas"
+    [isActivedSide]="isActivedSide"
+  
+  />
+
+    <td-button-side
+      [Icon]="listTodoIcon"
+      description="Listas"
+      [isActivedSide]="isActivedSide"
+      
+    />
+  </div>
 </div>

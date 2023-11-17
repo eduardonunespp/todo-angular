@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'td-button-side',
@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class ButtonSideComponent {
 
+
+  @Input() Icon: string = ''
+  @Input() description: string = ''
+  @Input() isActivedSide: boolean = false
+  @Output() activedButtonChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  activedButton: boolean = false
+
+  handleActiveButton(){
+
+    this.activedButton = !this.activedButton
+    this.activedButtonChange.emit(this.activedButton)
+  
+    console.log(this.activedButton)
+  }
+  
 }
