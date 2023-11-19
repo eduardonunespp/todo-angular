@@ -4,15 +4,14 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module'
 import { SideBarModule } from '../../features'
 
-
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SideBarModule
+    SideBarModule,
   ]
 })
 export class HomeModule { }

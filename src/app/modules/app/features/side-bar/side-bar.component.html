@@ -20,7 +20,7 @@
           width="25"
           height="25"
         />
-     </div>
+      </div>
     </div>
 
     <td-button-side
@@ -29,18 +29,34 @@
       [activedButtonHome]="isActivedButtonHome"
       [isActivedSide]="isActivedSide"
       (activedButtonChangeHome)="onActivedButtonChangeHome()"
+      (click)="navigate('home')"
     />
 
     <td-button-task-side
       Icon="Lista"
-      description="Lista"
+      description="Listas"
       [activedButtonTask]="isActivedButtonTask"
       [isActivedSide]="isActivedSide"
       (activedButtonChangeTask)="onActivedButtonChangeTask()"
+      (click)="navigate('list')"
     />
+  </div>
 
+  <div class="footer-side" [ngClass]="{ activedSide: isActivedSide }">
+    <div class="user-container">
+      <div class="icon-user-container">
+        <img [ngSrc]="userTodoIcon" alt="sim" width="25" height="25" />
+      </div>
 
+      <div class="user-info" *ngIf="isActivedSide">
+        <h4>Carlos Eduardo</h4>
 
-    
+        <p>Usuário</p>
+      </div>
+    </div>
+
+    <div *ngIf="isActivedSide">
+      <img [ngSrc]="logOutTodoIcon" alt="sim" width="22" height="22" />
+    </div>
   </div>
 </div>

@@ -1,23 +1,26 @@
 .container {
   background-color: var(--secundary);
-  padding: 17px 20px;
+  padding-top: 17px;
   position: relative;
   grid-area: side;
   height: 100%;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .top-side {
   width: 100%;
+  padding: 0px 20px;
 }
 
 .header-side {
   width: 100%;
-  height: 32px;
+  height: 55px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
 
   .menu-container {
     display: flex;
@@ -36,6 +39,49 @@
   .activedLogo {
     display: block;
   }
+}
+
+.footer-side {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: var(--primary);
+  .activedSide {
+    justify-content: center;
+  }
+
+  .user-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
+
+    justify-content: space-between;
+
+    color: var(--text-secundary);
+    h4 {
+      padding: 0px;
+      margin: 0px;
+
+      font-size: 0.9rem;
+    }
+
+    p {
+      padding: 0px;
+      margin: 0px;
+      font-size: 0.8rem;
+    }
+  }
+
 }
 
 .imgLogo {

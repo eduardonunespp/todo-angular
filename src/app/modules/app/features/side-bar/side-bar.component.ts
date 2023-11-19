@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { SharedSidebarDataService } from '../../services';
 
 @Component({
   selector: 'td-side-bar',
@@ -8,9 +10,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SideBarComponent {
 
   @Output() isActivedSideChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  isActivedSide: boolean = false
-  isActivedButtonTask: boolean = false
-  isActivedButtonHome: boolean = false
 
   logoTodoSide: string = 'assets/todo-logo.svg'
   menuTodoSide: string = 'assets/todo-menu-side.svg'
@@ -18,20 +17,39 @@ export class SideBarComponent {
   homeTodoIconDark: string = 'assets/home-icon-dark.svg'
   listTodoIcon: string = 'assets/list-icon.svg'
   listTodoIconDark: string = 'assets/list-icon-dark.svg'
+  userTodoIcon: string = 'assets/user-icon.svg'
+  logOutTodoIcon: string = 'assets/logOut-icon.svg'
+
+  constructor( private sharedService: SharedSidebarDataService, private route: Router){}
   
+  get isActivedSide(): boolean {
+    return this.sharedService.isActivedSide;
+  }
+
+  get isActivedButtonTask(): boolean {
+    return this.sharedService.isActivedButtonTask;
+  }
+
+  get isActivedButtonHome(): boolean {
+    return this.sharedService.isActivedButtonHome;
+  }
 
   activedSide() {
-    this.isActivedSide = !this.isActivedSide;
+    this.sharedService.isActivedSide = !this.isActivedSide;
     this.isActivedSideChange.emit(this.isActivedSide);
   }
 
   onActivedButtonChangeHome(){
-    this.isActivedButtonHome = true
-    this.isActivedButtonTask = false
+    this.sharedService.isActivedButtonHome = true
+    this.sharedService.isActivedButtonTask = false
   }
 
   onActivedButtonChangeTask(){
-    this.isActivedButtonTask = true
-    this.isActivedButtonHome = false
+    this.sharedService.isActivedButtonTask = true
+    this.sharedService.isActivedButtonHome = false
+  }
+
+  navigate(url: string){
+    this.route.navigateByUrl(url)
   }
 }

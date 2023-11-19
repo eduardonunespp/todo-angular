@@ -13,11 +13,10 @@ export class ButtonSideComponent {
   @Input() isActivedSide: boolean = false
   @Output() activedButtonChangeHome: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Input() activedButtonHome: boolean = false
+  @Input() activedButtonHome: boolean = true
 
   handleActiveButton(){
-    this.activedButtonHome = !this.activedButtonHome
-    this.activedButtonChangeHome.emit(this.activedButtonHome)
+    this.activedButtonChangeHome.emit(true)
   
     console.log(this.activedButtonHome)
   }
