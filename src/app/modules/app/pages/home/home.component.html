@@ -1,7 +1,11 @@
-<div class="container" [ngClass]="{'activedSide': isActivedSide}">
+<div class="container" [ngClass]="{ activedSide: isActivedSide }">
+  <td-side-bar (isActivedSideChange)="activedSide($event)" />
 
-    <td-side-bar (isActivedSideChange)="activedSide($event)" />    
-
-    <div class="content"></div>
-
+  <div class="content">
+    <td-header
+      [Icon]="homeTodoIcon"
+      title="Tarefas"
+      description="Página de gerenciamento das tarefas"
+    />
+  </div>
 </div>

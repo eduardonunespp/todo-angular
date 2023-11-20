@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module'
-import { SideBarModule } from '../../features'
+import { HeaderModule, SideBarModule } from '../../features'
 
 @NgModule({
   declarations: [
@@ -12,6 +12,7 @@ import { SideBarModule } from '../../features'
     CommonModule,
     HomeRoutingModule,
     SideBarModule,
+    HeaderModule
   ]
 })
 export class HomeModule { }

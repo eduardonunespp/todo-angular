@@ -9,8 +9,10 @@ import { SharedSidebarDataService } from '../../services';
 export class HomeComponent {
   constructor(private readonly sharedService: SharedSidebarDataService) {}
 
-  get isActivedSide(): boolean{
-    return this.sharedService.isActivedSide
+  homeTodoIcon: string = 'assets/home-icon.svg';
+
+  get isActivedSide(): boolean {
+    return this.sharedService.isActivedSide;
   }
 
   activedSide(isActive: boolean) {
