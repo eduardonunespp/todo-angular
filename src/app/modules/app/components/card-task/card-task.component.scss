@@ -1,0 +1,23 @@
+.container {
+  width: 250px;
+  height: 112px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: #fff;
+  padding: 7px 9px;
+  box-shadow: 2px 4px 3px rgb(189 189 189);
+
+  .header-card {
+    height: 22px;
+    border-bottom: 1px solid var(--text-input);
+
+    p {
+      font-size: 0.8rem;
+      color: #0D6EFD
+    }
+  }
+}
