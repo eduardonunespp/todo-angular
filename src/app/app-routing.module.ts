@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorizedGuard } from './guards/authorized.guard';
 
 const routes: Routes = [
+  // {
+  //   path: '**',
+  //   redirectTo: '/home',
+  // },
   {
     path: '',
     loadChildren: () =>
@@ -24,8 +29,11 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () =>
-      import('./modules/app/pages/list-task/list-task.module').then((m) => m.ListTaskModule),
-  }
+      import('./modules/app/pages/list-task/list-task.module').then(
+        (m) => m.ListTaskModule
+      ),
+    canActivate: [AuthorizedGuard],
+  },
 ];
 
 @NgModule({
