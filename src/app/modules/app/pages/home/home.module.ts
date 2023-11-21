@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module'
 import { HeaderModule, SideBarModule } from '../../features'
+import { CardTaskModule } from '../../components';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HeaderModule, SideBarModule } from '../../features'
     CommonModule,
     HomeRoutingModule,
     SideBarModule,
-    HeaderModule
+    HeaderModule,
+    CardTaskModule
   ]
 })
 export class HomeModule { }

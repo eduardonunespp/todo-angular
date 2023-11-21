@@ -7,9 +7,9 @@
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: #fff;
+  background-color: var(--secundary);
   padding: 7px 9px;
-  box-shadow: 2px 4px 3px rgb(189 189 189);
+  box-shadow: 3px 3px 0px #333333;
 
   .header-card {
     height: 22px;
@@ -17,7 +17,76 @@
 
     p {
       font-size: 0.8rem;
-      color: #0D6EFD
+      color: #0d6efd;
+    }
+  }
+
+  .body-card {
+    width: 100%;
+    height: 32px;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0px 10px;
+
+    border-left: 2px solid #0d6efd;
+
+    strong {
+      font-size: 0.8rem;
+      color: var(--text-secundary);
+    }
+
+    p {
+      font-size: 10px;
+      color: var(--text-secundary);
+    }
+
+    .info-card{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    button {
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+
+      background: transparent;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      border: none;
+
+      cursor: pointer;
+    }
+
+
+  }
+
+  .footer-card {
+    width: 100%;
+    height: 20px;
+
+    display: flex;
+    flex-direction: row;
+
+    svg {
+      color: #333333;
+      font-size: 13px;
+
+      filter: grayscale(70%);
+    }
+
+    p {
+      color: var(--text-secundary);
+      font-size: 9px;
+      margin: 0px 5px;
     }
   }
 }

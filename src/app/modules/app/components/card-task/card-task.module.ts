@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { CardTaskComponent } from './card-task.component';
 
 
@@ -9,7 +9,11 @@ import { CardTaskComponent } from './card-task.component';
     CardTaskComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgOptimizedImage
+  ],
+  exports: [
+    CardTaskComponent
   ]
 })
 export class CardTaskModule { }
