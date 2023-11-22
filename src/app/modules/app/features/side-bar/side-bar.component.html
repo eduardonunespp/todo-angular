@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div *ngIf="isActivedSide">
+    <div class="log-out" (click)="logOut()" *ngIf="isActivedSide">
       <img [ngSrc]="logOutTodoIcon" alt="sim" width="22" height="22" />
     </div>
   </div>

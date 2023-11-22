@@ -2,15 +2,22 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthorizationService } from '../service/authorization.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizedGuard implements CanActivate {
+  constructor(
+    private authorizationService: AuthorizationService,
+    private route: Router
+  ) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,6 +26,12 @@ export class AuthorizedGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    const userLogged = this.authorizationService.obterLoginStatus();
+    if (userLogged) {
+      return true;
+    } else {
+      this.route.navigateByUrl('not-found');
+      return false;
+    }
   }
 }
