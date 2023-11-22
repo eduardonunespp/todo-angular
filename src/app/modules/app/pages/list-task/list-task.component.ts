@@ -9,8 +9,32 @@ import { SharedSidebarDataService } from '../../services';
 export class ListTaskComponent {
   constructor(private readonly sharedService: SharedSidebarDataService) {}
 
-  listTodoIcon: string = 'assets/list-icon.svg'
+  listTodoIcon: string = 'assets/list-icon.svg';
 
+  dataSource = [
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+  ];
+
+  columnsToDisplay = ['name', 'description', 'actions'];
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;
   }

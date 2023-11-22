@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ListTaskComponent } from './list-task.component';
 import { ListRoutingModule } from './list-task-routing.module';
 import { HeaderModule, SideBarModule } from '../../features';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [
-    ListTaskComponent
-  ],
+  declarations: [ListTaskComponent],
   imports: [
     CommonModule,
     ListRoutingModule,
     SideBarModule,
-    HeaderModule
-  ]
+    HeaderModule,
+    MatTableModule,
+  ],
 })
-export class ListTaskModule { }
+export class ListTaskModule {}
