@@ -32,9 +32,21 @@ export class ListTaskComponent {
       name: 'Lorem Ispum',
       description: 'Lorem Ispum',
     },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
+    {
+      name: 'Lorem Ispum',
+      description: 'Lorem Ispum',
+    },
   ];
 
-  columnsToDisplay = ['name', 'description', 'actions'];
+  columnsToDisplay = ['name', 'actions'];
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;
   }

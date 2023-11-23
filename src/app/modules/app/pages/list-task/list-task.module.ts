@@ -4,6 +4,7 @@ import { ListTaskComponent } from './list-task.component';
 import { ListRoutingModule } from './list-task-routing.module';
 import { HeaderModule, SideBarModule } from '../../features';
 import { MatTableModule } from '@angular/material/table';
+import { EditIconModule, DeleteIconModule } from '../../../../shared/Icons'
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -13,6 +14,8 @@ import { MatTableModule } from '@angular/material/table';
     SideBarModule,
     HeaderModule,
     MatTableModule,
+    EditIconModule,
+    DeleteIconModule
   ],
 })
 export class ListTaskModule {}

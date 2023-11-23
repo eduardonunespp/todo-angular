@@ -1,41 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
-*{
+* {
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
 }
 
 :root {
-  --background: #E9ECEF;
-  --blue-light: #6933FF;
+  --background: #e9ecef;
+  --blue-light: #6933ff;
 
   --secundary: #202342;
   --text-primary: #dddddd;
-  --text-secundary: #E9ECEF;
-  --text-input: #6C757D;
-  --text-label: #343A40;
-  --brand: #27C498;
-  --positive: #0D6EFD;
+  --text-secundary: #e9ecef;
+  --text-input: #6c757d;
+  --text-label: #343a40;
+  --brand: #27c498;
+  --positive: #0d6efd;
   --sucess: #198754;
-  --warning: #FFC107;
-  --danger: #DC3545;
-  --font-primary: 'Poppins', sans-serif;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --font-primary: "Poppins", sans-serif;
 
   --primary: rgb(32, 32, 36);
   --secundary: rgb(41, 41, 46);
-
-
+  --terciary: rgb(27, 27, 31);
 }
 
 html {
-
   @media (max-width: 1000px) {
-      font-size: 93.75%;
+    font-size: 93.75%;
   }
 
-  @media (max-width: 720px){
-      font-size: 87.5%;
+  @media (max-width: 720px) {
+    font-size: 87.5%;
   }
 }
 

@@ -8,33 +8,33 @@
       description="Página de gerenciamento das listas"
     />
 
-    <div>
+    <div class="table-container">
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef >Nome</th>
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
           <td mat-cell *matCellDef="let element">{{ element.name }}</td>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Descrição</th>
-          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-        </ng-container>
+    
+       
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Ações</th>
-          <td mat-cell *matCellDef="let element"></td>
+          <td class="row-action" mat-cell *matCellDef="let element">
+            <div class="actions-container">
+              <button>
+                <td-edit-icon />
+              </button>
+              <button>
+                <td-delete-icon />
+              </button>
+            </div>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
         ">
-
-        <!-- Weight Column -->
-        <!-- <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef>Ações</th>
-          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-        </ng-container> -->
       </table>
     </div>
   </div>
