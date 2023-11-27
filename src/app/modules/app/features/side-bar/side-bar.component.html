@@ -43,19 +43,24 @@
   </div>
 
   <div class="footer-side" [ngClass]="{ activedSide: isActivedSide }">
-    <div class="user-container">
+    <div class="user-container" *ngIf="isActivedSide">
       <div class="icon-user-container">
         <img [ngSrc]="userTodoIcon" alt="sim" width="25" height="25" />
       </div>
 
       <div class="user-info" *ngIf="isActivedSide">
-        <h4>Carlos Eduardo</h4>
-
-        <p>Usuário</p>
+        <ng-container *ngIf="user; else noUser">
+          <h4>{{ user?.name }}</h4>
+          <p>Usuário</p>
+        </ng-container>
+        <ng-template #noUser>
+          <h4>Usuário não encontrado :(</h4>
+          <p>Usuário</p>
+        </ng-template>
       </div>
     </div>
 
-    <div class="log-out" (click)="logOut()" *ngIf="isActivedSide">
+    <div class="log-out" (click)="logOut()">
       <img [ngSrc]="logOutTodoIcon" alt="sim" width="22" height="22" />
     </div>
   </div>

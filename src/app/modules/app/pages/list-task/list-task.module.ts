@@ -5,6 +5,8 @@ import { ListRoutingModule } from './list-task-routing.module';
 import { HeaderModule, SideBarModule } from '../../features';
 import { MatTableModule } from '@angular/material/table';
 import { EditIconModule, DeleteIconModule } from '../../../../shared/Icons'
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -15,7 +17,9 @@ import { EditIconModule, DeleteIconModule } from '../../../../shared/Icons'
     HeaderModule,
     MatTableModule,
     EditIconModule,
-    DeleteIconModule
+    DeleteIconModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
 })
 export class ListTaskModule {}

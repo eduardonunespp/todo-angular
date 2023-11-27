@@ -20,6 +20,11 @@
 }
 
 .table-container {
+
+  .mat-mdc-paginator {
+    background: none; 
+    color: var(text-secundary);
+}
   width: 100%;
 
   padding: 10px;
@@ -29,9 +34,13 @@
 
   background-color: var(--secundary);
 
+
 	table {
-		th, td {
-			text-align: center;
+
+    
+    th, td {
+      text-align: center;
+      border-bottom-style: none;
 		}
 
 		th {
@@ -40,6 +49,7 @@
 
 		tr {
 			height: 50px;
+      border-collapse: collapse;
 		}
 
 		tr:nth-child(even) {

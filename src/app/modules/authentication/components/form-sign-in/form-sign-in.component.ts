@@ -13,6 +13,7 @@ import { Cache } from '../../../../core';
 import { AuthService } from '../../services';
 import { ImsgError, IloginUsers } from '../../types';
 import { msg } from '../../utils';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'td-form-sign-in',
@@ -24,7 +25,9 @@ export class FormSignInComponent {
   msg: ImsgError = msg;
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private route : Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private route : Router, private userService: UserService) {
+
+  }
 
   passwordPattern = /^.{8,}$/;
 
@@ -77,6 +80,8 @@ export class FormSignInComponent {
       let payload: IloginUsers = this.signInForm.value;
       this.authService.loginUser(payload).subscribe(
         (response: any) => {
+          const { user } = response
+          this.userService.setUser(user)
           const { accessToken } = response;
           Cache.setSession({ key: 'accessToken', value: accessToken });
           this.isLoading = false;
