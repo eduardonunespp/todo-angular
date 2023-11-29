@@ -9,37 +9,37 @@ const ELEMENT_DATA: IDataMock[] = [
     name: 'Sim',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
     name: 'Sim',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
   {
-    name: 'SIm Novamente',
+    name: 'Sim Novamente',
   },
 ];
 
