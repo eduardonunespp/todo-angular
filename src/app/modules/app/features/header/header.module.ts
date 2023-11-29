@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './header.component';
+import { ModalModule } from '../../components'
 
 
 
@@ -10,7 +11,8 @@ import { HeaderComponent } from './header.component';
   ],
   imports: [
     CommonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    ModalModule
   ],
   exports: [
     HeaderComponent

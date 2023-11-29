@@ -7,6 +7,9 @@ import { MatTableModule } from '@angular/material/table';
 import { EditIconModule, DeleteIconModule } from '../../../../shared/Icons'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -19,7 +22,8 @@ import { MatSortModule } from '@angular/material/sort';
     EditIconModule,
     DeleteIconModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
   ],
 })
 export class ListTaskModule {}

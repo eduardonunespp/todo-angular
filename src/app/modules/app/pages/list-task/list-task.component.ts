@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { SharedSidebarDataService } from '../../services';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import { IDataMock } from '../../../../shared/domain-types';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 const ELEMENT_DATA: IDataMock[] = [
   {
@@ -48,22 +47,19 @@ const ELEMENT_DATA: IDataMock[] = [
   selector: 'td-list-task',
   templateUrl: './list-task.component.html',
   styleUrls: ['./list-task.component.scss'],
-
 })
 export class ListTaskComponent implements AfterViewInit {
   columnsToDisplay: string[] = ['name', 'actions'];
   dataSource = new MatTableDataSource<IDataMock>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
+    this.dataSource.paginator = this.paginator;
   }
-
 
   constructor(private readonly sharedService: SharedSidebarDataService) {}
   listTodoIcon: string = 'assets/list-icon.svg';
-
 
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;

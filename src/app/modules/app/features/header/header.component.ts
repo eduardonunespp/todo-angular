@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'td-header',
@@ -6,7 +8,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  constructor(private dialogRef: MatDialog){}
+
   @Input() Icon: string = '' 
   @Input() title: string = ''
   @Input() description: string = '' 
+
+  openModal() {
+    this.dialogRef.open(ModalComponent)
+  }
+
 }
