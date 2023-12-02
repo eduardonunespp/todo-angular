@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../../components/modal/modal.component';
+import { GenericModalComponent } from '../../components/generic-modal/generic-modal.component';
 
 @Component({
   selector: 'td-header',
