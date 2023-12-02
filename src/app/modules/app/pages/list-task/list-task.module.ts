@@ -4,12 +4,10 @@ import { ListTaskComponent } from './list-task.component';
 import { ListRoutingModule } from './list-task-routing.module';
 import { HeaderModule, SideBarModule } from '../../features';
 import { MatTableModule } from '@angular/material/table';
-import { EditIconModule, DeleteIconModule } from '../../../../shared/Icons'
+import { EditIconModule, DeleteIconModule, AddIconModule } from '../../../../shared/Icons'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -24,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
+    AddIconModule
   ],
 })
 export class ListTaskModule {}

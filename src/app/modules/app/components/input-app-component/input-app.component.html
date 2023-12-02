@@ -1,0 +1,10 @@
+<div class="input-auth-container" >
+  <label for="">{{ label }}</label>
+  <input
+    type="{{ type }}"
+    (input)="onInputChange($event)"
+    [(ngModel)]="value"
+    [ngClass]="{'hasError': hasError}"
+  />
+  <mat-error *ngIf="hasError">{{ errorMsg }}</mat-error>
+</div>

@@ -1,0 +1,9 @@
+<form action="javascript:void(0)" [formGroup]="addListForm">
+  <td-app-input
+    label="Nome:"
+    type="text"
+    [hasError]="hasNameError()"
+    [errorMsg]="msg.required"
+    formControlName="name"
+  />
+</form>

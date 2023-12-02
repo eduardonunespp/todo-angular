@@ -1,21 +1,27 @@
-<form action="javascript:void(0)" (submit)="loginUser()" [formGroup]="signInForm">
-	<h2>{{ title }}</h2>
+<form
+  action="javascript:void(0)"
+  (submit)="loginUser()"
+  [formGroup]="signInForm"
+>
+  <h2>{{ title }}</h2>
 
   <td-input
-  label="Email:"
-  type="text"
-  formControlName="email"
-  [hasError]="isInvalid('email', 'required')"
-  [errorMsg]="msg.required"
+    label="Email:"
+    type="text"
+    formControlName="email"
+    [hasError]="isInvalid('email', 'required')"
+    [errorMsg]="msg.required"
   />
 
   <td-input
-  label="Senha:"
-  type="password"
-  formControlName="password"
-  [hasError]="isInvalid('password', 'required')"
-  [errorMsg]="msg.required"
+    label="Senha:"
+    type="password"
+    formControlName="password"
+    [hasError]="isInvalid('password', 'required')"
+    [errorMsg]="msg.required"
   />
 
-  <td-button [isDisabled]="!signInForm.valid" [isLoading]="isLoading"> Entrar </td-button>
+  <td-button [isDisabled]="!signInForm.valid" [isLoading]="isLoading">
+    Entrar
+  </td-button>
 </form>
