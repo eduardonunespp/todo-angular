@@ -8,4 +8,17 @@
   />
 
   <td-text-area rows="5" label="Descrição" [disabled]="true" />
+
+  <div class="footer-modal">
+    <button (click)="closeModal()">Fechar</button>
+    <button
+      [disabled]="!addListForm.valid"
+      [ngClass]="{ isDisabled: !addListForm.valid }"
+      (click)="registerTaskList()"
+    >
+      <td-spinner *ngIf="isLoading" />
+
+      <span *ngIf="!isLoading">Salvar</span>
+    </button>
+  </div>
 </form>

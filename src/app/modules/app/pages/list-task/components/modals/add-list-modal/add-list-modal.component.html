@@ -1,15 +1,10 @@
 <div class="container-modal">
   <div class="header-modal">
-    <td-add-icon width="25" height="25" />
+    <td-add-icon width="20" height="20" />
     <h2>Cadastro de Lista</h2>
   </div>
 
   <div class="body-modal">
     <td-add-form-list (isValidForm)="handleFormValid($event)" />
-  </div>
-
-  <div class="footer-modal">
-    <button (click)="closeModal()">Fechar</button>
-    <button [disabled]="!isValidForm" [ngClass]="{isDisabled: !isValidForm}">Salvar</button>
   </div>
 </div>

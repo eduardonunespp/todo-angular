@@ -4,6 +4,7 @@ import { FormAddListComponent } from './form-add-list.component';
 import { InputAppModule, TextAreaModule } from '../../../../../components';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SipnnerModule } from 'src/app/shared/components';
 
 @NgModule({
   declarations: [FormAddListComponent],
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    SipnnerModule
   ],
   exports: [
     FormAddListComponent
