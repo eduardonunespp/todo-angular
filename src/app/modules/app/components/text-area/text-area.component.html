@@ -1,0 +1,15 @@
+<div class="text-area-container" [ngClass]="{isDisabled: disabled}">
+  <label for="">{{ label }}</label>
+  <textarea
+    name=""
+    id=""
+    [cols]="cols"
+    [rows]="rows"
+    (input)="onInputChange($event)"
+    [(ngModel)]="value"
+    [ngClass]="{ hasError: hasError }"
+    disabled=""
+    aria-expanded="false"
+  ></textarea>
+  <mat-error *ngIf="hasError">{{ errorMsg }}</mat-error>
+</div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddListModalComponent } from './add-list-modal.component';
 import { AddIconModule } from 'src/app/shared';
+import { FormAddListModule } from '../../forms/form-add-list/form-add-list.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { AddIconModule } from 'src/app/shared';
   ],
   imports: [
     CommonModule,
-    AddIconModule
+    AddIconModule,
+    FormAddListModule
   ],
   exports: [
     AddListModalComponent

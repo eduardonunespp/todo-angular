@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormAddListComponent } from './form-add-list.component';
-import { InputAppComponentModule } from '../../../../../components';
+import { InputAppComponentModule, TextAreaModule } from '../../../../../components';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     InputAppComponentModule,
+    TextAreaModule,
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
