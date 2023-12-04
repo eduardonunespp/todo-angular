@@ -1,8 +1,8 @@
-<button class="button-auth-component" [disabled]="isDisabled"
-  [ngClass]="{'isDisabled': isDisabled}"
+<button
+  class="button-auth-component"
+  [disabled]="isDisabled"
+  [ngClass]="{ isDisabled: isDisabled }"
 >
-
-<div *ngIf="isLoading == true" class="spinner"></div>
-  <ng-content *ngIf="isLoading ==false"></ng-content>
-
+  <div *ngIf="isLoading == true" class="spinner"></div>
+  <ng-content *ngIf="isLoading == false"></ng-content>
 </button>

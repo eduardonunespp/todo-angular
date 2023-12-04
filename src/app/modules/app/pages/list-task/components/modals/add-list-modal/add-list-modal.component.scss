@@ -61,6 +61,15 @@
       background-color: var(--sucess);
       color: var(--background);
       margin-left: 15px;
+
+    }
+  }
+  
+  .isDisabled {
+    filter: brightness(0.7);
+    
+    &:hover {
+      filter: brightness(0.7) !important;
     }
   }
 }

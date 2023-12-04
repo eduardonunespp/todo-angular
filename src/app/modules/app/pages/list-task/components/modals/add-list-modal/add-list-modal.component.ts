@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'td-add-list-modal',
@@ -7,9 +7,15 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-list-modal.component.scss'],
 })
 export class AddListModalComponent {
+  isValidForm: boolean = false;
+
   constructor(private dialogRef: MatDialogRef<AddListModalComponent>) {}
 
   closeModal(): void {
     this.dialogRef.close();
+  }
+
+  handleFormValid(isValid: boolean) {
+    this.isValidForm = isValid;
   }
 }

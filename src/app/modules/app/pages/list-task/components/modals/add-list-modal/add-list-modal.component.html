@@ -5,11 +5,11 @@
   </div>
 
   <div class="body-modal">
-    <td-add-form-list />
+    <td-add-form-list (isValidForm)="handleFormValid($event)" />
   </div>
 
   <div class="footer-modal">
     <button (click)="closeModal()">Fechar</button>
-    <button>Salvar</button>
+    <button [disabled]="!isValidForm" [ngClass]="{isDisabled: !isValidForm}">Salvar</button>
   </div>
 </div>
