@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
     <svg
       [attr.width]="width"
       [attr.height]="height"
+      viewBox="0 0 23 23"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

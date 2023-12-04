@@ -15,6 +15,7 @@
     border-radius: 3px;
     transition: 0.3s;
     margin-top: 0.1875rem;
+    resize: none;
 
     .hasError {
       border: 1px solid var(--danger);

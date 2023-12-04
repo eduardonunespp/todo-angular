@@ -9,7 +9,6 @@
     [(ngModel)]="value"
     [ngClass]="{ hasError: hasError }"
     disabled=""
-    aria-expanded="false"
   ></textarea>
   <mat-error *ngIf="hasError">{{ errorMsg }}</mat-error>
 </div>

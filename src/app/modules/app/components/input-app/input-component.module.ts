@@ -9,4 +9,4 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MatFormFieldModule],
   exports: [InputAppComponent],
 })
-export class InputAppComponentModule {}
+export class InputAppModule {}
