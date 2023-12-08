@@ -20,62 +20,49 @@
 }
 
 .table-container {
-
   .mat-mdc-paginator {
-    background: none; 
+    background: none;
     color: var(text-secundary);
-}
+  }
   width: 100%;
-
   padding: 10px;
   border-radius: 3px;
-
   margin-top: 24px;
 
   background-color: var(--secundary);
 
-
-	table {
-
-    
-    th, td {
+  table {
+    th,
+    td {
       text-align: center;
       border-bottom-style: none;
-		}
+      width: 50%;
+    }
 
-		th {
-			background-color: var(--terciary);
-		}
+    th {
+      background-color: var(--terciary);
+      width: 50%;
+    }
 
-		tr {
-			height: 50px;
+    tr {
+      height: 50px;
       border-collapse: collapse;
-		}
+    }
 
-		tr:nth-child(even) {
-			background-color: var(--terciary); /* Cor para as linhas pares */
-		}
-		
-		tr:nth-child(odd) {
-			background-color: var(--primary); /* Cor para as linhas ímpares */
-		}
+    tr:nth-child(even) {
+      background-color: var(--terciary);
+    }
 
-		.row-action {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			height: 50px;
-		}
-
-		
-	}
+    tr:nth-child(odd) {
+      background-color: var(--primary); 
+    }
+  }
 }
 
 .actions-container {
-  width: 70px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 
   button {
     width: 30px;
@@ -96,5 +83,6 @@
 
   button:last-child {
     background-color: var(--danger);
+    margin-left: 7px;
   }
 }

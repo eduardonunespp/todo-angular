@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Cache } from '../core'
+import { Cache } from '../core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthorizationService {
+  constructor() {}
 
-  constructor() { 
+  logOut() {
+    sessionStorage.clear();
   }
 
-  logOut(){
-    sessionStorage.clear()
-  }
-
-  obterLoginStatus(){
-    return !!Cache.getSession({ key: 'accessToken' })
-
-  
+  obterLoginStatus() {
+    return !!Cache.getSession({ key: 'accessToken' });
   }
 }

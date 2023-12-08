@@ -50,11 +50,11 @@
 
       <div class="user-info" *ngIf="isActivedSide">
         <ng-container *ngIf="user; else noUser">
-          <h4>{{ user?.name }}</h4>
+          <h4>{{ user.name }}</h4>
           <p>Usuário</p>
         </ng-container>
         <ng-template #noUser>
-          <h4>Usuário não encontrado :(</h4>
+          <h4>Usuário não encontrado</h4>
           <p>Usuário</p>
         </ng-template>
       </div>

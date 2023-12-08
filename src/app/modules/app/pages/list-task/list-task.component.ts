@@ -1,64 +1,73 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { SharedSidebarDataService } from '../../services';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { IDataMock } from '../../../../shared/domain-types';
 import { MatTableDataSource } from '@angular/material/table';
-
-const ELEMENT_DATA: IDataMock[] = [
-  {
-    name: 'Sim',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-  {
-    name: 'Sim Novamente',
-  },
-];
+import Swal from 'sweetalert2';
+import { SharedSidebarDataService } from '../../services';
+import { TaskListService } from '../../services/task-list.service';
+import { ITaskList } from '../../types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'td-list-task',
   templateUrl: './list-task.component.html',
   styleUrls: ['./list-task.component.scss'],
 })
-export class ListTaskComponent implements AfterViewInit {
+export class ListTaskComponent implements AfterViewInit, OnDestroy {
   columnsToDisplay: string[] = ['name', 'actions'];
-  dataSource = new MatTableDataSource<IDataMock>(ELEMENT_DATA);
+  ELEMENT_DATA: ITaskList[] = [];
+
+  dataSource = new MatTableDataSource<ITaskList>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  private taskListSubscription!: Subscription;
+
+  constructor(
+    private readonly sharedService: SharedSidebarDataService,
+    private readonly taskListService: TaskListService
+  ) {}
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+
+    this.taskListSubscription = this.taskListService
+      .onTaskListUpdated()
+      .subscribe(() => {
+        this.loadData();
+      });
+
+    this.loadData();
   }
 
-  constructor(private readonly sharedService: SharedSidebarDataService) {}
+  ngOnDestroy(): void {
+    this.taskListSubscription.unsubscribe();
+  }
+
+  private loadData(): void {
+    this.taskListService.getTaskList().subscribe(
+      (response) => {
+        const { items } = response;
+        this.ELEMENT_DATA = items;
+        this.dataSource.data = this.ELEMENT_DATA;
+      },
+      (error) => {
+        const { erros } = error.error;
+        console.log(erros);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: erros,
+          showConfirmButton: true,
+        });
+      }
+    );
+  }
+
   listTodoIcon: string = 'assets/list-icon.svg';
 
   get isActivedSide(): boolean {

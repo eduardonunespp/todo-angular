@@ -78,6 +78,7 @@ export class FormAddListComponent implements OnChanges {
       let payload: ITaskList = this.addListForm.value;
       this.taskListService.addTaskList(payload).subscribe(
         (response) => {
+          console.log(response)
           Swal.fire({
             position: 'center',
             icon: 'success',
