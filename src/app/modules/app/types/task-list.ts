@@ -5,5 +5,5 @@ export type ITaskList = {
 export type Task = {
     id: string
     name: string
-    assignments: []
+    assignments: string[]
 }

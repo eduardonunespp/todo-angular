@@ -10,19 +10,23 @@ import { Observable, Subject, tap } from 'rxjs';
 export class TaskListService {
   constructor(private http: HttpClient) {}
   private taskListUpdatedSubject = new Subject<void>();
-  
 
   addTaskList(data: ITaskList) {
-    return this.http.post(`${environment.apiUrl}/AssignmentList`, data).pipe(
-      tap(() => this.taskListUpdatedSubject.next())
-    );
-
+    return this.http
+      .post(`${environment.apiUrl}/AssignmentList`, data)
+      .pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 
   getTaskList(): Observable<any> {
-    const params = new HttpParams().set('PerPage', '1000')
+    const params = new HttpParams().set('PerPage', '1000');
 
     return this.http.get(`${environment.apiUrl}/AssignmentList`, { params });
+  }
+
+  removeTaskList(id: string): Observable<any> {
+
+    return this.http.delete(`${environment.apiUrl}/AssignmentList/${id}`).pipe(tap(() =>
+    this.taskListUpdatedSubject.next()));
   }
 
   onTaskListUpdated(): Observable<void> {

@@ -8,6 +8,8 @@ import { EditIconModule, DeleteIconModule, AddIconModule } from '../../../../sha
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RemoveListModalComponent } from './components/modals/remove-list-modal/remove-list-modal.component';
+import { RemoveListModalModule } from './components/modals/remove-list-modal/remove-list-modal.module';
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -22,7 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    AddIconModule
+    AddIconModule,
+    RemoveListModalModule
   ],
 })
 export class ListTaskModule {}

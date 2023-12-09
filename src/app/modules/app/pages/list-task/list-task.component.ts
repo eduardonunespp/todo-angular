@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
@@ -11,6 +6,8 @@ import { SharedSidebarDataService } from '../../services';
 import { TaskListService } from '../../services/task-list.service';
 import { ITaskList } from '../../types';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { RemoveListModalComponent } from './components/modals/remove-list-modal/remove-list-modal.component';
 
 @Component({
   selector: 'td-list-task',
@@ -20,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class ListTaskComponent implements AfterViewInit, OnDestroy {
   columnsToDisplay: string[] = ['name', 'actions'];
   ELEMENT_DATA: ITaskList[] = [];
+  listTodoIcon: string = 'assets/list-icon.svg';
 
   dataSource = new MatTableDataSource<ITaskList>([]);
 
@@ -29,7 +27,8 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
-    private readonly taskListService: TaskListService
+    private readonly taskListService: TaskListService,
+    private dialogRef: MatDialog
   ) {}
 
   ngAfterViewInit(): void {
@@ -68,7 +67,14 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     );
   }
 
-  listTodoIcon: string = 'assets/list-icon.svg';
+  openDeleteModal(id: string, name: string): void {
+    this.dialogRef.open(RemoveListModalComponent, {
+      data: {
+        id: id,
+        name: name,
+      },
+    });
+  }
 
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;

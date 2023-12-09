@@ -90,11 +90,11 @@ export class FormAddListComponent implements OnChanges {
           this.closeModal();
         },
         (error) => {
-          const { erros } = error.error;
+          const { errors } = error.error;
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: erros,
+            title: errors,
             showConfirmButton: true,
           });
           this.isLoading = false;
