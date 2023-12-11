@@ -7,7 +7,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Cache } from '../../../../core';
 import { AuthService } from '../../services';
@@ -25,9 +25,12 @@ export class FormSignInComponent {
   msg: ImsgError = msg;
   isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private route : Router, private userService: UserService) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: Router,
+    private userService: UserService
+  ) {}
 
   passwordPattern = /^.{8,}$/;
 
@@ -70,8 +73,15 @@ export class FormSignInComponent {
   }
 
   signInForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(this.passwordPattern),
+        this.passwordLengthValidator(8),
+      ],
+    ],
   });
 
   loginUser() {
@@ -80,12 +90,12 @@ export class FormSignInComponent {
       let payload: IloginUsers = this.signInForm.value;
       this.authService.loginUser(payload).subscribe(
         (response: any) => {
-          const { user } = response
-          this.userService.setUser(user)
+          const { user } = response;
+          this.userService.setUser(user);
           const { accessToken } = response;
           Cache.setSession({ key: 'accessToken', value: accessToken });
           this.isLoading = false;
-          this.route.navigateByUrl('home')
+          this.route.navigateByUrl('home');
         },
         (error) => {
           const { erros } = error.error;

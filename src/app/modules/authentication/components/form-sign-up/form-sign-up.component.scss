@@ -1,5 +1,14 @@
 form {
-  width: 316px;
+  width: 400px;
+  padding: 40px 30px;
+  border-radius: 4px;
+  background-color: var(--secundary);
+  transition: 0.2s;
+
+  @media (max-width: 400px) {
+    width: 320px;
+    padding: 40px 20px;
+  }
 }
 
 h2 {
@@ -8,4 +17,8 @@ h2 {
   padding: 0px 10px;
   margin-bottom: 24px;
   text-align: start;
+
+  @media (max-width: 400px) {
+    font-size: 1.3rem;
+  }
 }

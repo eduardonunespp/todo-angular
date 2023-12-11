@@ -9,16 +9,16 @@
     label="Email:"
     type="text"
     formControlName="email"
-    [hasError]="isInvalid('email', 'required')"
-    [errorMsg]="msg.required"
+    [hasError]="hasEmailError()"
+    [errorMsg]="hasMsgEmailError()"
   />
 
   <td-input
     label="Senha:"
     type="password"
     formControlName="password"
-    [hasError]="isInvalid('password', 'required')"
-    [errorMsg]="msg.required"
+    [hasError]="hasPasswordError()"
+    [errorMsg]="hasMsgPasswordError()"
   />
 
   <td-button [isDisabled]="!signInForm.valid" [isLoading]="isLoading">
