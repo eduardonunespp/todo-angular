@@ -1,5 +1,6 @@
 export type ITaskList = {
-    items: Task
+    id: string
+    name: string
 }
 
 export type Task = {

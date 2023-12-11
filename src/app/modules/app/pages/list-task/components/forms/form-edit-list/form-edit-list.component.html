@@ -1,0 +1,24 @@
+<form action="javascript:void(0)" [formGroup]="editListForm">
+  <td-app-input
+    label="Nome:"
+    type="text"
+    [hasError]="hasNameError()"
+    [errorMsg]="msg.required"
+    formControlName="name"
+  />
+
+  <td-text-area rows="5" label="Descrição" [disabled]="true" />
+
+  <div class="footer-modal">
+    <button (click)="closeModal()">Fechar</button>
+    <button
+      [disabled]="!editListForm.valid"
+      [ngClass]="{ isDisabled: !editListForm.valid }"
+      (click)="editTaskList()"
+    >
+      <td-spinner *ngIf="isLoading" />
+
+      <span *ngIf="!isLoading">Salvar</span>
+    </button>
+  </div>
+</form>

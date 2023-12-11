@@ -10,6 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RemoveListModalComponent } from './components/modals/remove-list-modal/remove-list-modal.component';
 import { RemoveListModalModule } from './components/modals/remove-list-modal/remove-list-modal.module';
+import { EditListModalModule } from './components/modals/edit-list-modal/edit-list-modal.module';
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -25,7 +26,8 @@ import { RemoveListModalModule } from './components/modals/remove-list-modal/rem
     MatSortModule,
     MatDialogModule,
     AddIconModule,
-    RemoveListModalModule
+    RemoveListModalModule,
+    EditListModalModule
   ],
 })
 export class ListTaskModule {}

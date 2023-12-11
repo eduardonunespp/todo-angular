@@ -29,7 +29,7 @@ export class RemoveListModalComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Lista cadastrada com sucesso!',
+          title: 'Lista removida com sucesso!',
           showConfirmButton: false,
           timer: 1800,
         });
@@ -37,7 +37,7 @@ export class RemoveListModalComponent {
         this.closeModal();
       },
       (error) => {
-        const { erros } = error;
+        const { erros } = error.error;
         Swal.fire({
           position: 'center',
           icon: 'error',

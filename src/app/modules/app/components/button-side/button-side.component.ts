@@ -16,7 +16,5 @@ export class ButtonSideComponent {
 
   handleActiveButton() {
     this.activedButtonChangeHome.emit(true);
-
-    console.log(this.activedButtonHome);
   }
 }

@@ -78,7 +78,6 @@ export class FormAddListComponent implements OnChanges {
       let payload: ITaskList = this.addListForm.value;
       this.taskListService.addTaskList(payload).subscribe(
         (response) => {
-          console.log(response)
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -90,11 +89,11 @@ export class FormAddListComponent implements OnChanges {
           this.closeModal();
         },
         (error) => {
-          const { errors } = error.error;
+          const { erros } = error.error
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: errors,
+            title: erros,
             showConfirmButton: true,
           });
           this.isLoading = false;

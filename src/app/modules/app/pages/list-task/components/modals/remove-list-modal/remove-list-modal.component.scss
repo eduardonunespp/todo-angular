@@ -1,5 +1,4 @@
 .container-modal {
-  width: 491px;
   height: 213px;
   padding: 16px;
   box-sizing: border-box;
@@ -47,7 +46,7 @@
     height: 70px;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
 
     button {
       width: 120px;

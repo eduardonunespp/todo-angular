@@ -15,6 +15,8 @@ export class HeaderComponent {
   @Input() description: string = '';
 
   openModal() {
-    this.dialogRef.open(AddListModalComponent);
+    this.dialogRef.open(AddListModalComponent, {
+      width: '550px'
+    });
   }
 }

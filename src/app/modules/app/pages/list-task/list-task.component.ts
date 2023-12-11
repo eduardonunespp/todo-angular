@@ -8,6 +8,7 @@ import { ITaskList } from '../../types';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { RemoveListModalComponent } from './components/modals/remove-list-modal/remove-list-modal.component';
+import { EditListModalComponent } from './components/modals/edit-list-modal/edit-list-modal.component';
 
 @Component({
   selector: 'td-list-task',
@@ -56,7 +57,6 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
       },
       (error) => {
         const { erros } = error.error;
-        console.log(erros);
         Swal.fire({
           position: 'center',
           icon: 'error',
@@ -69,11 +69,22 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
 
   openDeleteModal(id: string, name: string): void {
     this.dialogRef.open(RemoveListModalComponent, {
+      width: '490px',
       data: {
         id: id,
         name: name,
       },
     });
+  }
+
+  openEditModal(id: string, name: string): void {
+    this.dialogRef.open(EditListModalComponent, {
+      width: '550px',
+      data: {
+        id: id,
+        name: name
+      }
+    })
   }
 
   get isActivedSide(): boolean {

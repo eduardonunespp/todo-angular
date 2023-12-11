@@ -21,8 +21,4 @@ export class AuthService {
       data
     ));
   }
-
-  getUsers() {
-    console.log(this.response);
-  }
 }

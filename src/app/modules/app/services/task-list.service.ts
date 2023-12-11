@@ -23,6 +23,13 @@ export class TaskListService {
     return this.http.get(`${environment.apiUrl}/AssignmentList`, { params });
   }
 
+  editTaskList(id: string, data: ITaskList): Observable<any> {
+    const { name } = data
+    return this.http.put(`${environment.apiUrl}/AssignmentList/${id}`, {id, name }).pipe(tap(() => 
+    this.taskListUpdatedSubject.next()
+    ))
+  }
+
   removeTaskList(id: string): Observable<any> {
 
     return this.http.delete(`${environment.apiUrl}/AssignmentList/${id}`).pipe(tap(() =>
