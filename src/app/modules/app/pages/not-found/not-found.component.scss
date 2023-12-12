@@ -14,10 +14,12 @@
     border: none;
     background-color: var(--background);
     transition: 0.3s;
+    margin-top: 10px;
+    font-weight: 500;
     cursor: pointer;
 
     &:hover {
-      filter: brightness(0.9);
+      filter: brightness(0.8);
     }
   }
 
