@@ -12,13 +12,19 @@
 
     <button>
       <img [ngSrc]="infoCardIcon" alt="" width="15" height="15" />
+
+      <div class="drop-card">
+        <button>  <span>Concluir</span>  </button>
+        <button> <td-edit-icon/> <span>Editar</span> </button>
+        <button> <td-delete-icon/> <span>Deletar</span> </button>
+      </div>
     </button>
   </div>
 
   <div class="footer-card">
-    <img [ngSrc]="listCardIcon" alt="" width="15" height="15" />
+    <td-list-icon width="18" height="18" />
     <p>tarefas</p>
-    <img [ngSrc]="timeCardIcon" alt="" width="15" height="15" />
+    <td-time-icon width="18" height="18" />
     <p>24 de Outubro, 10:15</p>
   </div>
 </div>
