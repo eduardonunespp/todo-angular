@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'td-card-task',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-task.component.scss']
 })
 export class CardTaskComponent {
+
+  @Input() status: number = 1
 
   listCardIcon: string = 'assets/list-card.svg'
   timeCardIcon: string = 'assets/time-card.svg'

@@ -1,0 +1,47 @@
+<form action="javascript:void(0)" [formGroup]="addListForm">
+  <div class="grid-body">
+    <div class="input-container">
+      <td-app-input
+        label="Nome:"
+        type="text"
+        [hasError]="hasNameError()"
+        [errorMsg]="msg.required"
+        formControlName="name"
+      />
+    </div>
+    <div class="input-container">
+      <td-app-input
+        label="Nome:"
+        type="text"
+        [hasError]="hasNameError()"
+        [errorMsg]="msg.required"
+        formControlName="name"
+      />
+    </div>
+  </div>
+
+  <div class="input-container"> 
+    <td-app-input
+    label="Nome:"
+    type="text"
+    [hasError]="hasNameError()"
+    [errorMsg]="msg.required"
+    formControlName="name"
+  />
+  </div>
+
+  <td-text-area rows="5" label="Descrição" [disabled]="true" />
+
+  <div class="footer-modal">
+    <button (click)="closeModal()">Fechar</button>
+    <button
+      [disabled]="!addListForm.valid"
+      [ngClass]="{ isDisabled: !addListForm.valid }"
+      (click)="registerTaskList()"
+    >
+      <td-spinner *ngIf="isLoading" />
+
+      <span *ngIf="!isLoading">Salvar</span>
+    </button>
+  </div>
+</form>

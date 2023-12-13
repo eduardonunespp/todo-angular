@@ -1,0 +1,29 @@
+.container-modal {
+    height: 420px;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: var(--secundary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  
+    .header-modal {
+      width: 100%;
+      height: 65px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+  
+      color: var(--background);
+  
+      svg {
+        padding: 0px;
+      }
+  
+      h2 {
+        padding: 0px;
+        margin: 0px 10px;
+      }
+    }
+  
+  }

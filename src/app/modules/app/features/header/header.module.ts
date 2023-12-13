@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component';
 import { GenericModalModule } from '../../components/generic-modal/generic-modal.module';
 import { AddListModalModule } from '../../pages/list-task/components/modals/add-list-modal/add-list-modal.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AddTaskModalModule } from '../../pages/home/components/modals/add-task-modal/add-task-modal.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     NgOptimizedImage,
     AddListModalModule,
+    AddTaskModalModule,
     GenericModalModule,
     MatDialogModule
   ],
