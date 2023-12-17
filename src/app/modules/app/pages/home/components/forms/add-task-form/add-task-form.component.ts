@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -7,37 +8,51 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { TaskListService } from 'src/app/modules/app/services/task-list.service';
+import { TaskListService, TaskService } from 'src/app/modules/app/services';
 import { ImsgError, msg } from 'src/app/shared';
 import { AddListModalComponent } from '../../../../list-task/components/modals/add-list-modal/add-list-modal.component';
 import { AddTaskModalComponent } from '../../modals/add-task-modal/add-task-modal.component';
+import { Date } from 'src/app/core/adapters';
+import { Task } from 'src/app/modules/app/types';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-add-task-form',
   templateUrl: './add-task-form.component.html',
   styleUrls: ['./add-task-form.component.scss'],
 })
-export class AddTaskFormComponent {
+export class AddTaskFormComponent implements AfterViewInit {
   @Output() isValidForm: EventEmitter<boolean> = new EventEmitter();
   @Input() resetForm: boolean = false;
-  isLoading: boolean = false;
   @Input() onSave!: () => void;
-
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
+  isLoading: boolean = false;
+  listTasks: any[] = [];
 
   msg: ImsgError = msg;
-  addListForm!: FormGroup;
+  addTaskForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private taskService: TaskService,
     private taskListService: TaskListService,
     private dialogRef: MatDialogRef<AddTaskModalComponent>
   ) {
     this.initializeForm();
+  }
+
+  ngAfterViewInit(): void {
+    this.taskListService.onTaskListUpdated().subscribe(() => {
+      this.loadDataList();
+    });
+
+    this.loadDataList();
+  }
+
+  loadDataList() {
+    this.taskListService.getTaskList().subscribe((response) => {
+      const { items } = response;
+      this.listTasks = items;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,15 +62,15 @@ export class AddTaskFormComponent {
   }
 
   private initializeForm(): void {
-    this.addListForm = this.fb.group({
+    this.addTaskForm = this.fb.group({
       // name: ['', [Validators.required]],
       deadline: ['', [Validators.required]],
       description: ['', [Validators.required]],
       assignmentListId: ['', [Validators.required]],
     });
 
-    this.addListForm.valueChanges.subscribe(() => {
-      this.isValidForm.emit(this.addListForm.valid);
+    this.addTaskForm.valueChanges.subscribe(() => {
+      this.isValidForm.emit(this.addTaskForm.valid);
     });
   }
 
@@ -76,12 +91,12 @@ export class AddTaskFormComponent {
   }
 
   isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.addListForm.get(inputName);
+    const formControl: any = this.addTaskForm.get(inputName);
     console.log(formControl.errors);
     if (formControl.errors !== null) {
       return (
         formControl.errors[validatorName] &&
-        this.addListForm.get(inputName)?.touched
+        this.addTaskForm.get(inputName)?.touched
       );
     }
   }
@@ -90,7 +105,35 @@ export class AddTaskFormComponent {
     this.dialogRef.close();
   }
 
-  registerTaskList() {
-    console.log(this.addListForm.value);
+  registerTask() {
+    this.isLoading = true;
+    if (this.addTaskForm.valid) {
+      let payload: Task = this.addTaskForm.value;
+
+      this.taskService.addTask({ ...payload}).subscribe(
+        (response) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Tarefa cadastrada com sucesso!',
+            showConfirmButton: false,
+            timer: 1800,
+          });
+          this.isLoading = false;
+          this.closeModal();
+        },
+        (error) => {
+          const { erros } = error.error;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
+          this.isLoading = false;
+          this.closeModal();
+        }
+      );
+    }
   }
 }

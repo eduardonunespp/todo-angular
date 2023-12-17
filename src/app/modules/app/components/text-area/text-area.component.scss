@@ -19,6 +19,7 @@
     resize: none;
     padding: 10px;
     margin: 0.3125rem 0rem;
+    font-family: var(--font-primary) ;
 
     &.hasError {
       border: 1px solid var(--danger);
