@@ -103,7 +103,7 @@
 
         button {
           width: 100%;
-          height: 33%;
+          height: 33.3%;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -113,6 +113,10 @@
 
           span {
             margin-left: 7px;
+          }
+
+          &:hover {
+            filter: invert(1);
           }
         }
       }

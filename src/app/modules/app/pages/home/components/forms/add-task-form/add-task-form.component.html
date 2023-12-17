@@ -4,33 +4,46 @@
       <td-app-input
         label="Nome:"
         type="text"
-        [hasError]="hasNameError()"
+        [hasError]="false"
         [errorMsg]="msg.required"
         formControlName="name"
+        [isDisable]="true"
       />
     </div>
     <div class="input-container">
       <td-app-input
-        label="Nome:"
-        type="text"
-        [hasError]="hasNameError()"
+        label="Data de conclusão"
+        type="date"
+        [hasError]="hasDateError()"
         [errorMsg]="msg.required"
-        formControlName="name"
+        formControlName="deadline"
       />
     </div>
   </div>
 
-  <div class="input-container"> 
-    <td-app-input
-    label="Nome:"
-    type="text"
-    [hasError]="hasNameError()"
-    [errorMsg]="msg.required"
-    formControlName="name"
-  />
+  <div class="input-container">
+    <mat-form-field>
+      <mat-label>Listas</mat-label>
+      <mat-select formControlName="assignmentListId">
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{
+          food.viewValue
+        }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasListError()"
+        >{{ msg.required }}</mat-error
+      >
+    </mat-form-field>
   </div>
 
-  <td-text-area rows="5" label="Descrição" [disabled]="true" />
+  <td-text-area
+    rows="5"
+    label="Descrição"
+    [disabled]="false"
+    [hasError]="hasDescriptionError()"
+    [errorMsg]="msg.required"
+    formControlName="description"
+    [disabled]="false"
+  />
 
   <div class="footer-modal">
     <button (click)="closeModal()">Fechar</button>

@@ -19,6 +19,7 @@ export class InputAppComponent implements ControlValueAccessor {
   @Input() name: string = '';
   @Input() hasError: boolean = false;
   @Input() errorMsg: string = '';
+  @Input() isDisable: boolean = false
 
   value: any;
 

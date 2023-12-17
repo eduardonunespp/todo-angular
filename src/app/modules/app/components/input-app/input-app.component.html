@@ -1,10 +1,11 @@
-<div class="input-auth-container" >
+<div class="input-auth-container"  [ngClass]="{isDisabled: isDisable}" >
   <label for="">{{ label }}</label>
   <input
     type="{{ type }}"
     (input)="onInputChange($event)"
     [(ngModel)]="value"
     [ngClass]="{'hasError': hasError}"
+    [disabled]="isDisable"
   />
   <mat-error *ngIf="hasError">{{ errorMsg }}</mat-error>
 </div>

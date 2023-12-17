@@ -10,6 +10,12 @@ form {
 
     .input-container {
         width: 48%;
+
+       
+
+      div {
+        background-color: #473737;
+      }
     }
 
     .footer-modal {
@@ -60,3 +66,16 @@ form {
     }
   }
   
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #202020;
+}
+
+.mat-mdc-form-field {
+  display: flex;
+  
+  &.mdc-text-field{
+    background-color: #0f0f0f;
+  }
+  
+
+}
