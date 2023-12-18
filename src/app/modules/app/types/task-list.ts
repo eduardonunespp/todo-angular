@@ -8,3 +8,7 @@ export type Task = {
     name: string
     assignments: string[]
 }
+
+export type ItaskListFilter = {
+    assignmentList: string
+}

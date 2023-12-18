@@ -1,0 +1,20 @@
+<div class="filter-container" [ngClass]="{ isActived: isActived }">
+  <div class="filter-container-child">
+    <span>Filtros</span>
+
+    <button
+      class="arrow-svg"
+      (click)="activeFilter()"
+      [ngClass]="{ isActived: isActived }"
+    >
+      <td-arrow-icon width="18" height="18" />
+    </button>
+  </div>
+
+  <div
+    class="filter-container-child-2"
+    [ngClass]="{ isActived: isActivedAfterTime }"
+  >
+    <td-filter-task-form />
+  </div>
+</div>

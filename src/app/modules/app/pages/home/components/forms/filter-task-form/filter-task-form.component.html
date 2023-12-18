@@ -1,0 +1,10 @@
+<form action="">
+  <mat-form-field>
+    <mat-label>Listas</mat-label>
+    <mat-select formControlName="assignmentListId">
+      <mat-option *ngFor="let list of listTasks" [value]="list.id">{{
+        list.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

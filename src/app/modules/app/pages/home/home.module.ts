@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module'
 import { HeaderModule, SideBarModule } from '../../features'
 import { CardTaskModule } from '../../components';
+import { FilterModule } from './components/filter/filter.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CardTaskModule } from '../../components';
     HomeRoutingModule,
     SideBarModule,
     HeaderModule,
-    CardTaskModule
+    CardTaskModule,
+    FilterModule
   ]
 })
 export class HomeModule { }
