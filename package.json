@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.2.12",
     "@ng-icons/core": "^26.0.0",
+    "@ng-icons/css.gg": "^26.3.0",
     "@ng-icons/heroicons": "^26.0.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.32",
