@@ -4,6 +4,7 @@ import { CardTaskComponent } from './card-task.component';
 import { AddIconModule, CheckIconModule, DeleteIconModule, EditIconModule, ListIconModule, TimeIconModule } from 'src/app/shared';
 import { NgIconsModule } from '@ng-icons/core';
 import { heroCheckCircleSolid } from '@ng-icons/heroicons/solid';
+import { ConcludeTaskModalModule } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { heroCheckCircleSolid } from '@ng-icons/heroicons/solid';
     EditIconModule,
     CheckIconModule,
     DeleteIconModule,
+    ConcludeTaskModalModule,
     NgIconsModule.withIcons({ heroCheckCircleSolid }),
     
   ],

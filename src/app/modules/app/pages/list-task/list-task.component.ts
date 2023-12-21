@@ -82,9 +82,9 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
       width: '550px',
       data: {
         id: id,
-        name: name
-      }
-    })
+        name: name,
+      },
+    });
   }
 
   get isActivedSide(): boolean {

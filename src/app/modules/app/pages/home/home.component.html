@@ -10,18 +10,23 @@
 
     <td-filter />
 
-    <div class="grid-cards">
-      <td-card-task [status]="0" />
-      <td-card-task [status]="2" />
-      <td-card-task [status]="1" />
-      <td-card-task [status]="0" />
-      <td-card-task [status]="0" />
-      <td-card-task [status]="1" />
-      <td-card-task [status]="2" />
-      <td-card-task [status]="0" />
-      <td-card-task [status]="2" />
-      <td-card-task [status]="1" />
-      <td-card-task [status]="0" />
+    <div class="grid-cards" [ngClass]="{ isNoAssignment: !isAssignment }">
+      <ng-container *ngIf="isAssignment; else noAssignment">
+        <td-card-task
+          *ngFor="let item of assignments"
+          [description]="item.description"
+          [deadline]="item.deadline"
+          [concluded]="item.concluded"
+          [id]="item.id"
+          
+        />
+      </ng-container>
+
+      <ng-template #noAssignment>
+        <div class="noAssignmentContainer">
+          <h2>Sem Tarefas no momento...</h2>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

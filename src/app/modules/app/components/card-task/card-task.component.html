@@ -6,8 +6,12 @@
         'last-day': status === 1,
         overdue: status === 2
       }"
+      [ngSwitch]="status"
     >
-      Description
+      <ng-container *ngSwitchCase="0">Concluído</ng-container>
+      <ng-container *ngSwitchCase="1">A Fazer</ng-container>
+      <ng-container *ngSwitchCase="2">Atrasado</ng-container>
+      <ng-container *ngSwitchDefault>Estado Desconhecido</ng-container>
     </p>
   </div>
 
@@ -22,14 +26,20 @@
     <div class="info-card">
       <strong>Estudar para prova</strong>
 
-      <p>description</p>
+      <p>
+        {{
+          description.length > 30
+            ? description.slice(0, 30) + "..."
+            : description
+        }}
+      </p>
     </div>
 
     <button>
       <img [ngSrc]="infoCardIcon" alt="" width="15" height="15" />
 
       <div class="drop-card">
-        <button>
+        <button (click)="openConcludeModal(id, description)">
           <ng-icon name="heroCheckCircleSolid"></ng-icon> <span>Concluir</span>
         </button>
         <button>
@@ -46,6 +56,6 @@
     <td-list-icon width="18" height="18" />
     <p>tarefas</p>
     <td-time-icon width="18" height="18" />
-    <p>24 de Outubro, 10:15</p>
+    <p>{{ formatDeadLine() }}</p>
   </div>
 </div>

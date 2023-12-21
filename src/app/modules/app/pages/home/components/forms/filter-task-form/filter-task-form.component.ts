@@ -1,7 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TaskListService } from 'src/app/modules/app/services';
+import { Subscription } from 'rxjs';
+import { SharedListsTaskDataService, TaskListService, TaskService } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
+import { ImsgError, msg } from 'src/app/shared';
 
 @Component({
   selector: 'td-filter-task-form',
@@ -10,11 +12,16 @@ import { ItaskListFilter } from 'src/app/modules/app/types';
 })
 export class FilterTaskFormComponent implements AfterViewInit {
   listTasks: any[] = [];
-  filterTaskForm!: FormGroup;
+  IsDisable: boolean = false;
+  msg: ImsgError = msg;
+  
+  private taskListSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private taskListService: TaskListService
+    private taskListService: TaskListService,
+    private sharedDataTaskList: SharedListsTaskDataService,
+    private taskService: TaskService
   ) {}
 
   ngAfterViewInit(): void {
@@ -23,26 +30,40 @@ export class FilterTaskFormComponent implements AfterViewInit {
       this.listTasks = items;
     });
 
-    this.initializeForm();
+    this.taskListSubscription = this.taskService.onTaskListUpdated().subscribe(() => {
+      this.filterTasks()
+    })
   }
 
-  private initializeForm(): void {
-    this.filterTaskForm = this.fb.group({
-      // name: ['', [Validators.required]],
-      assignmentListId: ['', [Validators.required]],
-    });
+  filterTaskForm: FormGroup = this.fb.group({
+    assignmentListId: ['', [Validators.required]],
+  });
+
+  hasAssignmentListIdError() {
+    return this.isInvalid('assignmentListId', 'required');
   }
 
   filterTasks() {
     let payload: ItaskListFilter = this.filterTaskForm.value;
     if (this.filterTaskForm.valid) {
-      this.taskListService.getTaskListById(payload.assignmentList).subscribe(
+      this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
         (response) => {
-          console.log(response);
+          this.sharedDataTaskList.setTaskData(response)
         },
         (error) => {
           console.log(error);
         }
+      );
+    }
+  }
+
+  isInvalid(inputName: string, validatorName: string) {
+    const formControl: any = this.filterTaskForm.get(inputName);
+    console.log(formControl.errors);
+    if (formControl.errors !== null) {
+      return (
+        formControl.errors[validatorName] &&
+        this.filterTaskForm.get(inputName)?.touched
       );
     }
   }
