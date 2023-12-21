@@ -1,0 +1,25 @@
+<div class="container-modal">
+  <div class="header-modal">
+    <div class="icon-container">
+      <ng-icon name="heroCheckCircleSolid"/>
+    </div>
+    <h2>Conclusão de tarefa</h2>
+  </div>
+
+  <div class="body-modal">
+    <p>
+      Tem certeza de que deseja marcar como concluída a tarefa
+      <strong
+        >{{ name.length > 30 ? name.slice(0, 30) + "..." : name }}?
+      </strong>
+    </p>
+  </div>
+
+  <div class="footer-modal">
+    <button (click)="closeModal()">Fechar</button>
+    <button (click)="concludeTask()">
+      <td-spinner *ngIf="isLoading" />
+      <span *ngIf="!isLoading">Confirmar</span>
+    </button>
+  </div>
+</div>
