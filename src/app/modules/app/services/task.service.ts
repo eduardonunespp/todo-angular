@@ -15,7 +15,9 @@ export class TaskService {
   }
 
   addTask(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Assignments`, data);
+    return this.http.post(`${environment.apiUrl}/Assignments`, data).pipe(tap(() => {
+      this.taskListUpdatedSubject.next()
+    }))
   }
 
   concludeTask(id: string): Observable<any> {
@@ -23,6 +25,12 @@ export class TaskService {
       `${environment.apiUrl}/Assignments/${id}/conclude`,
       null
     ).pipe(tap(() => this.taskListUpdatedSubject.next()));
+  }
+
+  deleteTask(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/Assignments/${id}`).pipe(tap(() => {
+      this.taskListUpdatedSubject.next()
+    }))
   }
 
   onTaskListUpdated(): Observable<void> {

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.component';
+import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';
 
 @Component({
   selector: 'td-card-task',
@@ -65,6 +66,16 @@ export class CardTaskComponent implements AfterViewInit {
 
   openConcludeModal(id: string, name: string): void {
     this.dialogRef.open(ConcludeTaskModalComponent, {
+      width: '490px',
+      data: {
+        id: id,
+        name: name,
+      },
+    });
+  }
+
+  openDeleteModal(id: string, name: string): void {
+    this.dialogRef.open(DeleteTaskModalComponent, {
       width: '490px',
       data: {
         id: id,

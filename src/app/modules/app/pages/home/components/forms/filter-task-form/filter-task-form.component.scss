@@ -15,10 +15,17 @@ form {
     border-radius: 3px;
     background-color: var(--background);
     color: var(--primary);
-    font-weight: 600;
+    font-weight: 500;
     border: none;
     cursor: pointer;
     transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    
 
     &:hover {
       filter: brightness(0.9);

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SipnnerModule } from 'src/app/shared/components';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     MatGridListModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SipnnerModule
   ],
   exports: [
     FilterTaskFormComponent

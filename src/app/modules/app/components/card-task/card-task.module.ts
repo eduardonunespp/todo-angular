@@ -5,6 +5,7 @@ import { AddIconModule, CheckIconModule, DeleteIconModule, EditIconModule, ListI
 import { NgIconsModule } from '@ng-icons/core';
 import { heroCheckCircleSolid } from '@ng-icons/heroicons/solid';
 import { ConcludeTaskModalModule } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.module';
+import { DeleteTaskModalModule } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ConcludeTaskModalModule } from '../../pages/home/components/modals/conc
     CheckIconModule,
     DeleteIconModule,
     ConcludeTaskModalModule,
+    DeleteTaskModalModule,
     NgIconsModule.withIcons({ heroCheckCircleSolid }),
     
   ],

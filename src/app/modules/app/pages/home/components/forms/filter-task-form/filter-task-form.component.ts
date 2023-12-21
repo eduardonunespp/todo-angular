@@ -1,9 +1,9 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ImsgError, msg } from 'src/app/shared';
 import { SharedListsTaskDataService, TaskListService, TaskService } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
-import { ImsgError, msg } from 'src/app/shared';
 
 @Component({
   selector: 'td-filter-task-form',
@@ -14,6 +14,7 @@ export class FilterTaskFormComponent implements AfterViewInit {
   listTasks: any[] = [];
   IsDisable: boolean = false;
   msg: ImsgError = msg;
+  isLoading: boolean = false
   
   private taskListSubscription!: Subscription;
 
@@ -44,14 +45,17 @@ export class FilterTaskFormComponent implements AfterViewInit {
   }
 
   filterTasks() {
+    this.isLoading = true
     let payload: ItaskListFilter = this.filterTaskForm.value;
     if (this.filterTaskForm.valid) {
       this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
         (response) => {
           this.sharedDataTaskList.setTaskData(response)
+          this.isLoading = false
         },
         (error) => {
           console.log(error);
+          this.isLoading = false
         }
       );
     }
