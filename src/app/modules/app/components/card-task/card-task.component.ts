@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.component';
 import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';
 import { UnconcludeTaskModalComponent } from '../../pages/home/components/modals/unconclude-task-modal/unconclude-task-modal.component';
+import { ViewTaskModalComponent } from '../../pages/home/components/modals/view-task-modal/view-task-modal.component';
 
 @Component({
   selector: 'td-card-task',
@@ -68,11 +69,21 @@ export class CardTaskComponent implements AfterViewInit {
     }
   }
 
+  openViewModal(id: string, name: string): void {
+    this.dialogRef.open(ViewTaskModalComponent, {
+      width: '490px',
+      data: {
+        id: id,
+        name: name,
+      },
+    });
+  }
+
   openModalByStatus(id: string, description: string): void {
     if(this.concluded === false){
-     this.openConcludeModal(id, description)
+      this.openConcludeModal(id, description)
     }else{
-     this.openUnconcludeModal(id, description)
+      this.openUnconcludeModal(id, description)
     }
   }
 
