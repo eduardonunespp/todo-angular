@@ -27,6 +27,13 @@ export class TaskService {
     ).pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 
+  unconcludeTask(id: string): Observable<any> {
+    return this.http.patch(
+      `${environment.apiUrl}/Assignments/${id}/unconclude`,
+      null
+    ).pipe(tap(() => this.taskListUpdatedSubject.next()));
+  }
+
   deleteTask(id: string): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/Assignments/${id}`).pipe(tap(() => {
       this.taskListUpdatedSubject.next()

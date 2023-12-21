@@ -1,14 +1,14 @@
 <div class="container-modal">
     <div class="header-modal">
       <div class="icon-container">
-        <td-delete-icon width="12" height="12"/>
+        <ng-icon name="ionCloseCircle" />
       </div>
-      <h2>Exclusão de Tarefa</h2>
+      <h2>Não Conclusão de Tarefa</h2>
     </div>
   
     <div class="body-modal">
       <p>
-        Tem certeza de que deseja excluir a tarefa de nome:
+        Tem certeza de que deseja marcar como não concluída a tarefa de nome:
         <strong
           >{{ name.length > 30 ? name.slice(0, 30) + "..." : name }}?
         </strong>

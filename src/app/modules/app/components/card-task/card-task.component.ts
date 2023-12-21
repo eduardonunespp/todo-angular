@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.component';
 import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';
+import { UnconcludeTaskModalComponent } from '../../pages/home/components/modals/unconclude-task-modal/unconclude-task-modal.component';
 
 @Component({
   selector: 'td-card-task',
@@ -15,6 +16,8 @@ export class CardTaskComponent implements AfterViewInit {
   @Input() concluded!: boolean;
   @Input() id: string = '';
 
+  injectConcluded: boolean = false
+
   listCardIcon: string = 'assets/list-card.svg';
   timeCardIcon: string = 'assets/time-card.svg';
   infoCardIcon: string = 'assets/info-card.svg';
@@ -23,6 +26,7 @@ export class CardTaskComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.statusTask();
+    this.injectConcluded = this.concluded
   }
 
   formatDeadLine(): string {
@@ -64,8 +68,26 @@ export class CardTaskComponent implements AfterViewInit {
     }
   }
 
+  openModalByStatus(id: string, description: string): void {
+    if(this.concluded === false){
+     this.openConcludeModal(id, description)
+    }else{
+     this.openUnconcludeModal(id, description)
+    }
+  }
+
   openConcludeModal(id: string, name: string): void {
     this.dialogRef.open(ConcludeTaskModalComponent, {
+      width: '490px',
+      data: {
+        id: id,
+        name: name,
+      },
+    });
+  }
+
+  openUnconcludeModal(id: string, name: string): void {
+    this.dialogRef.open(UnconcludeTaskModalComponent, {
       width: '490px',
       data: {
         id: id,
