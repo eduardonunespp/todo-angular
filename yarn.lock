@@ -2200,6 +2200,13 @@
   dependencies:
     tslib "^2.2.0"
 
+"@ng-icons/ionicons@^26.3.0":
+  version "26.3.0"
+  resolved "https://registry.yarnpkg.com/@ng-icons/ionicons/-/ionicons-26.3.0.tgz#a6d3e2c0ccdeb7f31325bbee4192934fee5d79b9"
+  integrity sha512-GVoKgvdBnmRMFz5xwtD9APklU+3+fIZV/+YgIr30DDhvgYgVq9ALb2EGl06A0n3hCYKc34yAKvkA69y+jYIy0Q==
+  dependencies:
+    tslib "^2.2.0"
+
 "@ngtools/webpack@16.2.10":
   version "16.2.10"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-16.2.10.tgz"

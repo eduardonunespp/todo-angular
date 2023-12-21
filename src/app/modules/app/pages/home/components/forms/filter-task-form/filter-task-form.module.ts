@@ -6,6 +6,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SipnnerModule } from 'src/app/shared/components';
+import { NgIconsModule } from '@ng-icons/core';
+import { ionSearch } from '@ng-icons/ionicons'
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { SipnnerModule } from 'src/app/shared/components';
     MatGridListModule,
     MatSelectModule,
     MatFormFieldModule,
-    SipnnerModule
+    SipnnerModule,
+    NgIconsModule.withIcons({ ionSearch }),
   ],
   exports: [
     FilterTaskFormComponent

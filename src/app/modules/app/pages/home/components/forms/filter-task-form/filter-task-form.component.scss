@@ -1,17 +1,14 @@
 form {
   position: relative;
   top: 0.625rem;
-
   width: 100%;
-
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
-
   button {
-    width: 100px;
-    height: 37px;
+    width: 35px;
+    height: 32px;
     border-radius: 3px;
     background-color: var(--background);
     color: var(--primary);
@@ -19,20 +16,22 @@ form {
     border: none;
     cursor: pointer;
     transition: 0.3s;
+    margin-left: 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    
 
-    
+    span {
+      transform: scale(1.1);
+    }
 
     &:hover {
-      filter: brightness(0.9);
+      transform: scale(1.1);
     }
 
     &.isDisable {
-        filter: brightness(0.7);
+      filter: brightness(0.7);
     }
   }
 }

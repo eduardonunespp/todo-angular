@@ -23,6 +23,7 @@
     "@ng-icons/core": "^26.0.0",
     "@ng-icons/css.gg": "^26.3.0",
     "@ng-icons/heroicons": "^26.0.0",
+    "@ng-icons/ionicons": "^26.3.0",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.32",
     "tslib": "^2.3.0",

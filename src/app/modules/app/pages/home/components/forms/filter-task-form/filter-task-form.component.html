@@ -20,6 +20,6 @@
     [disabled]="!filterTaskForm.valid"
   >
     <td-spinner *ngIf="isLoading"/>
-    <span *ngIf="!isLoading">Filtrar</span>
+    <span *ngIf="!isLoading"> <ng-icon name="ionSearch" /> </span>
   </button>
 </form>
