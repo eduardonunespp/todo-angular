@@ -1,14 +1,15 @@
 <form action="javascript:void(0)" [formGroup]="addTaskForm">
   <div class="grid-body">
     <div class="input-container">
-      <td-app-input
-        label="Nome:"
-        type="text"
-        [hasError]="false"
-        [errorMsg]="msg.required"
-        formControlName="name"
-        [isDisable]="true"
-      />
+      <mat-form-field>
+        <mat-label>Listas</mat-label>
+        <mat-select formControlName="assignmentListId">
+          <mat-option *ngFor="let list of listTasks" [value]="list.id">{{
+            list.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasListError()">{{ msg.required }}</mat-error>
+      </mat-form-field>
     </div>
     <div class="input-container">
       <td-app-input
@@ -19,20 +20,6 @@
         formControlName="deadline"
       />
     </div>
-  </div>
-
-  <div class="input-container">
-    <mat-form-field>
-      <mat-label>Listas</mat-label>
-      <mat-select formControlName="assignmentListId">
-        <mat-option *ngFor="let list of listTasks" [value]="list.id">{{
-          list.name
-        }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="hasListError()"
-        >{{ msg.required }}</mat-error
-      >
-    </mat-form-field>
   </div>
 
   <td-text-area

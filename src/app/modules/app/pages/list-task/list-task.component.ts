@@ -24,7 +24,7 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  private taskListSubscription!: Subscription;
+  taskListSubscription!: Subscription;
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,

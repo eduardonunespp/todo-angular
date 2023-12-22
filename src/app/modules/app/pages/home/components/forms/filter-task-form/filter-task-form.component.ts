@@ -16,14 +16,18 @@ export class FilterTaskFormComponent implements AfterViewInit {
   msg: ImsgError = msg;
   isLoading: boolean = false
   
-  private taskListSubscription!: Subscription;
+  taskListSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private taskListService: TaskListService,
     private sharedDataTaskList: SharedListsTaskDataService,
     private taskService: TaskService
-  ) {}
+  ) {
+    this.taskListSubscription = this.taskService.onTaskListUpdated().subscribe(() => {
+      this.filterTasks()
+    })
+  }
 
   ngAfterViewInit(): void {
     this.taskListService.getTaskList().subscribe((response) => {
@@ -31,9 +35,6 @@ export class FilterTaskFormComponent implements AfterViewInit {
       this.listTasks = items;
     });
 
-    this.taskListSubscription = this.taskService.onTaskListUpdated().subscribe(() => {
-      this.filterTasks()
-    })
   }
 
   filterTaskForm: FormGroup = this.fb.group({
