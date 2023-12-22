@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { SharedListsTaskDataService, SharedSidebarDataService } from '../../services';
 import { Subscription } from 'rxjs';
 import { IAssignments, ITaskListById } from '../../types';
@@ -8,15 +8,19 @@ import { IAssignments, ITaskListById } from '../../types';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
   taskDataSubscription!: Subscription;
   assignments!: IAssignments[];
+  nameList: string = ''
   isAssignment: boolean = false;
+  homeTodoIcon: string = 'assets/home-icon.svg';
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
     private sharedDataTaskService: SharedListsTaskDataService
-  ) {
+  ) {}
+
+  ngAfterViewInit(): void {
     this.taskDataSubscription = this.sharedDataTaskService.taskData$.subscribe(
       (data: ITaskListById) => {
         if (
@@ -26,18 +30,16 @@ export class HomeComponent {
         ) {
           this.isAssignment = true;
           this.assignments = data.assignments;
+          this.nameList = data.name
         } else {
           this.isAssignment = false;
         }
       },
       (error) => {
-        // Trate o erro, se necessário
         console.error(error);
       }
     );
   }
-
-  homeTodoIcon: string = 'assets/home-icon.svg';
 
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;

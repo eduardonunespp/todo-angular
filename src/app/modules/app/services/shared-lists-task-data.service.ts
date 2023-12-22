@@ -7,9 +7,8 @@ import { ITaskListById } from '../types';
 })
 export class SharedListsTaskDataService {
   private taskDataSubject = new BehaviorSubject<any>(null);
-  taskData$: Observable<ITaskListById> = this.taskDataSubject.asObservable();
 
-  constructor() {}
+  taskData$: Observable<ITaskListById> = this.taskDataSubject.asObservable();
 
   setTaskData(data: ITaskListById) {
     this.taskDataSubject.next(data);

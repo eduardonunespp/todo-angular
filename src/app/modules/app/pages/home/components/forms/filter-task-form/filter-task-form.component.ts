@@ -2,7 +2,12 @@ import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ImsgError, msg } from 'src/app/shared';
-import { SharedListsTaskDataService, TaskListService, TaskService } from 'src/app/modules/app/services';
+import {
+  FormStateService,
+  SharedListsTaskDataService,
+  TaskListService,
+  TaskService,
+} from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
 
 @Component({
@@ -14,19 +19,29 @@ export class FilterTaskFormComponent implements AfterViewInit {
   listTasks: any[] = [];
   IsDisable: boolean = false;
   msg: ImsgError = msg;
-  isLoading: boolean = false
-  
+  isLoading: boolean = false;
   taskListSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private taskListService: TaskListService,
     private sharedDataTaskList: SharedListsTaskDataService,
+    private formStateService: FormStateService,
     private taskService: TaskService
   ) {
-    this.taskListSubscription = this.taskService.onTaskListUpdated().subscribe(() => {
-      this.filterTasks()
-    })
+    this.taskListSubscription = this.taskService
+      .onTaskListUpdated()
+      .subscribe(() => {
+        this.filterTasks();
+      });
+
+    this.filterTaskForm.get('assignmentListId')?.setValue('');
+
+    const savedAssignmentListId =
+      this.formStateService.getFormState('filterTaskForm').assignmentListId;
+    this.filterTaskForm
+      .get('assignmentListId')
+      ?.setValue(savedAssignmentListId || '');
   }
 
   ngAfterViewInit(): void {
@@ -34,7 +49,10 @@ export class FilterTaskFormComponent implements AfterViewInit {
       const { items } = response;
       this.listTasks = items;
     });
+  }
 
+  ngOnDestroy(): void {
+    this.taskListSubscription.unsubscribe();
   }
 
   filterTaskForm: FormGroup = this.fb.group({
@@ -46,20 +64,25 @@ export class FilterTaskFormComponent implements AfterViewInit {
   }
 
   filterTasks() {
-    this.isLoading = true
+    this.isLoading = true;
     let payload: ItaskListFilter = this.filterTaskForm.value;
     if (this.filterTaskForm.valid) {
       this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
         (response) => {
-          this.sharedDataTaskList.setTaskData(response)
-          this.isLoading = false
+          this.sharedDataTaskList.setTaskData(response);
+          this.isLoading = false;
         },
         (error) => {
           console.log(error);
-          this.isLoading = false
+          this.isLoading = false;
         }
       );
     }
+
+    this.formStateService.saveFormState(
+      'filterTaskForm',
+      this.filterTaskForm.value
+    );
   }
 
   isInvalid(inputName: string, validatorName: string) {

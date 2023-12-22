@@ -16,6 +16,7 @@ export class CardTaskComponent implements AfterViewInit {
   @Input() deadline: string = '';
   @Input() concluded!: boolean;
   @Input() id: string = '';
+  @Input() nameList: string = ''
 
   injectConcluded: boolean = false
 
@@ -48,10 +49,12 @@ export class CardTaskComponent implements AfterViewInit {
 
     const date = new Date(this.deadline);
     const day = date.getDate();
+    const timeHour = date.getHours()
+    const timeMinutes = date.getMinutes()
     const month = months[date.getMonth()];
-    const year = date.getFullYear();
+    const formattedTime = `${day} de ${month}, ${timeHour.toString().padStart(2, '0')}:${timeMinutes.toString().padStart(2, '0')}`;
 
-    return `${day} de ${month}, ${year}`;
+    return formattedTime
   }
 
   statusTask() {

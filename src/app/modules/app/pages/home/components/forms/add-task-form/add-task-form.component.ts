@@ -15,6 +15,7 @@ import { AddTaskModalComponent } from '../../modals/add-task-modal/add-task-moda
 import { Date } from 'src/app/core/adapters';
 import { Task } from 'src/app/modules/app/types';
 import Swal from 'sweetalert2';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'td-add-task-form',
@@ -65,6 +66,7 @@ export class AddTaskFormComponent implements AfterViewInit {
     this.addTaskForm = this.fb.group({
       // name: ['', [Validators.required]],
       deadline: ['', [Validators.required]],
+      timeHour: ['', [Validators.required]],
       description: ['', [Validators.required]],
       assignmentListId: ['', [Validators.required]],
     });
@@ -84,6 +86,10 @@ export class AddTaskFormComponent implements AfterViewInit {
 
   hasDateError() {
     return this.isInvalid('deadline', 'required');
+  }
+
+  hasTimeHourError() {
+    return this.isInvalid('timeHour', 'required');
   }
 
   hasListError() {
@@ -108,9 +114,19 @@ export class AddTaskFormComponent implements AfterViewInit {
   registerTask() {
     this.isLoading = true;
     if (this.addTaskForm.valid) {
+
+      const dateValue: string = this.addTaskForm.get('deadline')?.value
+      const timeValue: string = this.addTaskForm.get('timeHour')?.value
+
+      const formattedDatetime: string = `${dateValue}T${timeValue}:00.000Z`
+
+      this.addTaskForm.patchValue({
+        deadline: formattedDatetime
+      })
+      
       let payload: Task = this.addTaskForm.value;
 
-      this.taskService.addTask({ ...payload}).subscribe(
+      this.taskService.addTask({ ...payload }).subscribe(
         (response) => {
           Swal.fire({
             position: 'center',

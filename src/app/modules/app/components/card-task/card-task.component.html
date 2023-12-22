@@ -60,7 +60,7 @@
 
   <div class="footer-card">
     <td-list-icon width="18" height="18" />
-    <p>tarefas</p>
+    <p>{{ nameList.length > 10 ? nameList.slice(0, 10) + '...' : nameList }}</p>
     <td-time-icon width="18" height="18" />
     <p>{{ formatDeadLine() }}</p>
   </div>
