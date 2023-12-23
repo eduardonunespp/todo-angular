@@ -27,7 +27,7 @@
         text-align: center;
         color: var(--text-secundary);
 
-        @media(max-width: 600px) {
+        @media (max-width: 600px) {
           font-size: 1.2rem;
         }
       }
@@ -37,10 +37,10 @@
     }
   }
 
-  @media(max-width: 600px) {
-
-    grid-template-areas: "nav"
-                        "content";
+  @media (max-width: 600px) {
+    grid-template-areas:
+      "nav"
+      "content";
 
     grid-template-rows: 77px auto;
     grid-template-columns: auto;
@@ -49,6 +49,10 @@
 
 .activedSide {
   grid-template-columns: 270px auto;
+
+  @media (max-width: 600px) {
+    grid-template-columns: auto;
+  }
 }
 
 .content {

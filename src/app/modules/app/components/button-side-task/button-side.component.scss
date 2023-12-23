@@ -21,6 +21,10 @@ button {
   p {
     margin: 0px;
     padding: 0px;
+
+    @media(max-width: 600px){
+      display: none;
+    }
   }
 
   svg {
@@ -45,6 +49,13 @@ button {
   justify-content: flex-start;
 
   svg {
-    margin-right: 5px;
+    margin-right: 7px;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    svg {
+      margin-right: 0px;
+    }
   }
 }

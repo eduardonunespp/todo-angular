@@ -8,10 +8,10 @@
   grid-template-columns: 97px auto;
   transition: 0.4s;
 
-  @media(max-width: 600px) {
-
-    grid-template-areas: "nav"
-                        "content";
+  @media (max-width: 600px) {
+    grid-template-areas:
+      "nav"
+      "content";
 
     grid-template-rows: 77px auto;
     grid-template-columns: auto;
@@ -20,6 +20,10 @@
 
 .activedSide {
   grid-template-columns: 270px auto;
+
+  @media (max-width: 600px) {
+    grid-template-columns: auto;
+  }
 }
 
 .content {
@@ -63,7 +67,7 @@
     }
 
     tr:nth-child(odd) {
-      background-color: var(--primary); 
+      background-color: var(--primary);
     }
   }
 }
@@ -82,7 +86,7 @@
     transition: 0.2s;
 
     &:hover {
-        transform: scale(1.1);
+      transform: scale(1.1);
     }
   }
 
