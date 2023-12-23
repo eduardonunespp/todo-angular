@@ -13,9 +13,10 @@ button {
   border: none;
   margin-top: 10px;
 
-    svg {
-        margin-right: 0px;
-    }
+  @media (max-width: 600px) {
+    width: 50px;
+    margin: 0px 5px;
+  }
 
   p {
     margin: 0px;
@@ -37,7 +38,7 @@ button {
 .activedSide {
   justify-content: flex-start;
 
-    svg {
-        margin-right: 7px;
-    }
+  svg {
+    margin-right: 7px;
+  }
 }

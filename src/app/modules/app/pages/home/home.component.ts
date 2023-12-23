@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { SharedListsTaskDataService, SharedSidebarDataService } from '../../services';
 import { Subscription } from 'rxjs';
 import { IAssignments, ITaskListById } from '../../types';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,20 @@ export class HomeComponent implements AfterViewInit {
   nameList: string = ''
   isAssignment: boolean = false;
   homeTodoIcon: string = 'assets/home-icon.svg';
+  isSmallScreen: boolean = false;
+  breakpointSubscription!: Subscription;
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
-    private sharedDataTaskService: SharedListsTaskDataService
-  ) {}
+    private sharedDataTaskService: SharedListsTaskDataService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.breakpointSubscription = this.breakpointObserver
+    .observe([Breakpoints.XSmall, Breakpoints.XSmall])
+    .subscribe((result) => {
+      this.isSmallScreen = result.matches;
+    });
+  }
 
   ngAfterViewInit(): void {
     this.taskDataSubscription = this.sharedDataTaskService.taskData$.subscribe(
@@ -41,11 +51,19 @@ export class HomeComponent implements AfterViewInit {
     );
   }
 
+  isSmallScreenFunction(): boolean {
+    return this.isSmallScreen;
+  }
+
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;
   }
 
   activedSide(isActive: boolean) {
     this.sharedService.isActivedSide = isActive;
+  }
+
+  ngOnDestroy(): void {
+    this.breakpointSubscription.unsubscribe();
   }
 }

@@ -24,12 +24,26 @@
 
     .noAssignmentContainer {
       h2 {
+        text-align: center;
         color: var(--text-secundary);
+
+        @media(max-width: 600px) {
+          font-size: 1.2rem;
+        }
       }
     }
     @media (max-width: 650px) {
       justify-content: center;
     }
+  }
+
+  @media(max-width: 600px) {
+
+    grid-template-areas: "nav"
+                        "content";
+
+    grid-template-rows: 77px auto;
+    grid-template-columns: auto;
   }
 }
 

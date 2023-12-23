@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RemoveListModalComponent } from './components/modals/remove-list-modal/remove-list-modal.component';
 import { RemoveListModalModule } from './components/modals/remove-list-modal/remove-list-modal.module';
 import { EditListModalModule } from './components/modals/edit-list-modal/edit-list-modal.module';
+import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -18,6 +19,7 @@ import { EditListModalModule } from './components/modals/edit-list-modal/edit-li
     CommonModule,
     ListRoutingModule,
     SideBarModule,
+    NavBarModule,
     HeaderModule,
     MatTableModule,
     EditIconModule,

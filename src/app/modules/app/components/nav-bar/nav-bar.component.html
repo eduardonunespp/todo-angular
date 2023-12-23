@@ -1,0 +1,42 @@
+<div class="nav-bar-container">
+  <div class="container-actions">
+    <div class="log-out" (click)="logOut()">
+      <img
+        [ngSrc]="logOutTodoIcon"
+        alt="log out image"
+        width="22"
+        height="22"
+      />
+    </div>
+
+    <div class="container-buttons">
+      <td-button-side
+        Icon="Home"
+        description="Tarefas"
+        [activedButtonHome]="isActivedButtonHome"
+        [isActivedSide]="isActivedSide"
+        s
+        (activedButtonChangeHome)="onActivedButtonChangeHome()"
+        (click)="navigate('home')"
+      />
+
+      <td-button-task-side
+        Icon="Lista"
+        description="Listas"
+        [activedButtonTask]="isActivedButtonTask"
+        [isActivedSide]="isActivedSide"
+        (activedButtonChangeTask)="onActivedButtonChangeTask()"
+        (click)="navigate('list')"
+      />
+    </div>
+  </div>
+
+  <div class="container-logo">
+    <img
+      ngSrc="{{ logoTodoSide }}"
+      alt="Image logo side"
+      width="85"
+      height="45"
+    />
+  </div>
+</div>

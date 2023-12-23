@@ -23,13 +23,11 @@
       svg {
         width: 2rem;
         height: 2rem;
-
         font-size: 2rem;
 
         path {
           width: 2rem;
           height: 2rem;
-
           font-size: 2rem;
         }
       }
@@ -37,6 +35,12 @@
       h2 {
         padding: 0px;
         margin: 0px 10px;
+
+        @media(max-width: 600px) {
+      
+            font-size: 1.2rem;
+
+        }
       }
     }
   
@@ -74,6 +78,10 @@
   
         &:hover {
           filter: brightness(0.9);
+        }
+
+        @media(max-width: 600px) {
+          width: 100px;
         }
       }
   

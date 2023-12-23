@@ -1,5 +1,10 @@
 <div class="container" [ngClass]="{ activedSide: isActivedSide }">
-  <td-side-bar (isActivedSideChange)="activedSide($event)" />
+  <ng-container *ngIf="isSmallScreenFunction(); else showSide">
+    <td-nav-bar (isActivedSideChange)="activedSide($event)" />
+  </ng-container>
+  <ng-template #showSide>
+    <td-side-bar (isActivedSideChange)="activedSide($event)" />
+  </ng-template>
 
   <div class="content">
     <td-header
@@ -25,7 +30,7 @@
 
       <ng-template #noAssignment>
         <div class="noAssignmentContainer">
-          <h2>Sem Tarefas no momento...</h2>
+          <h2>Sem tarefas no momento... Filtre tarefas por uma lista</h2>
         </div>
       </ng-template>
     </div>

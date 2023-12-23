@@ -7,6 +7,15 @@
   grid-template-rows: auto;
   grid-template-columns: 97px auto;
   transition: 0.4s;
+
+  @media(max-width: 600px) {
+
+    grid-template-areas: "nav"
+                        "content";
+
+    grid-template-rows: 77px auto;
+    grid-template-columns: auto;
+  }
 }
 
 .activedSide {

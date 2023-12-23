@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module'
 import { HeaderModule, SideBarModule } from '../../features'
 import { CardTaskModule } from '../../components';
 import { FilterModule } from './components/filter/filter.module';
+import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FilterModule } from './components/filter/filter.module';
     CommonModule,
     HomeRoutingModule,
     SideBarModule,
+    NavBarModule,
     HeaderModule,
     CardTaskModule,
     FilterModule

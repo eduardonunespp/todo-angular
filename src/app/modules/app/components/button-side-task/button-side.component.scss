@@ -13,6 +13,11 @@ button {
   border: none;
   margin-top: 10px;
 
+  @media (max-width: 600px) {
+    width: 50px;
+    margin: 0px 5px;
+  }
+
   p {
     margin: 0px;
     padding: 0px;
