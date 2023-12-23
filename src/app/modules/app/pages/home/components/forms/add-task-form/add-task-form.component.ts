@@ -10,12 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TaskListService, TaskService } from 'src/app/modules/app/services';
 import { ImsgError, msg } from 'src/app/shared';
-import { AddListModalComponent } from '../../../../list-task/components/modals/add-list-modal/add-list-modal.component';
 import { AddTaskModalComponent } from '../../modals/add-task-modal/add-task-modal.component';
-import { Date } from 'src/app/core/adapters';
 import { Task } from 'src/app/modules/app/types';
 import Swal from 'sweetalert2';
-import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'td-add-task-form',
