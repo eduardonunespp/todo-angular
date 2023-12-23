@@ -33,15 +33,18 @@
     </mat-form-field>
   </div>
 
-  <td-text-area
-    rows="4"
-    label="Descrição"
-    [disabled]="false"
-    [hasError]="hasDescriptionError()"
-    [errorMsg]="msg.required"
-    formControlName="description"
-    [disabled]="false"
-  />
+  <div class="text-area-container">
+    <td-text-area
+      rows="4"
+      label="Descrição"
+      [disabled]="false"
+      [hasError]="hasDescriptionError()"
+      [errorMsg]="msg.required"
+      formControlName="description"
+      [disabled]="false"
+    />
+  </div>
+
 
   <div class="footer-modal">
     <button (click)="closeModal()">Fechar</button>
