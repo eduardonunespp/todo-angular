@@ -4,14 +4,12 @@ import { AddTaskFormComponent } from './add-task-form.component';
 import { InputAppModule, TextAreaModule } from 'src/app/modules/app/components';
 import { SipnnerModule } from 'src/app/shared/components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSelectModule} from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [
-    AddTaskFormComponent
-  ],
+  declarations: [AddTaskFormComponent],
   imports: [
     CommonModule,
     InputAppModule,
@@ -21,10 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     MatGridListModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
-  exports: [
-    AddTaskFormComponent
-  ]
+  exports: [AddTaskFormComponent],
 })
-export class AddTaskFormModule { }
+export class AddTaskFormModule {}
