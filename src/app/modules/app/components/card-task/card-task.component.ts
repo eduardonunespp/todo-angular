@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.component';
 import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';
@@ -10,7 +10,7 @@ import { ViewTaskModalComponent } from '../../pages/home/components/modals/view-
   templateUrl: './card-task.component.html',
   styleUrls: ['./card-task.component.scss'],
 })
-export class CardTaskComponent implements AfterViewInit {
+export class CardTaskComponent implements OnInit {
   @Input() status: number = 2;
   @Input() description: string = '';
   @Input() deadline: string = '';
@@ -26,7 +26,7 @@ export class CardTaskComponent implements AfterViewInit {
 
   constructor(private dialogRef: MatDialog) {}
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.statusTask();
     this.injectConcluded = this.concluded
   }

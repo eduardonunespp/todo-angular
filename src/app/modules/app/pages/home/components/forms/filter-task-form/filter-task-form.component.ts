@@ -1,4 +1,9 @@
-import { AfterViewInit, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ImsgError, msg } from 'src/app/shared';
@@ -15,7 +20,7 @@ import { ItaskListFilter } from 'src/app/modules/app/types';
   templateUrl: './filter-task-form.component.html',
   styleUrls: ['./filter-task-form.component.scss'],
 })
-export class FilterTaskFormComponent implements AfterViewInit {
+export class FilterTaskFormComponent implements OnInit {
   listTasks: any[] = [];
   IsDisable: boolean = false;
   msg: ImsgError = msg;
@@ -27,7 +32,8 @@ export class FilterTaskFormComponent implements AfterViewInit {
     private taskListService: TaskListService,
     private sharedDataTaskList: SharedListsTaskDataService,
     private formStateService: FormStateService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private cdr: ChangeDetectorRef
   ) {
     this.taskListSubscription = this.taskService
       .onTaskListUpdated()
@@ -36,19 +42,27 @@ export class FilterTaskFormComponent implements AfterViewInit {
       });
 
     this.filterTaskForm.get('assignmentListId')?.setValue('');
-
-    const savedAssignmentListId =
-      this.formStateService.getFormState('filterTaskForm').assignmentListId;
-    this.filterTaskForm
-      .get('assignmentListId')
-      ?.setValue(savedAssignmentListId || '');
   }
 
-  ngAfterViewInit(): void {
-    this.taskListService.getTaskList().subscribe((response) => {
-      const { items } = response;
-      this.listTasks = items;
-    });
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.taskListService.getTaskList().subscribe((response) => {
+        const { items } = response;
+        this.listTasks = items;
+      });
+
+      this.cdr.detectChanges();
+    }, 0);
+
+    setTimeout(() => {
+      const savedAssignmentListId =
+        this.formStateService.getFormState('filterTaskForm').assignmentListId;
+      this.filterTaskForm
+        .get('assignmentListId')
+        ?.setValue(savedAssignmentListId || '');
+
+      this.cdr.detectChanges();
+    }, 0);
   }
 
   ngOnDestroy(): void {

@@ -107,6 +107,7 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
   }
 
   activedSide(isActive: boolean) {
+    console.log(isActive)
     this.sharedService.isActivedSide = isActive;
   }
 }
