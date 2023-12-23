@@ -50,7 +50,7 @@
 
       <div class="user-info" *ngIf="isActivedSide">
         <ng-container *ngIf="user; else noUser">
-          <h4>{{ user.name }}</h4>
+          <h4>{{ user.name.length > 20 ? user.name.slice(0, 20) + '...' : user.name }}</h4>
           <p>Usuário</p>
         </ng-container>
         <ng-template #noUser>
