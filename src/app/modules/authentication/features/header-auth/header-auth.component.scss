@@ -10,7 +10,7 @@ header {
 
   a {
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     color: var(--brand);
     font-size: 0.8rem;
@@ -21,7 +21,7 @@ header {
   }
 
   @media (max-width: "37.5rem") {
-    padding: 0.75rem;
+    padding: 1rem;
 
     img {
       width: 5.625rem;

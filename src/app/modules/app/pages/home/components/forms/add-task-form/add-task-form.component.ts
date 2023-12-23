@@ -98,7 +98,7 @@ export class AddTaskFormComponent implements AfterViewInit {
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.addTaskForm.get(inputName);
-    console.log(formControl.errors);
+  
     if (formControl.errors !== null) {
       return (
         formControl.errors[validatorName] &&

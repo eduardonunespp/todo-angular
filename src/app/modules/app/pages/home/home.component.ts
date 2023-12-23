@@ -3,6 +3,7 @@ import { SharedListsTaskDataService, SharedSidebarDataService } from '../../serv
 import { Subscription } from 'rxjs';
 import { IAssignments, ITaskListById } from '../../types';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,13 @@ export class HomeComponent implements AfterViewInit {
         }
       },
       (error) => {
-        console.error(error);
+        const { erros } = error.error;
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: erros,
+          showConfirmButton: true,
+        });
       }
     );
   }

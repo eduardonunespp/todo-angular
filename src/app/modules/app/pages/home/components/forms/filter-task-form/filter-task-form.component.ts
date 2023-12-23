@@ -14,6 +14,7 @@ import {
   TaskService,
 } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-filter-task-form',
@@ -87,7 +88,13 @@ export class FilterTaskFormComponent implements OnInit {
           this.isLoading = false;
         },
         (error) => {
-          console.log(error);
+          const { erros } = error.error;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
           this.isLoading = false;
         }
       );
@@ -101,7 +108,6 @@ export class FilterTaskFormComponent implements OnInit {
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.filterTaskForm.get(inputName);
-    console.log(formControl.errors);
     if (formControl.errors !== null) {
       return (
         formControl.errors[validatorName] &&
