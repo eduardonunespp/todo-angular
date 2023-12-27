@@ -37,15 +37,18 @@ export class RemoveListModalComponent {
         this.closeModal();
       },
       (error) => {
-        const { erros } = error.error;
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: erros,
-          showConfirmButton: true,
-        });
-        this.isLoading = false;
-        this.closeModal();
+        if (error.status === 401 || error.status === 403) {
+          this.closeModal();
+        } else {
+          const { erros } = error.error;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
+          this.closeModal();
+        }
       }
     );
   }

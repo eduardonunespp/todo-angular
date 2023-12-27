@@ -14,7 +14,6 @@ import { AddTaskModalComponent } from '../../modals/add-task-modal/add-task-moda
 import { Task } from 'src/app/modules/app/types';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'td-add-task-form',
   templateUrl: './add-task-form.component.html',
@@ -96,7 +95,7 @@ export class AddTaskFormComponent implements AfterViewInit {
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.addTaskForm.get(inputName);
-  
+
     if (formControl.errors !== null) {
       return (
         formControl.errors[validatorName] &&
@@ -112,16 +111,15 @@ export class AddTaskFormComponent implements AfterViewInit {
   registerTask() {
     this.isLoading = true;
     if (this.addTaskForm.valid) {
+      const dateValue: string = this.addTaskForm.get('deadline')?.value;
+      const timeValue: string = this.addTaskForm.get('timeHour')?.value;
 
-      const dateValue: string = this.addTaskForm.get('deadline')?.value
-      const timeValue: string = this.addTaskForm.get('timeHour')?.value
-
-      const formattedDatetime: string = `${dateValue}T${timeValue}:00.000Z`
+      const formattedDatetime: string = `${dateValue}T${timeValue}:00.000Z`;
 
       this.addTaskForm.patchValue({
-        deadline: formattedDatetime
-      })
-      
+        deadline: formattedDatetime,
+      });
+
       let payload: Task = this.addTaskForm.value;
 
       this.taskService.addTask({ ...payload }).subscribe(
@@ -137,15 +135,18 @@ export class AddTaskFormComponent implements AfterViewInit {
           this.closeModal();
         },
         (error) => {
-          const { erros } = error.error;
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: erros,
-            showConfirmButton: true,
-          });
-          this.isLoading = false;
-          this.closeModal();
+          if (error.status === 401 || error.status === 403) {
+            this.closeModal();
+          } else {
+            const { erros } = error.error;
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: erros,
+              showConfirmButton: true,
+            });
+            this.closeModal();
+          }
         }
       );
     }

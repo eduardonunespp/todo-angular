@@ -1,11 +1,11 @@
+import { Subscription } from 'rxjs';
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { ImsgError, msg } from 'src/app/shared';
 import {
   FormStateService,
@@ -14,7 +14,6 @@ import {
   TaskService,
 } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'td-filter-task-form',

@@ -7,12 +7,12 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { msg } from 'src/app/shared/utils';
 import { ImsgError } from 'src/app/shared/domain-types';
 import { TaskListService } from 'src/app/modules/app/services/task-list.service';
 import { ITaskList } from 'src/app/modules/app/types';
-import Swal from 'sweetalert2';
-import { MatDialogRef } from '@angular/material/dialog';
 import { AddListModalComponent } from '../../modals/add-list-modal/add-list-modal.component';
 
 @Component({
@@ -89,18 +89,22 @@ export class FormAddListComponent implements OnChanges {
           this.closeModal();
         },
         (error) => {
-          const { erros } = error.error;
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: erros,
-            showConfirmButton: true,
-          });
-          this.isLoading = false;
-          this.closeModal();
+          if (error.status === 401 || error.status === 403) {
+            this.closeModal();
+          } else {
+            const { erros } = error.error;
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: erros,
+              showConfirmButton: true,
+            });
+            this.closeModal();
+          }
         }
       );
     } else {
+      this.closeModal();
       this.addListForm.markAllAsTouched();
     }
   }

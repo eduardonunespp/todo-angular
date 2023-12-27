@@ -5,12 +5,17 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { Cache } from '../adapters';
+import { AuthorizationService } from 'src/app/service/authorization.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(
+    private authorizationService: AuthorizationService,
+    private route: Router
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -23,7 +28,16 @@ export class AuthInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${accessToken}` },
       });
 
-      return next.handle(authRequest);
+      return next.handle(authRequest).pipe(
+        catchError((error) => {
+          if (error.status === 401 || error.status === 403) {
+            // Token expirado, deslogar usuário
+            this.authorizationService.logOut();
+            this.route.navigateByUrl('/');
+          }
+          return throwError(error);
+        })
+      );
     }
 
     return next.handle(request);

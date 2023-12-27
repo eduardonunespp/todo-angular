@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cache } from '../core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',

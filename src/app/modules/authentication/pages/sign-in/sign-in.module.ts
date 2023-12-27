@@ -4,6 +4,7 @@ import { SignInComponent } from './sign-in.component';
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { ContainerAuthModule, HeaderAuthModule } from '../../features';
 import { FormSignInModule } from '../../components';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [SignInComponent],
@@ -13,6 +14,7 @@ import { FormSignInModule } from '../../components';
     ContainerAuthModule,
     HeaderAuthModule,
     FormSignInModule,
+    MatDialogModule
   ],
 })
 export class SignInModule {}
