@@ -4,6 +4,8 @@ form {
   border-radius: 4px;
   background-color: var(--secundary);
   transition: 0.2s;
+  position: relative;
+  z-index: 1000;
 
 
   @media (max-width: 400px) {

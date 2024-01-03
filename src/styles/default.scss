@@ -25,7 +25,7 @@
   --border-input: #414141;
 
   --primary: rgb(32, 32, 36);
-  --secundary: rgb(41, 41, 46);
+  --secundary: rgb(40, 40, 46);
   --terciary: rgb(27, 27, 31);
 }
 
@@ -40,7 +40,7 @@ html {
 }
 
 body {
-  background-color: var(--primary);
+  background-color: var(--terciary);
   --webkit-font-smoothing: antialisse;
   font-family: var(--font-primary);
 }
