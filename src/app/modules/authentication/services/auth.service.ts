@@ -12,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   registerUser(data: IregisterUsers) {
-    return this.http.post(`${environment.apiUrl}/Auth/register`, data);
+    return this.http.post(`${environment.apiUrl}/user/register`, data);
   }
 
   loginUser(data: IloginUsers) {
     return (this.response = this.http.post(
-      `${environment.apiUrl}/Auth/login`,
+      `${environment.apiUrl}/auth`,
       data
     ));
   }

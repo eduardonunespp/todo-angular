@@ -125,7 +125,10 @@ export class FormSignUpComponent {
     if (this.signUpForm.valid) {
       this.isLoading = true;
 
-      let payload: IregisterUsers = this.signUpForm.value;
+      let payload: IregisterUsers = {
+        ...this.signUpForm.value,
+        confirmPassword: this.signUpForm.value.passwordConfirm,
+      };
 
       this.authService.registerUser(payload).subscribe(
         (response) => {
@@ -139,12 +142,12 @@ export class FormSignUpComponent {
           this.isLoading = false;
           this.router.navigateByUrl('');
         },
-        (error) => {
-          const { erros } = error.error;
+        (errors) => {
+          const { message } = errors.error;
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: erros,
+            title: message,
             showConfirmButton: true,
           });
           this.isLoading = false;
