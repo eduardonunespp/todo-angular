@@ -35,7 +35,6 @@ export class FormEditListComponent implements OnInit {
   private initializeForm(): void {
     this.editListForm = this.fb.group({
       name: [this.name, [Validators.required]],
-      // description: ['', [Validators.required]]
     });
   }
 
@@ -73,15 +72,15 @@ export class FormEditListComponent implements OnInit {
           this.isLoading = false;
           this.closeModal();
         },
-        (error) => {
-          if (error.status === 401 || error.status === 403) {
+        (errors) => {
+          if (errors.status === 401 || errors.status === 403) {
             this.closeModal();
           } else {
-            const { erros } = error.error;
+            const { message } = errors.error;
             Swal.fire({
               position: 'center',
               icon: 'error',
-              title: erros,
+              title: message,
               showConfirmButton: true,
             });
             this.closeModal();

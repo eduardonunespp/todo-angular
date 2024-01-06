@@ -70,12 +70,12 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
         this.ELEMENT_DATA = items;
         this.dataSource.data = this.ELEMENT_DATA;
       },
-      (error) => {
-        const { erros } = error.error;
+      (errors) => {
+        const { message } = errors.error;
         Swal.fire({
           position: 'center',
           icon: 'error',
-          title: erros,
+          title: message,
           showConfirmButton: true,
         });
       }

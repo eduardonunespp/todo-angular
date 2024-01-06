@@ -36,15 +36,15 @@ export class RemoveListModalComponent {
         this.isLoading = false;
         this.closeModal();
       },
-      (error) => {
-        if (error.status === 401 || error.status === 403) {
+      (errors) => {
+        if (errors.status === 401 || errors.status === 403) {
           this.closeModal();
         } else {
-          const { erros } = error.error;
+          const { message } = errors.error;
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: erros,
+            title: message,
             showConfirmButton: true,
           });
           this.closeModal();
