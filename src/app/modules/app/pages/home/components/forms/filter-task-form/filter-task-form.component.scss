@@ -3,10 +3,16 @@ form {
   top: 0.625rem;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
-  button {
+  .container-action-filter{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  button{
     width: 35px;
     height: 32px;
     border-radius: 3px;
@@ -34,4 +40,23 @@ form {
       filter: brightness(0.7);
     }
   }
+
+ .clear-filter-button {
+  width: 100px;
+  height: 32px;
+  border-radius: 3px;
+  background-color: var(--background);
+  color: var(--primary);
+  font-weight: 500;
+  border: none;
+
+  span {
+    font-size: 0.7rem;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+ }
 }

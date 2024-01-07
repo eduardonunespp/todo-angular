@@ -20,10 +20,10 @@
         <td-card-task
           *ngFor="let item of assignments"
           [description]="item.description"
-          [deadline]="item.deadline"
+          [deadline]="item.deadLine"
           [concluded]="item.concluded"
           [id]="item.id"
-          [nameList]="nameList"
+          [nameList]="nameList? nameList : ''"
           
         />
       </ng-container>

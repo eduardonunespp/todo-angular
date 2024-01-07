@@ -61,11 +61,10 @@ export class AddTaskFormComponent implements AfterViewInit {
 
   private initializeForm(): void {
     this.addTaskForm = this.fb.group({
-      // name: ['', [Validators.required]],
-      deadline: ['', [Validators.required]],
+      deadLine: ['', [Validators.required]],
       timeHour: ['', [Validators.required]],
-      description: ['', [Validators.required]],
       assignmentListId: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
 
     this.addTaskForm.valueChanges.subscribe(() => {
@@ -73,16 +72,12 @@ export class AddTaskFormComponent implements AfterViewInit {
     });
   }
 
-  // hasNameError() {
-  //   return this.isInvalid('name', 'required');
-  // }
-
   hasDescriptionError() {
     return this.isInvalid('description', 'required');
   }
 
   hasDateError() {
-    return this.isInvalid('deadline', 'required');
+    return this.isInvalid('deadLine', 'required');
   }
 
   hasTimeHourError() {
@@ -111,18 +106,22 @@ export class AddTaskFormComponent implements AfterViewInit {
   registerTask() {
     this.isLoading = true;
     if (this.addTaskForm.valid) {
-      const dateValue: string = this.addTaskForm.get('deadline')?.value;
+      const dateValue: string = this.addTaskForm.get('deadLine')?.value;
       const timeValue: string = this.addTaskForm.get('timeHour')?.value;
 
-      const formattedDatetime: string = `${dateValue}T${timeValue}:00.000Z`;
-
+      const combinedDateTime: Date = new Date(`${dateValue}T${timeValue}:00.000Z`);
+    
+      combinedDateTime.setHours(combinedDateTime.getHours() + 3);
+  
+      const formattedDatetime: string = combinedDateTime.toISOString();
+  
       this.addTaskForm.patchValue({
-        deadline: formattedDatetime,
+        deadLine: formattedDatetime,
       });
 
       let payload: Task = this.addTaskForm.value;
 
-      this.taskService.addTask({ ...payload }).subscribe(
+      this.taskService.addTask({ ...payload}).subscribe(
         (response) => {
           Swal.fire({
             position: 'center',
@@ -134,15 +133,15 @@ export class AddTaskFormComponent implements AfterViewInit {
           this.isLoading = false;
           this.closeModal();
         },
-        (error) => {
-          if (error.status === 401 || error.status === 403) {
+        (errors) => {
+          if (errors.status === 401 || errors.status === 403) {
             this.closeModal();
           } else {
-            const { erros } = error.error;
+            const { message } = errors.error;
             Swal.fire({
               position: 'center',
               icon: 'error',
-              title: erros,
+              title: message,
               showConfirmButton: true,
             });
             this.closeModal();

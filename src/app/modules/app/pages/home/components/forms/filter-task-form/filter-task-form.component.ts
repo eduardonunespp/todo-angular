@@ -77,6 +77,10 @@ export class FilterTaskFormComponent implements OnInit {
     return this.isInvalid('assignmentListId', 'required');
   }
 
+  clearFilter(){
+    this.sharedDataTaskList.setClearFilter()
+  }
+
   filterTasks() {
     this.isLoading = true;
     let payload: ItaskListFilter = this.filterTaskForm.value;

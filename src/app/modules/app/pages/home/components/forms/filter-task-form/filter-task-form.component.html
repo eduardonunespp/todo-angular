@@ -3,6 +3,7 @@
   [formGroup]="filterTaskForm"
   (submit)="filterTasks()"
 >
+<div class="container-action-filter">
   <mat-form-field>
     <mat-label>Listas</mat-label>
     <mat-select formControlName="assignmentListId">
@@ -21,5 +22,11 @@
   >
     <td-spinner *ngIf="isLoading"/>
     <span *ngIf="!isLoading"> <ng-icon name="ionSearch" /> </span>
+  </button>
+</div>
+
+  <button type="button" class="clear-filter-button" (click)="clearFilter()">
+  
+    <span> Limpar Filtro </span>
   </button>
 </form>

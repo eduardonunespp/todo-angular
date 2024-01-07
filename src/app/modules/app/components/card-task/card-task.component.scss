@@ -8,8 +8,13 @@
   justify-content: space-between;
   flex-wrap: wrap;
   background-color: var(--secundary);
-  padding: 7px 9px;
+  padding: 9px 9px;
   box-shadow: 0px 0px 3px #494949;
+  transition: 0.3s;
+
+  &:hover{
+    transform: translate(-5px, -5px);
+  }
 
   .header-card {
     height: 22px;

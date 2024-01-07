@@ -23,7 +23,7 @@ export type IAssignments = {
   id: string;
   description: string;
   assignmentListId: string;
-  deadline: string;
+  deadLine: string;
   concluded: boolean;
   concludedAt: string;
   userId: string;
