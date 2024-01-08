@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TaskService {
   constructor(private http: HttpClient) {}
-  private taskListUpdatedSubject = new Subject<void>();
+  private taskUpdatedSubject = new Subject<void>();
 
   getAssignemnts(): Observable<any> {
     const params = new HttpParams().set('PerPage', '1000')
@@ -18,7 +18,7 @@ export class TaskService {
 
   addTask(data: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/assignments`, data).pipe(tap(() => {
-      this.taskListUpdatedSubject.next()
+      this.taskUpdatedSubject.next()
     }))
   }
 
@@ -26,23 +26,23 @@ export class TaskService {
     return this.http.patch(
       `${environment.apiUrl}/assignments/${id}/conclude`,
       null
-    ).pipe(tap(() => this.taskListUpdatedSubject.next()));
+    ).pipe(tap(() => this.taskUpdatedSubject.next()));
   }
 
   unconcludeTask(id: string): Observable<any> {
     return this.http.patch(
       `${environment.apiUrl}/assignments/${id}/unconclude`,
       null
-    ).pipe(tap(() => this.taskListUpdatedSubject.next()));
+    ).pipe(tap(() => this.taskUpdatedSubject.next()));
   }
 
   deleteTask(id: string): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/assignments/${id}`).pipe(tap(() => {
-      this.taskListUpdatedSubject.next()
+      this.taskUpdatedSubject.next()
     }))
   }
 
-  onTaskListUpdated(): Observable<void> {
-    return this.taskListUpdatedSubject.asObservable();
+  onTaskUpdated(): Observable<void> {
+    return this.taskUpdatedSubject.asObservable();
   }
 }

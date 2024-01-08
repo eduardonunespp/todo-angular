@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import {
   SharedListsTaskDataService,
   SharedSidebarDataService,
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { IAssignments, ITaskListById } from '../../types';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import Swal from 'sweetalert2';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements AfterViewInit {
   taskDataSubscription!: Subscription;
-  taskListDataSubscription!: Subscription
+  taskListDataSubscription!: Subscription;
 
   assignments!: IAssignments[];
   nameList: string = '';
@@ -32,7 +33,9 @@ export class HomeComponent implements AfterViewInit {
     private sharedDataTaskService: SharedListsTaskDataService,
     private assignmentsService: TaskService,
     private assignmentListService: TaskListService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef,
   ) {
     this.breakpointSubscription = this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.XSmall])
@@ -40,29 +43,41 @@ export class HomeComponent implements AfterViewInit {
         this.isSmallScreen = result.matches;
       });
 
+    this.sharedDataTaskService.isClearFilter$.subscribe((isClearFilter) => {
+      if (isClearFilter) {
+        this.ngZone.run(() => {
+          this.isFiltered = false;
+          this.sharedDataTaskService.clearFilterHandled();
+          this.loadAssignments();
+          this.cdr.detectChanges();
+      
+        });
+      }
+    });
+
     this.taskDataSubscription = this.assignmentsService
-      .onTaskListUpdated()
+      .onTaskUpdated()
       .subscribe(() => {
-        if(!this.isFiltered){
-          this.loadAssignments()
-        }
-      });
-    this.taskListDataSubscription = this.assignmentListService
-      .onTaskListUpdated()
-      .subscribe(() => {
-        this.isFiltered = true
-        if(this.isFiltered){
-          this.loadFilter()
+        if (!this.isFiltered) {
+          this.loadAssignments();
+          console.log('sim, eu era para ser chamado: ', this.isFiltered);
         }
       });
 
-      this.sharedDataTaskService.isClearFilter$.subscribe((isClearFilter) => {
-        if(isClearFilter){
-          this.loadAssignments()
-          this.sharedDataTaskService.clearFilterHandled();
-          this.isFiltered = false
+    this.taskListDataSubscription = this.assignmentListService
+      .onTaskListUpdated()
+      .subscribe(() => {
+        this.isFiltered = true;
+        if (this.isFiltered) {
+          this.loadFilter();
+          console.log(
+            'sim, estou sendo chamado msm com false kk: ',
+            this.isFiltered
+          );
         }
-      })
+      });
+
+    console.log(this.isFiltered);
   }
 
   ngAfterViewInit(): void {
@@ -73,14 +88,12 @@ export class HomeComponent implements AfterViewInit {
     this.assignmentsService.getAssignemnts().subscribe(
       (response) => {
         const { items } = response;
-        if(items && items.length > 0){
+        if (items && items.length > 0) {
           this.assignments = items;
-          this.isAssignment = true
-        }else {
-          this.isAssignment = false
+          this.isAssignment = true;
+        } else {
+          this.isAssignment = false;
         }
-       
-       
       },
       (error) => {
         const { message } = error.error;

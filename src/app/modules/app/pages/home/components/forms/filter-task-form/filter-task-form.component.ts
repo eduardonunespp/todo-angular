@@ -1,9 +1,5 @@
 import { Subscription } from 'rxjs';
-import {
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImsgError, msg } from 'src/app/shared';
@@ -14,6 +10,7 @@ import {
   TaskService,
 } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'td-filter-task-form',
@@ -27,21 +24,33 @@ export class FilterTaskFormComponent implements OnInit {
   isLoading: boolean = false;
   taskListSubscription!: Subscription;
 
+  
+  isFiltered!: boolean;
+
   constructor(
     private fb: FormBuilder,
     private taskListService: TaskListService,
     private sharedDataTaskList: SharedListsTaskDataService,
     private formStateService: FormStateService,
     private taskService: TaskService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
   ) {
     this.taskListSubscription = this.taskService
-      .onTaskListUpdated()
+      .onTaskUpdated()
       .subscribe(() => {
         this.filterTasks();
       });
 
     this.filterTaskForm.get('assignmentListId')?.setValue('');
+
+    this.sharedDataTaskList.isClearFilter$.subscribe((isCLearFilter) => {
+      this.ngZone.run(() => {
+        isCLearFilter ? (this.isFiltered = false) : (this.isFiltered = true);
+        console.log(isCLearFilter, 'clear filter')
+        this.cdr.detectChanges();
+      });
+    });
   }
 
   ngOnInit(): void {
@@ -65,26 +74,27 @@ export class FilterTaskFormComponent implements OnInit {
     }, 0);
   }
 
+  filterTaskForm: FormGroup = this.fb.group({
+    assignmentListId: ['', [Validators.required]],
+  });
+
   ngOnDestroy(): void {
     this.taskListSubscription.unsubscribe();
   }
 
-  filterTaskForm: FormGroup = this.fb.group({
-    assignmentListId: ['', [Validators.required]],
-  });
 
   hasAssignmentListIdError() {
     return this.isInvalid('assignmentListId', 'required');
   }
 
-  clearFilter(){
-    this.sharedDataTaskList.setClearFilter()
+  clearFilter() {
+    this.sharedDataTaskList.setClearFilter();
   }
 
   filterTasks() {
     this.isLoading = true;
     let payload: ItaskListFilter = this.filterTaskForm.value;
-    if (this.filterTaskForm.valid) {
+    if (this.filterTaskForm.valid && this.isFiltered) {
       this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
         (response) => {
           this.sharedDataTaskList.setTaskData(response);

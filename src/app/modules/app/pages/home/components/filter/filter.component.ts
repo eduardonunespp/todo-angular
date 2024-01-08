@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'td-filter',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class FilterComponent {
   isActived: boolean = false;
   isActivedAfterTime: boolean = false;
+  @Input() isFiltered: boolean = false
 
   activeFilter(): void {
     this.isActived = !this.isActived;

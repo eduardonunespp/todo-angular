@@ -13,7 +13,7 @@
       description="Página de gerenciamento das tarefas"
     />
 
-    <td-filter />
+    <td-filter [isFiltered]="isFiltered" />
 
     <div class="grid-cards" [ngClass]="{ isNoAssignment: !isAssignment }">
       <ng-container *ngIf="isAssignment; else noAssignment">

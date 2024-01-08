@@ -21,6 +21,8 @@ export class SharedListsTaskDataService {
   }
 
   clearFilterHandled() {
+    console.log('Clearing filter...');
     this.isClearFilterSubject.next(false);
+    console.log('Filter cleared.');
   }
 }
