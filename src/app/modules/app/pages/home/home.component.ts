@@ -10,6 +10,8 @@ import { IAssignments, ITaskListById } from '../../types';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import Swal from 'sweetalert2';
 import { NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppStore } from 'src/app/store/app-store';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +28,7 @@ export class HomeComponent implements AfterViewInit {
   homeTodoIcon: string = 'assets/home-icon.svg';
   isSmallScreen: boolean = false;
   breakpointSubscription!: Subscription;
-  isFiltered: boolean = false;
+  isFiltered!: boolean;
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
@@ -34,8 +36,7 @@ export class HomeComponent implements AfterViewInit {
     private assignmentsService: TaskService,
     private assignmentListService: TaskListService,
     private breakpointObserver: BreakpointObserver,
-    private ngZone: NgZone,
-    private cdr: ChangeDetectorRef,
+    private store: Store<{ app: AppStore }>
   ) {
     this.breakpointSubscription = this.breakpointObserver
       .observe([Breakpoints.XSmall, Breakpoints.XSmall])
@@ -43,15 +44,10 @@ export class HomeComponent implements AfterViewInit {
         this.isSmallScreen = result.matches;
       });
 
-    this.sharedDataTaskService.isClearFilter$.subscribe((isClearFilter) => {
-      if (isClearFilter) {
-        this.ngZone.run(() => {
-          this.isFiltered = false;
-          this.sharedDataTaskService.clearFilterHandled();
-          this.loadAssignments();
-          this.cdr.detectChanges();
-      
-        });
+    this.store.select('app').subscribe((state) => {
+      if (state.isClearFilter == true) {
+        this.isFiltered = false;
+        this.loadAssignments();
       }
     });
 
@@ -60,7 +56,6 @@ export class HomeComponent implements AfterViewInit {
       .subscribe(() => {
         if (!this.isFiltered) {
           this.loadAssignments();
-          console.log('sim, eu era para ser chamado: ', this.isFiltered);
         }
       });
 
@@ -70,14 +65,8 @@ export class HomeComponent implements AfterViewInit {
         this.isFiltered = true;
         if (this.isFiltered) {
           this.loadFilter();
-          console.log(
-            'sim, estou sendo chamado msm com false kk: ',
-            this.isFiltered
-          );
         }
       });
-
-    console.log(this.isFiltered);
   }
 
   ngAfterViewInit(): void {

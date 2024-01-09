@@ -10,7 +10,9 @@ import {
   TaskService,
 } from 'src/app/modules/app/services';
 import { ItaskListFilter } from 'src/app/modules/app/types';
-import { NgZone } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppStore } from 'src/app/store/app-store';
+import * as storeActions from '../../../../../../../store/app-actions';
 
 @Component({
   selector: 'td-filter-task-form',
@@ -23,9 +25,8 @@ export class FilterTaskFormComponent implements OnInit {
   msg: ImsgError = msg;
   isLoading: boolean = false;
   taskListSubscription!: Subscription;
-
-  
   isFiltered!: boolean;
+  counterRequest: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -34,44 +35,36 @@ export class FilterTaskFormComponent implements OnInit {
     private formStateService: FormStateService,
     private taskService: TaskService,
     private cdr: ChangeDetectorRef,
-    private ngZone: NgZone
+    private store: Store<{ app: AppStore }>
   ) {
+    this.filterTaskForm.get('assignmentListId')?.setValue('');
+
     this.taskListSubscription = this.taskService
       .onTaskUpdated()
       .subscribe(() => {
-        this.filterTasks();
+        this.store.select('app').subscribe((state) => {
+          if (state.isClearFilter == false) {
+            this.filterTasksByActions();
+          }
+        });
       });
-
-    this.filterTaskForm.get('assignmentListId')?.setValue('');
-
-    this.sharedDataTaskList.isClearFilter$.subscribe((isCLearFilter) => {
-      this.ngZone.run(() => {
-        isCLearFilter ? (this.isFiltered = false) : (this.isFiltered = true);
-        console.log(isCLearFilter, 'clear filter')
-        this.cdr.detectChanges();
-      });
-    });
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.taskListService.getTaskList().subscribe((response) => {
-        const { items } = response;
-        this.listTasks = items;
-      });
+    this.taskListService.getTaskList().subscribe((response) => {
+      const { items } = response;
+      this.listTasks = items;
+    });
 
-      this.cdr.detectChanges();
-    }, 0);
+    this.cdr.detectChanges();
 
-    setTimeout(() => {
-      const savedAssignmentListId =
-        this.formStateService.getFormState('filterTaskForm').assignmentListId;
-      this.filterTaskForm
-        .get('assignmentListId')
-        ?.setValue(savedAssignmentListId || '');
+    const savedAssignmentListId =
+      this.formStateService.getFormState('filterTaskForm').assignmentListId;
+    this.filterTaskForm
+      .get('assignmentListId')
+      ?.setValue(savedAssignmentListId || '');
 
-      this.cdr.detectChanges();
-    }, 0);
+    this.cdr.detectChanges();
   }
 
   filterTaskForm: FormGroup = this.fb.group({
@@ -82,19 +75,47 @@ export class FilterTaskFormComponent implements OnInit {
     this.taskListSubscription.unsubscribe();
   }
 
-
   hasAssignmentListIdError() {
     return this.isInvalid('assignmentListId', 'required');
   }
 
   clearFilter() {
-    this.sharedDataTaskList.setClearFilter();
+    this.store.dispatch(storeActions.setClearFilter());
   }
 
-  filterTasks() {
+  filterTasksByActions() {
     this.isLoading = true;
     let payload: ItaskListFilter = this.filterTaskForm.value;
-    if (this.filterTaskForm.valid && this.isFiltered) {
+    if (this.filterTaskForm.valid) {
+      this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
+        (response) => {
+          this.sharedDataTaskList.setTaskData(response);
+          this.isLoading = false;
+        },
+        (error) => {
+          const { erros } = error.error;
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: erros,
+            showConfirmButton: true,
+          });
+          this.isLoading = false;
+        }
+      );
+    }
+
+    this.formStateService.saveFormState(
+      'filterTaskForm',
+      this.filterTaskForm.value
+    );
+  }
+
+  filterTasksButton() {
+    this.store.dispatch(storeActions.clearFilterHandled());
+    this.isLoading = true;
+    let payload: ItaskListFilter = this.filterTaskForm.value;
+    if (this.filterTaskForm.valid) {
       this.taskListService.getTaskListById(payload.assignmentListId).subscribe(
         (response) => {
           this.sharedDataTaskList.setTaskData(response);
