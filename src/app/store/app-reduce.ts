@@ -3,7 +3,7 @@ import * as appActions from './app-actions';
 import { AppStore } from './app-store';
 
 export const initialState: AppStore = {
-  isClearFilter: false,
+  isClearFilter: true,
 };
 
 export const appReducer = createReducer(

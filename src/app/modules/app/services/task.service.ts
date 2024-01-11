@@ -10,8 +10,8 @@ export class TaskService {
   constructor(private http: HttpClient) {}
   private taskUpdatedSubject = new Subject<void>();
 
-  getAssignemnts(): Observable<any> {
-    const params = new HttpParams().set('PerPage', '1000')
+  getAssignemnts(perPage: number): Observable<any> {
+    const params = new HttpParams().set('PerPage', perPage)
 
     return this.http.get(`${environment.apiUrl}/assignments`, {params});
   }

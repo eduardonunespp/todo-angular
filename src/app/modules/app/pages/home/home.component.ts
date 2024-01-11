@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 import { IAssignments, ITaskListById } from '../../types';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import Swal from 'sweetalert2';
-import { NgZone } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppStore } from 'src/app/store/app-store';
 
@@ -21,14 +20,16 @@ import { AppStore } from 'src/app/store/app-store';
 export class HomeComponent implements AfterViewInit {
   taskDataSubscription!: Subscription;
   taskListDataSubscription!: Subscription;
-
   assignments!: IAssignments[];
   nameList: string = '';
   isAssignment: boolean = true;
   homeTodoIcon: string = 'assets/home-icon.svg';
   isSmallScreen: boolean = false;
   breakpointSubscription!: Subscription;
-  isFiltered!: boolean;
+  isFiltered: boolean = false
+  isLoading: boolean = false;
+  perPage: number = 3
+  perPageAtt: number = 3
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
@@ -47,7 +48,9 @@ export class HomeComponent implements AfterViewInit {
     this.store.select('app').subscribe((state) => {
       if (state.isClearFilter == true) {
         this.isFiltered = false;
-        this.loadAssignments();
+        this.loadAssignments(this.perPage);
+      }else {
+        this.isFiltered = true
       }
     });
 
@@ -55,7 +58,7 @@ export class HomeComponent implements AfterViewInit {
       .onTaskUpdated()
       .subscribe(() => {
         if (!this.isFiltered) {
-          this.loadAssignments();
+          this.loadAssignments(this.perPage);
         }
       });
 
@@ -64,17 +67,27 @@ export class HomeComponent implements AfterViewInit {
       .subscribe(() => {
         this.isFiltered = true;
         if (this.isFiltered) {
-          this.loadFilter();
+          this.loadFilter(this.perPage);
         }
       });
   }
 
   ngAfterViewInit(): void {
-    this.loadAssignments();
+    this.loadAssignments(this.perPage);
   }
 
-  loadAssignments() {
-    this.assignmentsService.getAssignemnts().subscribe(
+  loadAssignmentsPlus(): void{
+    this.perPage += 3
+    if(this.isFiltered == false){
+      this.loadAssignments(this.perPage)
+    }else{
+      this.loadFilter(this.perPage)
+    }
+  }
+
+  loadAssignments(perPage: number) {
+    this.isLoading = true
+    this.assignmentsService.getAssignemnts(perPage).subscribe(
       (response) => {
         const { items } = response;
         if (items && items.length > 0) {
@@ -83,6 +96,7 @@ export class HomeComponent implements AfterViewInit {
         } else {
           this.isAssignment = false;
         }
+        this.isLoading = false
       },
       (error) => {
         const { message } = error.error;
@@ -92,20 +106,23 @@ export class HomeComponent implements AfterViewInit {
           title: message,
           showConfirmButton: true,
         });
+        this.isLoading = false
       }
     );
   }
 
-  loadFilter() {
+  loadFilter(perPage: number) {
     this.sharedDataTaskService.taskData$.subscribe(
       (data: ITaskListById) => {
+        const {assignments} = data
         if (
           data &&
-          data.assignments.length &&
-          Array.isArray(data.assignments)
+          assignments.length &&
+          Array.isArray(assignments)
         ) {
+  
           this.isAssignment = true;
-          this.assignments = data.assignments;
+          this.assignments = assignments.slice(0, perPage);
           this.nameList = data.name;
         } else {
           this.isAssignment = false;

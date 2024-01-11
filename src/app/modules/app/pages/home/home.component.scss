@@ -37,6 +37,43 @@
     }
   }
 
+  .container-load-assignments {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      width: 40px;
+      height: 40px;
+      border-radius: 3px;
+      background-color: var(--background);
+      margin-top: 25px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+
+      .icon-container {
+        transform: scale(1.5);
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      div {
+        position: relative;
+        left: 1px;
+        top: 1px;
+      }
+    }
+  }
+
   @media (max-width: 600px) {
     grid-template-areas:
       "nav"

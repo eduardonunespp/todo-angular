@@ -1,4 +1,11 @@
-<div class="container">
+<div
+  class="container"
+  [ngClass]="{
+    'to-do': status === 0,
+    'last-day': status === 1,
+    overdue: status === 2
+  }"
+>
   <div class="header-card">
     <p
       [ngClass]="{
@@ -39,8 +46,10 @@
       <img [ngSrc]="infoCardIcon" alt="" width="15" height="15" />
 
       <div class="drop-card">
-        <button (click)="openViewModal(id, description)"><ng-icon name="ionEye" /> <span>Visualizar</span></button>
-        
+        <button (click)="openViewModal(id, description)">
+          <ng-icon name="ionEye" /> <span>Visualizar</span>
+        </button>
+
         <button (click)="openModalByStatus(id, description)">
           <ng-container *ngIf="!concluded; else UnConcludeTemplate">
             <ng-icon name="heroCheckCircleSolid"></ng-icon>
@@ -60,7 +69,7 @@
 
   <div class="footer-card">
     <td-list-icon width="18" height="18" />
-    <p>{{ nameList.length > 10 ? nameList.slice(0, 10) + '...' : nameList }}</p>
+    <p>{{ nameList.length > 10 ? nameList.slice(0, 10) + "..." : nameList }}</p>
     <td-time-icon width="18" height="18" />
     <p>{{ formatDeadLine() }}</p>
   </div>

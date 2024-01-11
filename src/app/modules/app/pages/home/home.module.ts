@@ -6,6 +6,10 @@ import { HeaderModule, SideBarModule } from '../../features'
 import { CardTaskModule } from '../../components';
 import { FilterModule } from './components/filter/filter.module';
 import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
+import { AddIconModule } from 'src/app/shared';
+import { NgIconsModule } from '@ng-icons/core';
+import { heroPlusSmallSolid } from '@ng-icons/heroicons/solid';
+import { SipnnerModule } from 'src/app/shared/components';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
     NavBarModule,
     HeaderModule,
     CardTaskModule,
-    FilterModule
+    FilterModule,
+    AddIconModule,
+    NgIconsModule.withIcons({ heroPlusSmallSolid }),
+    SipnnerModule
   ]
 })
 export class HomeModule { }
