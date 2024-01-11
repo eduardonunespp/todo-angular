@@ -28,8 +28,7 @@ export class HomeComponent implements AfterViewInit {
   breakpointSubscription!: Subscription;
   isFiltered: boolean = false
   isLoading: boolean = false;
-  perPage: number = 3
-  perPageAtt: number = 3
+  perPage: number = 10
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
@@ -77,7 +76,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   loadAssignmentsPlus(): void{
-    this.perPage += 3
+    this.perPage += 10
     if(this.isFiltered == false){
       this.loadAssignments(this.perPage)
     }else{
