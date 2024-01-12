@@ -39,6 +39,10 @@ form {
     &.isDisable {
       filter: brightness(0.7);
     }
+
+    @media(max-width: 600px) {
+      margin-left: 10px;
+    }
   }
 
  .clear-filter-button {
@@ -57,6 +61,25 @@ form {
   &:hover {
     transform: scale(1.05);
   }
+
+  .icon-container{
+    display: none;
+  }
+
+  @media(max-width: 500px) {
+    width: 35px;
+    margin-left: 5px;
+
+    .icon-container {
+      display: block;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+
 
  }
 }

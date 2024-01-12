@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SipnnerModule } from 'src/app/shared/components';
 import { NgIconsModule } from '@ng-icons/core';
 import { ionSearch } from '@ng-icons/ionicons'
+import { heroXMark } from '@ng-icons/heroicons/outline'
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { ionSearch } from '@ng-icons/ionicons'
     MatSelectModule,
     MatFormFieldModule,
     SipnnerModule,
-    NgIconsModule.withIcons({ ionSearch }),
+    NgIconsModule.withIcons({ ionSearch, heroXMark }),
   ],
   exports: [
     FilterTaskFormComponent

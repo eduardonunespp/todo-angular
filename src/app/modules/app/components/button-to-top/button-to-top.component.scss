@@ -1,0 +1,45 @@
+.button-to-top {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+  transform: translateY(90px);
+  animation-name: "";
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: unset;
+  animation-fill-mode: forwards;
+
+  &.isScroll {
+    animation-name: scrollMoth;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  div {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes scrollMoth {
+  0% {
+    transform: translateY(90px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

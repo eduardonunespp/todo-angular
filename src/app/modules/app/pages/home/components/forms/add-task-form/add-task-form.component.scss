@@ -17,20 +17,20 @@ form {
   }
 
   .text-area-container {
-    margin-top: 15px;
+    margin-top: .9375rem;
     width: 100%;
   }
 
   .footer-modal {
-    height: 70px;
+    height: 4.375rem;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
 
     button {
-      width: 100px;
-      height: 35px;
-      border-radius: 4px;
+      width: 6.25rem;
+      height: 2.1875rem;
+      border-radius: .25rem;
       border: none;
 
       cursor: pointer;
@@ -50,7 +50,7 @@ form {
     button:last-child {
       background-color: var(--sucess);
       color: var(--background);
-      margin-left: 15px;
+      margin-left: .9375rem;
 
       display: flex;
       align-items: center;

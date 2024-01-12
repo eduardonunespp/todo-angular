@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import {
   SharedListsTaskDataService,
   SharedSidebarDataService,
@@ -29,6 +29,7 @@ export class HomeComponent implements AfterViewInit {
   isFiltered: boolean = false
   isLoading: boolean = false;
   perPage: number = 10
+  isScroll: boolean = false
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
@@ -73,6 +74,18 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.loadAssignments(this.perPage);
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+ 
+    this.isScroll = scrollPosition > 300;
+  }
+
+  scrollToTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   loadAssignmentsPlus(): void{

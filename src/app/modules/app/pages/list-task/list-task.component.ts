@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
@@ -22,6 +22,7 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
   listTodoIcon: string = 'assets/list-icon.svg';
   isSmallScreen: boolean = false;
   breakpointSubscription!: Subscription;
+  isScroll: boolean = false
 
   dataSource = new MatTableDataSource<ITaskList>([]);
 
@@ -80,6 +81,18 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
         });
       }
     );
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+ 
+    this.isScroll = scrollPosition > 300;
+  }
+
+  scrollToTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   openDeleteModal(id: string, name: string): void {

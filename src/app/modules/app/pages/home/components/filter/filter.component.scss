@@ -1,17 +1,21 @@
 .filter-container {
   width: 100%;
-  height: 58px;
-  border-radius: 5px;
-  padding: 10px 20px;
+  height: 3.625rem;
+  border-radius: .3125rem;
+  padding: .625rem 1.25rem;
   background-color: var(--secundary);
-  margin-top: 24px;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: 0.3s;
 
   &.isActived {
-    height: 130px;
+    height: 8.125rem;
+  }
+
+  @media(max-width: 25rem){
+    padding: .625rem .75rem;
   }
 
   .filter-container-child {
@@ -20,9 +24,9 @@
     justify-content: space-between;
     align-items: center;
 
-    height: 34px;
+    height: 2.125rem;
 
-    border-bottom: 1px solid var(--border-input);
+    border-bottom: .0625rem solid var(--border-input);
 
     span {
       color: var(--text-secundary);

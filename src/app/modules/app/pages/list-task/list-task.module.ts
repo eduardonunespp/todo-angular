@@ -12,6 +12,7 @@ import { RemoveListModalComponent } from './components/modals/remove-list-modal/
 import { RemoveListModalModule } from './components/modals/remove-list-modal/remove-list-modal.module';
 import { EditListModalModule } from './components/modals/edit-list-modal/edit-list-modal.module';
 import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
+import { ButtonToTopModule } from '../../components/button-to-top/button-to-top.module';
 
 @NgModule({
   declarations: [ListTaskComponent],
@@ -29,7 +30,8 @@ import { NavBarModule } from '../../components/nav-bar/nav-bar.module';
     MatDialogModule,
     AddIconModule,
     RemoveListModalModule,
-    EditListModalModule
+    EditListModalModule,
+    ButtonToTopModule
   ],
 })
 export class ListTaskModule {}
