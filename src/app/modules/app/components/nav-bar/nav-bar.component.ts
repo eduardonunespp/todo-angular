@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SharedSidebarDataService } from '../../services';
 import { Router } from '@angular/router';
-import { AuthorizationService } from 'src/app/service/authorization.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogOutModalComponent } from '../log-out-modal/log-out-modal.component';
 
 @Component({
   selector: 'td-nav-bar',
@@ -17,7 +18,7 @@ export class NavBarComponent {
   constructor(
     private sharedService: SharedSidebarDataService,
     private route: Router,
-    private authorizationService: AuthorizationService,
+    private dialogRef: MatDialog
   ) {}
 
   get isActivedSide(): boolean {
@@ -47,7 +48,8 @@ export class NavBarComponent {
   }
 
   logOut() {
-    this.route.navigateByUrl('');
-    this.authorizationService.logOut();
+    this.dialogRef.open(LogOutModalComponent, {
+      width: '450px'
+    })
   }
 }

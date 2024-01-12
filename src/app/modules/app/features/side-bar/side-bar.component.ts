@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedSidebarDataService } from '../../services';
 import { AuthorizationService } from 'src/app/service/authorization.service';
@@ -6,6 +12,8 @@ import { UserService } from 'src/app/service/user.service';
 import { IUser } from 'src/app/shared/domain-types';
 import { Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatDialog } from '@angular/material/dialog';
+import { LogOutModalComponent } from '../../components/log-out-modal/log-out-modal.component';
 
 @Component({
   selector: 'td-side-bar',
@@ -16,7 +24,7 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   @Output() isActivedSideChange: EventEmitter<boolean> =
     new EventEmitter<boolean>();
 
-  user: IUser | undefined
+  user: IUser | undefined;
   logoTodoSide: string = 'assets/todo-logo.svg';
   menuTodoSide: string = 'assets/todo-menu-side.svg';
   homeTodoIcon: string = 'assets/home-icon.svg';
@@ -28,24 +36,23 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   breakpointSubscription!: Subscription;
   isSmallScreen: boolean = false;
 
-
   constructor(
     private sharedService: SharedSidebarDataService,
     private route: Router,
     private authorizationService: AuthorizationService,
     private userService: UserService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private dialogRef: MatDialog
   ) {
     this.breakpointSubscription = this.breakpointObserver
-    .observe([Breakpoints.XSmall, Breakpoints.XSmall])
-    .subscribe((result) => {
-      this.isSmallScreen = result.matches;
-    });
-    
+      .observe([Breakpoints.XSmall, Breakpoints.XSmall])
+      .subscribe((result) => {
+        this.isSmallScreen = result.matches;
+      });
   }
 
   ngOnInit(): void {
-    this.user = this.userService.loadUserFromCache()
+    this.user = this.userService.loadUserFromCache();
   }
 
   emitIsActivedSide() {
@@ -55,14 +62,14 @@ export class SideBarComponent implements OnInit, AfterViewInit {
       this.isActivedSideChange.emit(this.sharedService.isActivedSide);
     }
   }
-  
+
   ngAfterViewInit(): void {
     this.breakpointObserver
-    .observe([Breakpoints.XSmall, Breakpoints.XSmall])
-    .subscribe((result) => {
-      this.isSmallScreen = result.matches;
-      this.emitIsActivedSide(); // Emita o evento ao mudar o tamanho da tela
-    });
+      .observe([Breakpoints.XSmall, Breakpoints.XSmall])
+      .subscribe((result) => {
+        this.isSmallScreen = result.matches;
+        this.emitIsActivedSide(); // Emita o evento ao mudar o tamanho da tela
+      });
   }
 
   get isActivedSide(): boolean {
@@ -76,7 +83,6 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   get isActivedButtonHome(): boolean {
     return this.sharedService.isActivedButtonHome;
   }
-
 
   activedSide() {
     this.sharedService.isActivedSide = !this.sharedService.isActivedSide;
@@ -98,8 +104,9 @@ export class SideBarComponent implements OnInit, AfterViewInit {
   }
 
   logOut() {
-    this.route.navigateByUrl('');
-    this.authorizationService.logOut();
+    this.dialogRef.open(LogOutModalComponent, {
+      width: '450px',
+    });
   }
 
   ngOnDestroy(): void {

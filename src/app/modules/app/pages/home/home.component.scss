@@ -9,6 +9,10 @@
   transition: 0.4s;
   position: relative;
 
+  .button-to-top {
+    position: absolute;
+  }
+
   .grid-cards {
     width: 100%;
     display: flex;
@@ -32,10 +36,6 @@
           font-size: 1.2rem;
         }
       }
-    }
-
-    .button-to-top {
-      position: absolute;
     }
 
     @media (max-width: 650px) {

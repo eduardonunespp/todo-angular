@@ -2,7 +2,7 @@
   <div class="grid-body">
     <div class="input-container">
       <td-app-input
-        label="Data de conclusão"
+        label="Data de conclusão:"
         type="date"
         [hasError]="hasDateError()"
         [errorMsg]="msg.required"
@@ -12,7 +12,7 @@
 
     <div class="input-container">
       <td-app-input
-        label="Hora de conclusão"
+        label="Hora de conclusão:"
         type="time"
         [hasError]="hasTimeHourError()"
         [errorMsg]="msg.required"
@@ -36,7 +36,7 @@
   <div class="text-area-container">
     <td-text-area
       rows="4"
-      label="Descrição"
+      label="Descrição:"
       [disabled]="false"
       [hasError]="hasDescriptionError()"
       [errorMsg]="msg.required"
