@@ -16,6 +16,7 @@ import { DeleteTaskModalModule } from '../../pages/home/components/modals/delete
 import { UnconcludeTaskModalModule } from '../../pages/home/components/modals/unconclude-task-modal/unconclude-task-modal.module';
 import { ionCloseCircle, ionEye } from '@ng-icons/ionicons';
 import { ViewTaskModalModule } from '../../pages/home/components/modals/view-task-modal/view-task-modal.module';
+import { EditTaskModalModule } from '../../pages/home/components/modals/edit-task-modal/edit-task-modal.module';
 
 @NgModule({
   declarations: [CardTaskComponent],
@@ -32,6 +33,7 @@ import { ViewTaskModalModule } from '../../pages/home/components/modals/view-tas
     ConcludeTaskModalModule,
     UnconcludeTaskModalModule,
     DeleteTaskModalModule,
+    EditTaskModalModule,
     NgIconsModule.withIcons({ heroCheckCircleSolid }),
     NgIconsModule.withIcons({ ionCloseCircle }),
     NgIconsModule.withIcons({ ionEye }),

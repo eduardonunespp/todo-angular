@@ -22,6 +22,12 @@ export class TaskService {
     }))
   }
 
+  editTask( id: string, data: any): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/assignments/${id}`, data).pipe(tap(() => {
+      this.taskUpdatedSubject.next()
+    }))
+  }
+
   concludeTask(id: string): Observable<any> {
     return this.http.patch(
       `${environment.apiUrl}/assignments/${id}/conclude`,

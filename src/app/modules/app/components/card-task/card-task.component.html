@@ -17,7 +17,7 @@
     >
       <ng-container *ngSwitchCase="0">Concluído</ng-container>
       <ng-container *ngSwitchCase="1">A Fazer</ng-container>
-      <ng-container *ngSwitchCase="2">Atrasado</ng-container>
+      <ng-container *ngSwitchCase="2">Em atraso</ng-container>
       <ng-container *ngSwitchDefault>Estado Desconhecido</ng-container>
     </p>
   </div>
@@ -48,6 +48,10 @@
       <div class="drop-card">
         <button (click)="openViewModal(id, description)">
           <ng-icon name="ionEye" /> <span>Visualizar</span>
+        </button>
+
+        <button (click)="openEditModal(id, description, deadline)">
+          <td-edit-icon width="12" height="12" /> <span>Editar</span>
         </button>
 
         <button (click)="openModalByStatus(id, description)">

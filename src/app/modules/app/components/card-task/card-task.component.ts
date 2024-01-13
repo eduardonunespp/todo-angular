@@ -4,6 +4,7 @@ import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/c
 import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';
 import { UnconcludeTaskModalComponent } from '../../pages/home/components/modals/unconclude-task-modal/unconclude-task-modal.component';
 import { ViewTaskModalComponent } from '../../pages/home/components/modals/view-task-modal/view-task-modal.component';
+import { EditTaskModalComponent } from '../../pages/home/components/modals/edit-task-modal/edit-task-modal.component';
 
 @Component({
   selector: 'td-card-task',
@@ -16,9 +17,9 @@ export class CardTaskComponent implements OnInit {
   @Input() deadline: string = '';
   @Input() concluded!: boolean;
   @Input() id: string = '';
-  @Input() nameList: string = ''
+  @Input() nameList: string = '';
 
-  injectConcluded: boolean = false
+  injectConcluded: boolean = false;
 
   listCardIcon: string = 'assets/list-card.svg';
   timeCardIcon: string = 'assets/time-card.svg';
@@ -28,7 +29,7 @@ export class CardTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.statusTask();
-    this.injectConcluded = this.concluded
+    this.injectConcluded = this.concluded;
   }
 
   formatDeadLine(): string {
@@ -49,12 +50,14 @@ export class CardTaskComponent implements OnInit {
 
     const date = new Date(this.deadline);
     const day = date.getDate();
-    const timeHour = date.getHours()
-    const timeMinutes = date.getMinutes()
+    const timeHour = date.getHours();
+    const timeMinutes = date.getMinutes();
     const month = months[date.getMonth()];
-    const formattedTime = `${day} de ${month}, ${timeHour.toString().padStart(2, '0')}:${timeMinutes.toString().padStart(2, '0')}`;
+    const formattedTime = `${day} de ${month}, ${timeHour
+      .toString()
+      .padStart(2, '0')}:${timeMinutes.toString().padStart(2, '0')}`;
 
-    return formattedTime
+    return formattedTime;
   }
 
   statusTask() {
@@ -83,11 +86,22 @@ export class CardTaskComponent implements OnInit {
   }
 
   openModalByStatus(id: string, description: string): void {
-    if(this.concluded === false){
-      this.openConcludeModal(id, description)
-    }else{
-      this.openUnconcludeModal(id, description)
+    if (this.concluded === false) {
+      this.openConcludeModal(id, description);
+    } else {
+      this.openUnconcludeModal(id, description);
     }
+  }
+
+  openEditModal(id: string, description: string, deadLine: string): void {
+    this.dialogRef.open(EditTaskModalComponent, {
+      width: '490px',
+      data: {
+        assignmentListId: id,
+        description: description,
+        deadLine: deadLine,
+      },
+    });
   }
 
   openConcludeModal(id: string, name: string): void {

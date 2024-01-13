@@ -1,0 +1,50 @@
+<form action="javascript:void(0)" [formGroup]="editTaskForm">
+    <div class="grid-body">
+      <div class="input-container">
+        <td-app-input
+          label="Data de conclusão:"
+          type="date"
+          [hasError]="hasDateError()"
+          [errorMsg]="msg.required"
+          formControlName="deadLine"
+        />
+      </div>
+  
+      <div class="input-container">
+        <td-app-input
+          label="Hora de conclusão:"
+          type="time"
+          [hasError]="hasTimeHourError()"
+          [errorMsg]="msg.required"
+          formControlName="timeHour"
+        />
+      </div>
+    </div>
+  
+    <div class="text-area-container">
+      <td-text-area
+        rows="4"
+        label="Descrição:"
+        [disabled]="false"
+        [hasError]="hasDescriptionError()"
+        [errorMsg]="msg.required"
+        formControlName="description"
+        [disabled]="false"
+      />
+    </div>
+  
+  
+    <div class="footer-modal">
+      <button (click)="closeModal()">Fechar</button>
+      <button
+        [disabled]="!editTaskForm.valid"
+        [ngClass]="{ isDisabled: !editTaskForm.valid }"
+        (click)="registerTask()"
+      >
+        <td-spinner *ngIf="isLoading" />
+  
+        <span *ngIf="!isLoading">Salvar</span>
+      </button>
+    </div>
+  </form>
+  

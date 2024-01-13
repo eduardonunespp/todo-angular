@@ -1,0 +1,81 @@
+form {
+    width: 100%;
+  
+    .grid-body {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .input-container {
+      width: 48%;
+  
+      div {
+        background-color: #473737;
+      }
+    }
+  
+    .text-area-container {
+      margin-top: .9375rem;
+      width: 100%;
+    }
+  
+    .footer-modal {
+      height: 4.375rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+  
+      button {
+        width: 6.25rem;
+        height: 2.1875rem;
+        border-radius: .25rem;
+        border: none;
+  
+        cursor: pointer;
+  
+        transition: 0.3s;
+  
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+  
+      button:first-child {
+        background-color: var(--danger);
+        color: var(--background);
+      }
+  
+      button:last-child {
+        background-color: var(--sucess);
+        color: var(--background);
+        margin-left: .9375rem;
+  
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  
+  .isDisabled {
+    filter: brightness(0.7);
+  
+    &:hover {
+      filter: brightness(0.7) !important;
+    }
+  }
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #202020;
+  }
+  
+  .mat-mdc-form-field {
+    display: flex;
+  
+    &.mdc-text-field {
+      background-color: #0f0f0f;
+    }
+  }
+  
