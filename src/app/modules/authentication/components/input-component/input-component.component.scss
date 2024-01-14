@@ -9,35 +9,87 @@
     display: block;
   }
 
-  input {
+  .input-container {
     width: 100%;
     height: 2.8125rem;
     border-radius: 3px;
-    padding: .3125rem .625rem;
-    margin: .3125rem 0rem;
-
-    border: .0625rem solid var(--border-input);
+    padding: 2px 0.625rem;
+    margin: 0.3125rem 0rem;
+    border: 0.0625rem solid var(--border-input);
     background-color: var(--primary);
     transition: 0.3s;
-
-    margin-top: .1875rem;
+    margin-top: 0.1875rem;
 
     color: var(--text-secundary);
 
-    &:focus {
-      box-shadow: 0 0 0 0;
-      outline: 0;
-      border: 1px solid var(--brand);
+    display: flex;
+
+    .icon-box {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      bottom: 1px;
+
+      transform: scale(1.2);
     }
 
-    &::placeholder {
-      font-size: 14.4px;
+    .input-box {
+      width: 90%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: var(--primary);
+        color: var(--text-secundary);
+        padding: 0px 5px;
+
+        &:focus {
+          box-shadow: 0 0 0 0;
+          outline: 0;
+        }
+      }
+    }
+
+    &.input-container:focus-within {
+      border: 0.0625rem solid var(--brand);
+    }
+
+    &.hasError {
+      border: 0.0625rem solid var(--danger);
     }
   }
 
-  .hasError {
-    border: .0625rem solid var(--danger);
-  }
+  // input {
+  //   width: 100%;
+  //   height: 2.8125rem;
+  //   border-radius: 3px;
+  //   padding: 0.3125rem 0.625rem;
+  //   margin: 0.3125rem 0rem;
+
+  //   border: 0.0625rem solid var(--border-input);
+  //   background-color: var(--primary);
+  //   transition: 0.3s;
+
+  //   margin-top: 0.1875rem;
+
+  //   color: var(--text-secundary);
+
+  //   &:focus {
+  //     box-shadow: 0 0 0 0;
+  //     outline: 0;
+  //     border: 1px solid var(--brand);
+  //   }
+
+  //   &::placeholder {
+  //     font-size: 14.4px;
+  //   }
+  // }
 }
-
-

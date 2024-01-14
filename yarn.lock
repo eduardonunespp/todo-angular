@@ -2179,9 +2179,9 @@
     "@material/theme" "15.0.0-canary.684e33d25.0"
     tslib "^2.1.0"
 
-"@ng-icons/core@^26.0.0":
+"@ng-icons/core@^26.3.0":
   version "26.3.0"
-  resolved "https://registry.npmjs.org/@ng-icons/core/-/core-26.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@ng-icons/core/-/core-26.3.0.tgz#bcd8d5b201e47e5a43895cdc4591364b800396cf"
   integrity sha512-4gUGz8yShbMX/4S2B4DzcQHrZ1+t29NqmYS70LScN0XMgiFmbg3uUW/Sc14fPiwmhHVNrKSMmX248U61uBZzGw==
   dependencies:
     tslib "^2.2.0"
@@ -2204,6 +2204,13 @@
   version "26.3.0"
   resolved "https://registry.yarnpkg.com/@ng-icons/ionicons/-/ionicons-26.3.0.tgz#a6d3e2c0ccdeb7f31325bbee4192934fee5d79b9"
   integrity sha512-GVoKgvdBnmRMFz5xwtD9APklU+3+fIZV/+YgIr30DDhvgYgVq9ALb2EGl06A0n3hCYKc34yAKvkA69y+jYIy0Q==
+  dependencies:
+    tslib "^2.2.0"
+
+"@ng-icons/material-icons@^26.3.0":
+  version "26.3.0"
+  resolved "https://registry.yarnpkg.com/@ng-icons/material-icons/-/material-icons-26.3.0.tgz#8be38888e020318e20f45052a350d6ded13ec46e"
+  integrity sha512-9b7BRK2vrs0cJIC6IIWF1hYnXUVLms8joRW/YEmntMi05Dqe3+97zKe1pfNOp7Rbo6NWtBJpnCFbEnRt7nv5Sw==
   dependencies:
     tslib "^2.2.0"
 

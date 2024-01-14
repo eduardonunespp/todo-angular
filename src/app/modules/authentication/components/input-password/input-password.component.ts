@@ -1,27 +1,28 @@
-import { Component, Input, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 
 @Component({
-  selector: 'td-app-input',
-  templateUrl: './input-app.component.html',
-  styleUrls: ['./input-app.component.scss'],
+  selector: 'td-input-password',
+  templateUrl: './input-password.component.html',
+  styleUrls: ['./input-password.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputAppComponent),
+      useExisting: forwardRef(() => InputPasswordComponent),
       multi: true,
-    },
-  ],
+    }
+  ]
 })
-export class InputAppComponent implements ControlValueAccessor {
+export class InputPasswordComponent {
   @Input() label: string = '';
-  @Input() type: string = '';
   @Input() name: string = '';
   @Input() hasError: boolean = false;
   @Input() errorMsg: string = '';
-  @Input() isDisable: boolean = false
+  @Input() iconTemplate: any
+  @Input() placeholder: string = ''
 
-
+  visibility: boolean = true
   value: any;
 
   onChange: any = () => {};
@@ -51,5 +52,9 @@ export class InputAppComponent implements ControlValueAccessor {
     this.value = event.target.value;
     this.onChange(this.value);
     this.onTouched();
+  }
+
+  handleVisibilityInput(): void{
+    this.visibility = !this.visibility
   }
 }

@@ -8,15 +8,17 @@
   <td-input
     label="Email:"
     type="text"
+    placeholder="Email:"
+    [iconTemplate]="iconEmailTemplate"
     formControlName="email"
     [hasError]="hasEmailError()"
     [errorMsg]="hasMsgEmailError()"
   />
 
-  <td-input
+  <td-input-password
     label="Senha:"
-    type="password"
     formControlName="password"
+    placeholder="Senha:"
     [hasError]="hasPasswordError()"
     [errorMsg]="hasMsgPasswordError()"
   />
@@ -25,3 +27,7 @@
     Entrar
   </td-button>
 </form>
+
+<ng-template #iconEmailTemplate>
+  <ng-icon name="matEmail" />
+</ng-template>

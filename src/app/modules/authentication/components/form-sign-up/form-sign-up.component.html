@@ -4,6 +4,8 @@
   <td-input
     label="Nome:"
     type="text"
+    placeholder="Nome:"
+    [iconTemplate]="iconUserTemplate"
     formControlName="name"
     [hasError]="isInvalid('name', 'required')"
     [errorMsg]="msg.required"
@@ -12,22 +14,24 @@
   <td-input
     label="Email:"
     type="text"
+    placeholder="Email:"
+    [iconTemplate]="iconEmailTemplate"
     formControlName="email"
     [hasError]="hasEmailError()"
     [errorMsg]="hasMsgEmailError()"
   />
 
-  <td-input
+  <td-input-password
     label="Senha:"
-    type="password"
+    placeholder="Senha:"
     formControlName="password"
     [hasError]="hasPasswordError()"
     [errorMsg]="hasPasswordErrorMsg()"
   />
 
-  <td-input
+  <td-input-password
     label="Confirmação de Senha:"
-    type="password"
+    placeholder="Confirmação de Senha"
     formControlName="passwordConfirm"
     [hasError]="hasPasswordMatchError()"
     [errorMsg]="hasMsgPasswordMatchError()"
@@ -35,3 +39,12 @@
 
   <td-button  [isDisabled]="!signUpForm.valid" [isLoading]="isLoading"> Cadastre-se </td-button>
 </form>
+
+<ng-template #iconUserTemplate>
+  <ng-icon name="heroUserSolid" />
+</ng-template>
+
+<ng-template #iconEmailTemplate>
+  <ng-icon name="matEmail" />
+</ng-template>
+
