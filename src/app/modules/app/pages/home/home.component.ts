@@ -102,9 +102,11 @@ export class HomeComponent implements AfterViewInit {
     this.assignmentsService.getAssignemnts(perPage).subscribe(
       (response) => {
         const { items } = response;
+        console.log(items)
         if (items && items.length > 0) {
           this.assignments = items;
           this.isAssignment = true;
+          this.nameList = items.assignmentListName
         } else {
           this.isAssignment = false;
         }

@@ -23,18 +23,18 @@
           [deadline]="item.deadLine"
           [concluded]="item.concluded"
           [id]="item.id"
-          [nameList]="nameList ? nameList : ''"
+          [nameList]="nameList ? nameList : item.assignmentListName"
         />
       </ng-container>
 
       <ng-template #noAssignment>
         <div class="noAssignmentContainer">
-          <h2>Sem tarefas no momento... Adicione uma nova tarefa</h2>
+          <h2>Sem tarefas no momento... Adicione uma lista e em seguida adicione uma nova tarefa</h2>
         </div>
       </ng-template>
     </div>
 
-    <div class="container-load-assignments">
+    <div class="container-load-assignments" *ngIf="isAssignment">
       <button (click)="loadAssignmentsPlus()">
         <div class="icon-container">
           <td-spinner *ngIf="isLoading" width="14px" height="14px" />

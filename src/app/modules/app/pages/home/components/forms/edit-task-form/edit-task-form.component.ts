@@ -112,7 +112,7 @@ export class EditTaskFormComponent {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Tarefa cadastrada com sucesso!',
+            title: 'Tarefa editada com sucesso!',
             showConfirmButton: false,
             timer: 1800,
           });

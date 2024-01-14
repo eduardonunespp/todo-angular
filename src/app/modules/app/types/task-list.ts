@@ -23,6 +23,7 @@ export type IAssignments = {
   id: string;
   description: string;
   assignmentListId: string;
+  assignmentListName: string;
   deadLine: string;
   concluded: boolean;
   concludedAt: string;
