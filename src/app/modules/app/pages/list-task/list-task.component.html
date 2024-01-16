@@ -13,8 +13,15 @@
       description="Página de gerenciamento das listas"
     />
 
+    <div class="ghost-list-container" *ngIf="isLoading">
+      <div
+        class="row-ghost"
+        *ngFor="let _ of [].constructor(lineGhostCount); let i = index"
+      ></div>
+    </div>
+
     <div class="table-container">
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table mat-table [dataSource]="dataSource" matSort *ngIf="!isLoading">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Nome</th>
           <td mat-cell *matCellDef="let element">
@@ -50,14 +57,9 @@
       >
       </mat-paginator>
     </div>
+
+   
   </div>
 
-  <!-- <div class="ghost-list-container" *ngIf="isLoading" >
-    <div class="row-ghost" *ngFor="let _ of [].constructor(ghostLineCount); let i = index">
-
-    </div>
-  </div> -->
-
   <td-button-to-top class="button-to-top" />
-
 </div>

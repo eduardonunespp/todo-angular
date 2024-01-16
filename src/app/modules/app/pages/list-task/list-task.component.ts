@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
@@ -22,7 +28,9 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
   listTodoIcon: string = 'assets/list-icon.svg';
   isSmallScreen: boolean = false;
   breakpointSubscription!: Subscription;
-  isScroll: boolean = false
+  isScroll: boolean = false;
+  isLoading: boolean = false;
+  lineGhostCount: number = 5;
 
   dataSource = new MatTableDataSource<ITaskList>([]);
 
@@ -49,10 +57,10 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     this.taskListSubscription = this.taskListService
       .onTaskListUpdated()
       .subscribe(() => {
-        this.loadData();
+        this.getListByLoadRequest();
       });
 
-    this.loadData();
+    this.getListByInitialization();
   }
 
   ngOnDestroy(): void {
@@ -64,7 +72,7 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     return this.isSmallScreen;
   }
 
-  private loadData(): void {
+  private getListByLoadRequest(): void {
     this.taskListService.getTaskList().subscribe(
       (response) => {
         const { items } = response;
@@ -83,16 +91,41 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     );
   }
 
+  private getListByInitialization(): void {
+    this.isLoading = true;
+    this.taskListService.getTaskList().subscribe(
+      (response) => {
+        const { items } = response;
+        this.ELEMENT_DATA = items;
+        this.dataSource.data = this.ELEMENT_DATA;
+        this.isLoading = false;
+      },
+      (errors) => {
+        const { message } = errors.error;
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: message,
+          showConfirmButton: true,
+        });
+        this.isLoading = false;
+      }
+    );
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
- 
     this.isScroll = scrollPosition > 300;
   }
 
-  scrollToTop(){
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   openDeleteModal(id: string, name: string): void {
