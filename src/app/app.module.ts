@@ -8,6 +8,7 @@ import { AuthInterceptor } from './core';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app-reduce';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,6 +16,7 @@ import { appReducer } from './store/app-reduce';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
     StoreModule.forRoot({ app: appReducer }),
   ],
   providers: [
