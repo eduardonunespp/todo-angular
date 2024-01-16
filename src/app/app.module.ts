@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app-reduce';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { appReducer } from './store/app-reduce';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-
+    NgxSkeletonLoaderModule,
     StoreModule.forRoot({ app: appReducer }),
   ],
   providers: [

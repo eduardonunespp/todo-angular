@@ -12,6 +12,7 @@ import { heroPlusSmallSolid } from '@ng-icons/heroicons/solid';
 import { SipnnerModule } from 'src/app/shared/components';
 import { ionArrowUp } from '@ng-icons/ionicons';
 import { ButtonToTopModule } from '../../components/button-to-top/button-to-top.module';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -26,7 +27,8 @@ import { ButtonToTopModule } from '../../components/button-to-top/button-to-top.
     AddIconModule,
     NgIconsModule.withIcons({ heroPlusSmallSolid, ionArrowUp }),
     SipnnerModule,
-    ButtonToTopModule
+    ButtonToTopModule,
+    NgxSkeletonLoaderModule
   ],
 })
 export class HomeModule {}

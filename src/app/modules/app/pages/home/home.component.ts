@@ -1,4 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+} from '@angular/core';
 import {
   SharedListsTaskDataService,
   SharedSidebarDataService,
@@ -18,18 +23,20 @@ import { AppStore } from 'src/app/store/app-store';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit {
-  taskDataSubscription!: Subscription;
-  taskListDataSubscription!: Subscription;
-  assignments!: IAssignments[];
+  taskDataSubscription: Subscription | undefined;
+  taskListDataSubscription: Subscription | undefined;
+  assignments: IAssignments[] | undefined;
   nameList: string = '';
   isAssignment: boolean = true;
   homeTodoIcon: string = 'assets/home-icon.svg';
   isSmallScreen: boolean = false;
   breakpointSubscription!: Subscription;
-  isFiltered: boolean = false
-  isLoading: boolean = false;
-  perPage: number = 10
-  isScroll: boolean = false
+  isFiltered: boolean = false;
+  isLoadingAssignmentsGhost: boolean = false;
+  isLoadingAssignments: boolean = false;
+  perPage: number = 10;
+  isScroll: boolean = false;
+  ghostCardsCount: any = 10;
 
   constructor(
     private readonly sharedService: SharedSidebarDataService,
@@ -49,8 +56,8 @@ export class HomeComponent implements AfterViewInit {
       if (state.isClearFilter == true) {
         this.isFiltered = false;
         this.loadAssignments(this.perPage);
-      }else {
-        this.isFiltered = true
+      } else {
+        this.isFiltered = true;
       }
     });
 
@@ -78,39 +85,42 @@ export class HomeComponent implements AfterViewInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollPosition =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
 
- 
     this.isScroll = scrollPosition > 300;
   }
 
-  scrollToTop(){
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  loadAssignmentsPlus(): void{
-    this.perPage += 10
-    if(this.isFiltered == false){
-      this.loadAssignments(this.perPage)
-    }else{
-      this.loadFilter(this.perPage)
+  loadAssignmentsPlus(): void {
+    this.perPage += 10;
+    if (this.isFiltered == false) {
+      this.loadAssignmentsByPagination(this.perPage);
+    } else {
+      this.loadFilter(this.perPage);
     }
   }
 
-  loadAssignments(perPage: number) {
-    this.isLoading = true
+  loadAssignmentsByPagination(perPage: number) {
+    this.isLoadingAssignments = true;
     this.assignmentsService.getAssignemnts(perPage).subscribe(
       (response) => {
         const { items } = response;
-        console.log(items)
+        console.log(items);
         if (items && items.length > 0) {
           this.assignments = items;
           this.isAssignment = true;
-          this.nameList = items.assignmentListName
+          this.nameList = items.assignmentListName;
         } else {
           this.isAssignment = false;
         }
-        this.isLoading = false
+        this.isLoadingAssignments = false;
       },
       (error) => {
         const { message } = error.error;
@@ -120,7 +130,35 @@ export class HomeComponent implements AfterViewInit {
           title: message,
           showConfirmButton: true,
         });
-        this.isLoading = false
+        this.isLoadingAssignments = false;
+      }
+    );
+  }
+
+  loadAssignments(perPage: number) {
+    this.isLoadingAssignmentsGhost = true;
+    this.assignmentsService.getAssignemnts(perPage).subscribe(
+      (response) => {
+        const { items } = response;
+        console.log(items);
+        if (items && items.length > 0) {
+          this.assignments = items;
+          this.isAssignment = true;
+          this.nameList = items.assignmentListName;
+        } else {
+          this.isAssignment = false;
+        }
+        this.isLoadingAssignmentsGhost = false;
+      },
+      (error) => {
+        const { message } = error.error;
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: message,
+          showConfirmButton: true,
+        });
+        this.isLoadingAssignmentsGhost = false;
       }
     );
   }
@@ -128,13 +166,8 @@ export class HomeComponent implements AfterViewInit {
   loadFilter(perPage: number) {
     this.sharedDataTaskService.taskData$.subscribe(
       (data: ITaskListById) => {
-        const {assignments} = data
-        if (
-          data &&
-          assignments.length &&
-          Array.isArray(assignments)
-        ) {
-  
+        const { assignments } = data;
+        if (data && assignments.length && Array.isArray(assignments)) {
           this.isAssignment = true;
           this.assignments = assignments.slice(0, perPage);
           this.nameList = data.name;
@@ -154,12 +187,12 @@ export class HomeComponent implements AfterViewInit {
     );
   }
 
-  isSmallScreenFunction(): boolean {
-    return this.isSmallScreen;
-  }
-
   get isActivedSide(): boolean {
     return this.sharedService.isActivedSide;
+  }
+
+  isSmallScreenFunction(): boolean {
+    return this.isSmallScreen;
   }
 
   activedSide(isActive: boolean) {

@@ -21,6 +21,17 @@
   .button-to-top {
     position: absolute;
   }
+
+  .ghost-list-container {
+    width: 100%;
+
+    .row-ghost {
+      width: 100%;
+      height: 50px;
+      border-radius: 5px;
+      background-color: var(--secundary);
+    }
+  }
 }
 
 .activedSide {

@@ -29,17 +29,27 @@
 
       <ng-template #noAssignment>
         <div class="noAssignmentContainer">
-          <h2>Sem tarefas no momento... Adicione uma lista e em seguida adicione uma nova tarefa</h2>
+          <h2>
+            Nenhuma tarefa disponível no momento. Comece adicionando uma lista
+            e, em seguida, inclua uma nova tarefa.
+          </h2>
         </div>
       </ng-template>
+    </div>
+
+    <div *ngIf="isLoadingAssignmentsGhost" class="grid-ghost-cards">
+      <div
+        class="ghost-card"
+        *ngFor="let _ of [].constructor(ghostCardsCount); let i = index"
+      ></div>
     </div>
 
     <div class="container-load-assignments" *ngIf="isAssignment">
       <button (click)="loadAssignmentsPlus()">
         <div class="icon-container">
-          <td-spinner *ngIf="isLoading" width="14px" height="14px" />
+          <td-spinner *ngIf="isLoadingAssignments" width="14px" height="14px" />
 
-          <ng-icon name="heroPlusSmallSolid" *ngIf="!isLoading" />
+          <ng-icon name="heroPlusSmallSolid" *ngIf="!isLoadingAssignments" />
         </div>
       </button>
     </div>
