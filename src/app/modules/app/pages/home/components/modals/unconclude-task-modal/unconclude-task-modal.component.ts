@@ -33,7 +33,7 @@ export class UnconcludeTaskModalComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Tarefa concluída com sucesso!',
+          title: 'Tarefa marcada como não concluída com sucesso!',
           showConfirmButton: false,
           timer: 1800,
         });
