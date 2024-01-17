@@ -22,7 +22,7 @@ export class InputPasswordComponent {
   @Input() iconTemplate: any
   @Input() placeholder: string = ''
 
-  visibility: boolean = true
+  visibility: boolean = false
   value: any;
 
   onChange: any = () => {};
