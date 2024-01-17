@@ -13,8 +13,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     color: var(--background);
+
+    .icon-container{
+      position: relative;
+      top: 2px;
+    }
 
     svg {
       padding: 0px;

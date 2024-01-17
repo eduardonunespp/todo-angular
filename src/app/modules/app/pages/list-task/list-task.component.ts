@@ -31,6 +31,7 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
   isScroll: boolean = false;
   isLoading: boolean = false;
   lineGhostCount: number = 5;
+  isAssignmentList: boolean = true;
 
   dataSource = new MatTableDataSource<ITaskList>([]);
 
@@ -76,6 +77,11 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     this.taskListService.getTaskList().subscribe(
       (response) => {
         const { items } = response;
+        if (items && items.length > 0) {
+          this.isAssignmentList = true;
+        } else {
+          this.isAssignmentList = false;
+        }
         this.ELEMENT_DATA = items;
         this.dataSource.data = this.ELEMENT_DATA;
       },
@@ -96,6 +102,11 @@ export class ListTaskComponent implements AfterViewInit, OnDestroy {
     this.taskListService.getTaskList().subscribe(
       (response) => {
         const { items } = response;
+        if (items && items.length > 0) {
+          this.isAssignmentList = true;
+        } else {
+          this.isAssignmentList = false;
+        }
         this.ELEMENT_DATA = items;
         this.dataSource.data = this.ELEMENT_DATA;
         this.isLoading = false;

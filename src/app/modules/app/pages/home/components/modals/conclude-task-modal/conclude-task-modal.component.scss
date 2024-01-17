@@ -17,9 +17,11 @@
     color: var(--background);
 
     .icon-container {
-      transform: scale(1.4);
+      transform: scale(1.6);
       width: 20px;
       height: 20px;
+      position: relative;
+      bottom: 2px;
 
       display: flex;
       align-items: center;

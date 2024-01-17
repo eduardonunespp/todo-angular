@@ -12,8 +12,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
     color: var(--background);
+
+    .icon-container {
+      position: relative;
+      bottom: 1px;
+    }
 
     svg {
       padding: 0px;

@@ -5,29 +5,39 @@
   display: grid;
   grid-template-areas: "side content";
   grid-template-rows: auto;
-  grid-template-columns: 97px auto;
+  grid-template-columns: 6.0625rem auto;
   transition: 0.4s;
   position: relative;
 
   .ghost-list-container {
     width: 100%;
-    margin-top: 24px;
+    margin-top: 1.5rem;
 
     .row-ghost {
       width: 100%;
-      height: 45px;
-      margin-top: 15px;
-      border-radius: 5px;
+      height: 2.8125rem;
+      margin-top: .9375rem;
+      border-radius: .3125rem;
       background-color: var(--secundary);
     }
   }
 
-  @media (max-width: 600px) {
+  .message-container {
+    width: 100%;
+    height: calc(100dvh - 6.4375rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--background);
+  }
+
+  @media (max-width: 37.5rem) {
     grid-template-areas:
       "nav"
       "content";
 
-    grid-template-rows: 77px auto;
+    grid-template-rows: 4.8125rem auto;
     grid-template-columns: auto;
   }
 
@@ -37,9 +47,9 @@
 }
 
 .activedSide {
-  grid-template-columns: 270px auto;
+  grid-template-columns: 16.875rem auto;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     grid-template-columns: auto;
   }
 }
@@ -47,7 +57,7 @@
 .content {
   grid-area: content;
   background-color: var(--primary);
-  padding: 24px 19px;
+  padding: 1.5rem 1.1875rem;
 }
 
 .table-container {
@@ -55,10 +65,15 @@
     background: none;
     color: var(text-secundary);
   }
+  
+    &.isNotAssignmentList {
+      display: none;
+    }
+
   width: 100%;
-  padding: 10px;
-  border-radius: 3px;
-  margin-top: 24px;
+  padding: .625rem;
+  border-radius: .1875rem;
+  margin-top: 1.5rem;
 
   background-color: var(--secundary);
 
@@ -76,7 +91,7 @@
     }
 
     tr {
-      height: 50px;
+      height: 3.125rem;
       border-collapse: collapse;
     }
 
@@ -96,9 +111,9 @@
   justify-content: center;
 
   button {
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: .1875rem;
     border: none;
     cursor: pointer;
     transition: 0.2s;
@@ -114,6 +129,6 @@
 
   button:last-child {
     background-color: var(--danger);
-    margin-left: 8px;
+    margin-left: .5rem;
   }
 }

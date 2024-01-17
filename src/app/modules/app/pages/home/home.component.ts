@@ -65,7 +65,7 @@ export class HomeComponent implements AfterViewInit {
       .onTaskUpdated()
       .subscribe(() => {
         if (!this.isFiltered) {
-          this.loadAssignments(this.perPage);
+          this.loadAssignmentsByPagination(this.perPage);
         }
       });
 

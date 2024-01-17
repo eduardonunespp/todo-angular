@@ -5,7 +5,7 @@
   display: grid;
   grid-template-areas: "side content";
   grid-template-rows: auto;
-  grid-template-columns: 97px auto;
+  grid-template-columns: 6.0625rem auto;
   transition: 0.4s;
   position: relative;
 
@@ -18,19 +18,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-  
-    gap: 10px;
+
+    gap: .625rem;
 
     .ghost-card {
-      width: 250px;
-      height: 112px;
-      margin: 10px 0px;
-      border-radius: 10px;
+      width: 15.625rem;
+      height: 7rem;
+      margin: .625rem 0rem;
+      border-radius: .625rem;
       background-color: var(--secundary);
-      padding: 9px;
+      padding: .5625rem;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 40.625rem) {
       justify-content: center;
     }
   }
@@ -40,13 +40,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-top: 20px;
-    gap: 10px;
+    padding-top: 1.25rem;
+    gap: .625rem;
 
     &.isNoAssignment {
       align-items: center;
       justify-content: center;
-      height: 50dvh;
+      height: calc(100dvh - 11.4375rem);
     }
 
     .noAssignmentContainer {
@@ -54,13 +54,13 @@
         text-align: center;
         color: var(--text-secundary);
 
-        @media (max-width: 600px) {
-          font-size: 1.2rem;
+        @media (max-width: 37.5rem) {
+          font-size: 19.2px;
         }
       }
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 40.625rem) {
       justify-content: center;
     }
   }
@@ -72,11 +72,11 @@
     justify-content: center;
 
     button {
-      width: 40px;
-      height: 40px;
-      border-radius: 3px;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: .1875rem;
       background-color: var(--background);
-      margin-top: 25px;
+      margin-top: 1.5625rem;
       color: var(--primary);
       display: flex;
       align-items: center;
@@ -96,26 +96,26 @@
 
       div {
         position: relative;
-        left: 1px;
-        top: 1px;
+        left: .0625rem;
+        top: .0625rem;
       }
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     grid-template-areas:
       "nav"
       "content";
 
-    grid-template-rows: 77px auto;
+    grid-template-rows: 4.8125rem auto;
     grid-template-columns: auto;
   }
 }
 
 .activedSide {
-  grid-template-columns: 270px auto;
+  grid-template-columns: 16.875rem auto;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     grid-template-columns: auto;
   }
 }
@@ -123,5 +123,5 @@
 .content {
   grid-area: content;
   background-color: var(--primary);
-  padding: 24px 19px;
+  padding: 1.5rem 1.1875rem;
 }
