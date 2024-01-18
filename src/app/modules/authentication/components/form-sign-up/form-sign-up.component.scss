@@ -8,6 +8,11 @@ form {
   z-index: 1000;
 
   @media (max-width: 600px) {
+    width: 400px;
+    padding: 40px 20px;
+  }
+
+  @media (max-width: 400px) {
     width: 320px;
     padding: 40px 20px;
   }
