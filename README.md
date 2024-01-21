@@ -28,7 +28,8 @@ Este é um projeto full-stack, trata-se de um to-do list com autenticação e ge
 
 <h2>🎯 Objetivos</h2>
 
-O objetivo do projeto foi de consolidar minhas bases em Angular e Node.Js com o framework Nest.Js, durante o desenvolvimento do projeto, consegui extrair muito conteúdo, me ajudando a entender como funciona uma aplicação do cliente ao servidor, tendo em vista que era um desenvolvedor front-end, onde utilizava o React como framework na ocasião
+O objetivo fundamental deste projeto foi solidificar e expandir minhas habilidades em Angular e Node.js, especialmente utilizando o framework Nest.js. Durante todo o processo de desenvolvimento, essa iniciativa proporcionou uma imersão valiosa, permitindo-me aprofundar meu entendimento sobre a dinâmica de uma aplicação desde a perspectiva do cliente até o servidor.
+Anteriormente concentrado como desenvolvedor front-end, essa experiência foi um marco significativo, proporcionando insights cruciais sobre a integração de elementos do front-end e do back-end.
 
 <h2>💻 Funcionalidades</h2>
 
@@ -42,9 +43,7 @@ O objetivo do projeto foi de consolidar minhas bases em Angular e Node.Js com o 
 <h2>🎓 Como utilizar</h2>
 
   <ol>
-    <li>Clone este repositório para o seu ambiente local:</li>
-    bash
-    git clone https://github.com/seu-usuario/TodoAngular.git
+    <li>Clone este repositório para o seu ambiente local</li>
 
     <li>No terminal, na raiz do projeto, instale as dependências:</li>
     ```bash
@@ -59,13 +58,17 @@ O objetivo do projeto foi de consolidar minhas bases em Angular e Node.Js com o 
 
     <li>Volte para o diretório raiz e inicie o servidor:</li>
     ```bash
-    npm run start:server
+    ng serve
+
+    Obs: instale o angular CLI antes de iniciar o projeto
   
     <li>No navegador, acesse `http://localhost:4200/` para visualizar o aplicativo.</li>
   </ol>
 
 
-<p> <bold>Ou</bold> Acesse: <strong>https://pokemon-project-bice.vercel.app</strong> </p>
+<p> <bold>Ou</bold> Acesse: <strong>https://to-do-jade-eight.vercel.app</strong> </p>
+
+<hr>
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.2.
