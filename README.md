@@ -1,15 +1,13 @@
-# TodoAngular
+# To-do Angular
 
 
+
+![Captura de tela 2024-01-18 205819](https://github.com/eduardonunespp/todo-angular/assets/100363170/71826a43-293e-4c74-9363-3e7a4eb1d8cd)
 <h1></h1>
 
 ![Captura de tela 2024-01-18 212845](https://github.com/eduardonunespp/todo-angular/assets/100363170/e3c768fd-4062-412c-8206-0b39a7061003)
 
-<h1></h1>
-
 <hr>
-
-<h1>To-do Angular</h1>
 
 Este é um projeto full-stack, trata-se de um to-do list com autenticação e gerenciamento de tarefas
 
