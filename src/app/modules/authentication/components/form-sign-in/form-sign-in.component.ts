@@ -90,7 +90,6 @@ export class FormSignInComponent {
       let payload: IloginUsers = this.signInForm.value;
       this.authService.loginUser(payload).subscribe(
         (response: any) => {
-          console.log(response)
           const { user } = response;
           this.userService.setUser(user);
           const { accessToken } = response;
@@ -99,7 +98,6 @@ export class FormSignInComponent {
           this.route.navigateByUrl('home');
         },
         (errors) => {
-          console.log(errors)
           const { message } = errors.error;
           this.isLoading = false;
           Swal.fire({
