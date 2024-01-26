@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcludeTaskModalComponent } from '../../pages/home/components/modals/conclude-task-modal/conclude-task-modal.component';
 import { DeleteTaskModalComponent } from '../../pages/home/components/modals/delete-task-modal/delete-task-modal.component';

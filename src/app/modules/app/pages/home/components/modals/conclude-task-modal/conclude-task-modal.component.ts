@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { TaskService } from 'src/app/modules/app/services';
+import { TaskService } from '../../../../../../../../app/modules/app/services';
 import Swal from 'sweetalert2';
 
 @Component({

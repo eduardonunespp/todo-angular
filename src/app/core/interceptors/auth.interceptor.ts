@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Cache } from '../adapters';
-import { AuthorizationService } from 'src/app/service/authorization.service';
+import { AuthorizationService } from '../../../app/service/authorization.service';
 import { Router } from '@angular/router';
 
 @Injectable()

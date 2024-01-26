@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonSideComponent } from './button-side.component';
+import { ButtonTaskSideComponent } from './button-side.component';
 
-describe('ButtonSideComponent', () => {
-  let component: ButtonSideComponent;
-  let fixture: ComponentFixture<ButtonSideComponent>;
+describe('ButtonTaskSideComponent', () => {
+  let component: ButtonTaskSideComponent;
+  let fixture: ComponentFixture<ButtonTaskSideComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ButtonSideComponent ]
+      declarations: [ ButtonTaskSideComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ButtonSideComponent);
+    fixture = TestBed.createComponent(ButtonTaskSideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
