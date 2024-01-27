@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthorizationService } from 'src/app/service/authorization.service';
+import { AuthorizationService } from '../../../../../app/service/authorization.service';
 
 @Component({
   selector: 'app-log-out-modal',

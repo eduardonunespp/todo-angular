@@ -6,7 +6,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button-side.component.scss'],
 })
 export class ButtonSideComponent {
-  @Input() Icon: string = '';
   @Input() description: string = '';
   @Input() isActivedSide: boolean = false;
   @Output() activedButtonChangeHome: EventEmitter<boolean> =

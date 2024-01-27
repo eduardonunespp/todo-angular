@@ -2,6 +2,7 @@
   <div class="container-actions">
     <div class="log-out" (click)="logOut()">
       <img
+        data-test-img-1="logOutTodoIcon"
         [ngSrc]="logOutTodoIcon"
         alt="log out image"
         width="22"
@@ -33,6 +34,7 @@
 
   <div class="container-logo">
     <img
+      data-test-img-2="logoTodoSide"
       ngSrc="{{ logoTodoSide }}"
       alt="Image logo side"
       width="85"
