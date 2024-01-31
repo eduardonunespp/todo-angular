@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { ITaskList } from '../../types';
-import { HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 describe('TaskListTService', () => {
   let service: TaskListService;
@@ -105,6 +105,95 @@ describe('TaskListTService', () => {
       const [request] = requests;
 
       request.flush(createFakeNewTaskList);
+    });
+
+    it('should to a request that response with a 401 http status', () => {
+      const fakeNewTaskList: ITaskList = {
+        id: 'sjdishdyudjffi73821duew98nd29ire3hu9',
+        name: 'Nova Lista de Test',
+      };
+
+      service.addTaskList(fakeNewTaskList).subscribe({
+        error: (res: HttpResponse<ITaskList>) => {
+          expect(res.status).toEqual(401);
+        },
+      });
+
+      const request = httpTestingController.expectOne(
+        `${environment.apiUrl}/assignment-list`
+      );
+
+      request.flush('Inauthorized', {
+        status: 401,
+        statusText: 'Inauthorized',
+      });
+    });
+  });
+
+  describe('getTaskListById', () => {
+    it('should edit a task-list', () => {
+      const fakeNewTaskList: ITaskList = {
+        id: 'sjdishdyudjffi73821duew98nd29ire3hu9',
+        name: 'Nova Lista de Test',
+      };
+
+      const createFakeNewTaskList = {
+        ...fakeNewTaskList,
+        nome: 'dqwidbdc9238293aa',
+      };
+
+      service
+        .editTaskList('sjdishdyudjffi73821duew98nd29ire3hu9', fakeNewTaskList)
+        .subscribe({
+          next: (res: any) => {
+            expect(res).toEqual(createFakeNewTaskList);
+          },
+        });
+
+      const requests = httpTestingController.match(
+        (req) =>
+          req.method === 'PUT' &&
+          req.url ===
+            `${environment.apiUrl}/assignment-list/${fakeNewTaskList.id}` &&
+          req.body.name === fakeNewTaskList.name
+      );
+
+      expect(requests.length).toEqual(1);
+
+      const [request] = requests;
+
+      request.flush(createFakeNewTaskList);
+    });
+
+    it('should to a request that response with a 401 http status', () => {
+      const fakeNewTaskList: ITaskList = {
+        id: 'sjdishdyudjffi73821duew98nd29ire3hu9',
+        name: 'Nova Lista de Test',
+      };
+
+      service.editTaskList(fakeNewTaskList.id, fakeNewTaskList).subscribe({
+        error: (errorResponse: HttpErrorResponse) => {
+          expect(errorResponse.status).toEqual(401);
+        },
+      });
+
+      const requests = httpTestingController.match(
+        (req) =>
+          req.method === 'PUT' &&
+          req.url ===
+            `${environment.apiUrl}/assignment-list/${fakeNewTaskList.id}` &&
+          req.body.name === fakeNewTaskList.name
+      );
+
+
+      expect(requests.length).toEqual(1);
+
+      const [request] = requests;
+
+      request.flush('Inauthorized', {
+        status: 401,
+        statusText: 'Inauthorized',
+      });
     });
   });
 });
