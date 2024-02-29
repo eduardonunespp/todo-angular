@@ -13,32 +13,32 @@ export class TaskListService {
 
   addTaskList(data: ITaskList) {
     return this.http
-      .post(`${environment.apiUrl}/assignment-list`, data)
+      .post(`${environment.apiUrl}/assignmentList`, data)
       .pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 
   getTaskList(): Observable<any> {
     const params = new HttpParams().set('PerPage', '1000');
 
-    return this.http.get(`${environment.apiUrl}/assignment-list`, { params });
+    return this.http.get(`${environment.apiUrl}/AssignmentList`, { params });
   }
 
   getTaskListById(id: string): Observable<any> {
     return this.http
-      .get(`${environment.apiUrl}/assignment-list/${id}`)
+      .get(`${environment.apiUrl}/AssignmentList/${id}`)
       .pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 
   editTaskList(id: string, data: ITaskList): Observable<any> {
     const { name } = data;
     return this.http
-      .put(`${environment.apiUrl}/assignment-list/${id}`, { name })
+      .put(`${environment.apiUrl}/AssignmentList/${id}`, { name })
       .pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 
   removeTaskList(id: string): Observable<any> {
     return this.http
-      .delete(`${environment.apiUrl}/assignment-list/${id}`)
+      .delete(`${environment.apiUrl}/AssignmentList/${id}`)
       .pipe(tap(() => this.taskListUpdatedSubject.next()));
   }
 

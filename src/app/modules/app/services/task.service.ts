@@ -13,37 +13,37 @@ export class TaskService {
   getAssignemnts(perPage: number): Observable<any> {
     const params = new HttpParams().set('PerPage', perPage)
 
-    return this.http.get(`${environment.apiUrl}/assignments`, {params});
+    return this.http.get(`${environment.apiUrl}/Assignments`, {params});
   }
 
   addTask(data: any): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/assignments`, data).pipe(tap(() => {
+    return this.http.post(`${environment.apiUrl}/Assignments`, data).pipe(tap(() => {
       this.taskUpdatedSubject.next()
     }))
   }
 
   editTask( id: string, data: any): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/assignments/${id}`, data).pipe(tap(() => {
+    return this.http.put(`${environment.apiUrl}/Assignments/${id}`, data).pipe(tap(() => {
       this.taskUpdatedSubject.next()
     }))
   }
 
   concludeTask(id: string): Observable<any> {
     return this.http.patch(
-      `${environment.apiUrl}/assignments/${id}/conclude`,
+      `${environment.apiUrl}/Assignments/${id}/conclude`,
       null
     ).pipe(tap(() => this.taskUpdatedSubject.next()));
   }
 
   unconcludeTask(id: string): Observable<any> {
     return this.http.patch(
-      `${environment.apiUrl}/assignments/${id}/unconclude`,
+      `${environment.apiUrl}/Assignments/${id}/unconclude`,
       null
     ).pipe(tap(() => this.taskUpdatedSubject.next()));
   }
 
   deleteTask(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/assignments/${id}`).pipe(tap(() => {
+    return this.http.delete(`${environment.apiUrl}/Assignments/${id}`).pipe(tap(() => {
       this.taskUpdatedSubject.next()
     }))
   }
